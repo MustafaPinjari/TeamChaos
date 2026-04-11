@@ -42,9 +42,9 @@ export default function LoadingScreen() {
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-lg">
-                N
+                T
               </div>
-              <span className="text-2xl font-bold tracking-tight text-white">NeuroCart</span>
+              <span className="text-2xl font-bold tracking-tight text-white">TeamChaos</span>
             </div>
 
             {/* Progress bar */}

@@ -31,7 +31,7 @@ export default function CTA() {
           className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight"
         >
           Ready to explore{" "}
-          <span className="gradient-text">NeuroCart?</span>
+          <span className="gradient-text">TeamChaos?</span>
         </motion.h2>
 
         <motion.p

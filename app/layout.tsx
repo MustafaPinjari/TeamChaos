@@ -6,12 +6,12 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NeuroCart — From 25+ Hackathons to Our First Win",
+  title: "TeamChaos — From 25+ Hackathons to Our First Win",
   description:
-    "The story of Team Chaos — how persistence, sleepless nights, and relentless iteration led to building NeuroCart and winning our first hackathon.",
-  keywords: ["NeuroCart", "Team Chaos", "Hackathon", "AI", "E-commerce", "Next.js"],
+    "The story of Team Chaos — how persistence, sleepless nights, and relentless iteration led to building TeamChaos and winning our first hackathon.",
+  keywords: ["TeamChaos", "Team Chaos", "Hackathon", "AI", "E-commerce", "Next.js"],
   openGraph: {
-    title: "NeuroCart — From 25+ Hackathons to Our First Win",
+    title: "TeamChaos — From 25+ Hackathons to Our First Win",
     description: "A cinematic story of persistence, innovation, and winning.",
     type: "website",
   },

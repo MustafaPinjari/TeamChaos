@@ -6,7 +6,7 @@ const socials = [
   { icon: GitFork, label: "GitHub", href: "#" },
   { icon: Share2, label: "Twitter", href: "#" },
   { icon: Code2, label: "LinkedIn", href: "#" },
-  { icon: Mail, label: "Email", href: "mailto:team@neurocart.dev" },
+  { icon: Mail, label: "Email", href: "mailto:team@teamchaos.dev" },
 ];
 
 export default function Footer() {
@@ -22,10 +22,10 @@ export default function Footer() {
             className="flex items-center gap-3"
           >
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">
-              N
+              T
             </div>
             <div>
-              <div className="font-bold text-white">NeuroCart</div>
+              <div className="font-bold text-white">TeamChaos</div>
               <div className="text-white/30 text-xs">by Team Chaos</div>
             </div>
           </motion.div>
@@ -77,7 +77,7 @@ export default function Footer() {
           transition={{ delay: 0.3 }}
           className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-white/20 text-xs"
         >
-          <span>© 2025 NeuroCart. Built with ❤️ by Team Chaos.</span>
+          <span>© 2025 TeamChaos. Built with ❤️ by Team Chaos.</span>
           <span className="font-mono">
             From 25+ attempts to{" "}
             <span className="gradient-text font-bold">1 win.</span>

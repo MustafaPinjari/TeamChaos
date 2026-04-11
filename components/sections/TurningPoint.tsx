@@ -9,7 +9,7 @@ const lines = [
   { text: "We learned to build faster.", size: "text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
   { text: "We learned to think clearer.", size: "text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
   { text: "We learned to fail better.", size: "text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
-  { text: "Then came NeuroCart.", size: "text-3xl md:text-5xl", weight: "font-black", color: "gradient-text" },
+  { text: "Then came TeamChaos.", size: "text-3xl md:text-5xl", weight: "font-black", color: "gradient-text" },
   { text: "And everything changed.", size: "text-4xl md:text-6xl", weight: "font-black", color: "text-white" },
 ];
 

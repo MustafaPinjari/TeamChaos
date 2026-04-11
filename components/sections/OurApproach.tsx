@@ -5,7 +5,7 @@ import { useRef } from "react";
 const steps = [
   { num: "01", title: "Understand the User", desc: "Deep empathy mapping for shoppers, vendors, and admins." },
   { num: "02", title: "Design for Clarity", desc: "Every interaction stripped to its essential form. No noise." },
-  { num: "03", title: "Build with AI-First", desc: "NeuroCart's intelligence layer powers every recommendation." },
+  { num: "03", title: "Build with AI-First", desc: "TeamChaos's intelligence layer powers every recommendation." },
   { num: "04", title: "Iterate Relentlessly", desc: "12 prototypes in 48 hours. Ship, test, refine, repeat." },
 ];
 
@@ -80,7 +80,7 @@ export default function OurApproach() {
           >
             <div className="glass rounded-3xl p-8 border border-white/8">
               <div className="text-center mb-8">
-                <span className="text-white/30 text-xs uppercase tracking-widest">NeuroCart Flow</span>
+                <span className="text-white/30 text-xs uppercase tracking-widest">TeamChaos Flow</span>
               </div>
 
               {/* Flow nodes */}

@@ -13,7 +13,7 @@ const nodes = [
   },
   {
     icon: Cpu,
-    label: "NeuroCart AI",
+    label: "TeamChaos AI",
     desc: "Processes data, runs recommendations, syncs in real-time",
     color: "from-blue-500 to-blue-600",
     glow: "shadow-blue-500/30",
