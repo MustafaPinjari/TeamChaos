@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ExternalLink, GitFork, ArrowUpRight } from "lucide-react";
+import { ExternalLink, GitFork } from "lucide-react";
 
 const stats = [
   { v: "24h",   l: "Build Time",     color: "#a855f7" },
