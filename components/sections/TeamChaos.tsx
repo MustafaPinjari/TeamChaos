@@ -30,7 +30,7 @@ const team = [
     glowColor: "rgba(59,130,246,0.35)",
     borderGlow: "rgba(59,130,246,0.6)",
     number: "02",
-    objectPosition: "top center",
+    objectPosition: "50% 0%",
   },
   {
     name: "Tanmay Bhogekar",
@@ -134,7 +134,7 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
           }}
         >
           {/* Portrait image area */}
-          <div className="relative h-72 overflow-hidden">
+          <div className="relative h-80 overflow-hidden">
             {/* Real photo */}
             <motion.div
               animate={hovered ? { scale: 1.08 } : { scale: 1 }}
