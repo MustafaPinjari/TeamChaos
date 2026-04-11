@@ -30,7 +30,7 @@ const team = [
     glowColor: "rgba(59,130,246,0.35)",
     borderGlow: "rgba(59,130,246,0.6)",
     number: "02",
-    objectPosition: "50% 0%",
+    objectPosition: "50% -10%",
   },
   {
     name: "Tanmay Bhogekar",
