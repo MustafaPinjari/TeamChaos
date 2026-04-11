@@ -19,9 +19,9 @@ export default function Navbar() {
           className="flex items-center gap-2"
         >
           <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">
-            T
+            N
           </div>
-          <span className="font-bold text-white tracking-tight">TeamChaos</span>
+          <span className="font-bold text-white tracking-tight">NeuroCart</span>
         </motion.div>
 
         <motion.div

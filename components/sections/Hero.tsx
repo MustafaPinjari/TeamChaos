@@ -95,7 +95,7 @@ export default function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
-    <section ref={ref} id="story" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={ref} id="story" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-40">
       <ParticleCanvas />
 
       {/* Gradient orbs */}
