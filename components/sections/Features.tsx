@@ -70,7 +70,7 @@ export default function Features() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="features" className="py-32 px-6 relative">
+    <section id="features" className="py-16 sm:py-32 px-4 sm:px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/10 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
@@ -87,7 +87,7 @@ export default function Features() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black tracking-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-6"
           >
             Everything retail{" "}
             <span className="gradient-text">needs.</span>
@@ -98,11 +98,11 @@ export default function Features() {
             transition={{ duration: 0.7, delay: 0.2 }}
             className="text-white/50 text-lg max-w-xl mx-auto"
           >
-            Eight powerful features built in 48 hours. Each one solving a real problem.
+            Eight powerful features built in 24 hours. Each one solving a real problem.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
           {features.map((feature, i) => (
             <motion.div
               key={feature.title}

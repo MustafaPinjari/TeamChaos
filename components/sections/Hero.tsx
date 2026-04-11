@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const WORDS = ["From 25+ Hackathons", "to Our First Win."];
-const BADGE = "🏆  Hackathon Winners · Team Chaos";
+const BADGE = "🥈  Hackathon Runner-Up · Team Chaos";
 
 function TypewriterWord({ text, delay }: { text: string; delay: number }) {
   return (
@@ -98,9 +98,9 @@ export default function Hero() {
     <section ref={ref} id="story" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 md:pt-40">
       <ParticleCanvas />
 
-      {/* Gradient orbs */}
-      <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-purple-600/15 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+      {/* Gradient orbs — clipped to section */}
+      <div className="absolute top-1/4 left-1/4 w-48 sm:w-[500px] h-48 sm:h-[500px] bg-purple-600/15 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-1/4 w-40 sm:w-[400px] h-40 sm:h-[400px] bg-blue-600/10 rounded-full blur-[60px] sm:blur-[100px] pointer-events-none" />
 
       <motion.div style={{ y, opacity }} className="relative z-10 text-center px-6 max-w-5xl mx-auto">
         {/* Badge */}
@@ -116,7 +116,7 @@ export default function Hero() {
         </motion.div>
 
         {/* Main title */}
-        <h1 className="text-5xl md:text-7xl lg:text-[90px] font-black tracking-tighter leading-[0.95] mb-8 overflow-hidden">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[90px] font-black tracking-tighter leading-[0.95] mb-6 sm:mb-8 overflow-hidden">
           <TypewriterWord text={WORDS[0]} delay={0.4} />
           <span className="block overflow-hidden">
             <motion.span
@@ -135,10 +135,10 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="text-lg md:text-xl text-white/50 max-w-xl mx-auto mb-12 leading-relaxed"
+          className="text-base md:text-xl text-white/50 max-w-xl mx-auto mb-10 sm:mb-12 leading-relaxed px-2"
         >
-          The story of how Team Chaos built NeuroCart — an AI-powered smart cart system —
-          through persistence, sleepless nights, and relentless iteration.
+          The story of how Team Chaos built an AI-powered smart cart system —
+          through persistence, sleepless nights, and relentless iteration in just 24 hours.
         </motion.p>
 
         {/* CTAs */}
@@ -168,12 +168,12 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-10 border-t border-white/[0.06] pt-10"
+          className="mt-12 sm:mt-16 flex flex-wrap items-center justify-center gap-6 sm:gap-10 border-t border-white/[0.06] pt-8 sm:pt-10"
         >
           {[
             { value: "25+", label: "Hackathons" },
-            { value: "1st", label: "Place Win" },
-            { value: "48hrs", label: "Build Time" },
+            { value: "2nd", label: "Place Finish" },
+            { value: "24hrs", label: "Build Time" },
             { value: "4", label: "Team Members" },
           ].map((stat, i) => (
             <motion.div
@@ -183,7 +183,7 @@ export default function Hero() {
               transition={{ delay: 1.8 + i * 0.1 }}
               className="text-center"
             >
-              <div className="text-3xl font-black gradient-text">{stat.value}</div>
+              <div className="text-2xl sm:text-3xl font-black gradient-text">{stat.value}</div>
               <div className="text-white/30 text-[11px] mt-1.5 uppercase tracking-[0.15em]">{stat.label}</div>
             </motion.div>
           ))}

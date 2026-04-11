@@ -53,7 +53,7 @@ export default function ProblemStatement() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 px-6 relative">
+    <section className="py-16 sm:py-32 px-4 sm:px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
@@ -70,7 +70,7 @@ export default function ProblemStatement() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black tracking-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-6"
           >
             Retail is{" "}
             <span className="gradient-text-warm">broken.</span>
@@ -85,7 +85,7 @@ export default function ProblemStatement() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {problems.map((p, i) => (
             <motion.div
               key={p.title}

@@ -1,8 +1,10 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Lenis from "lenis";
 
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.4,
@@ -19,5 +21,5 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
     return () => lenis.destroy();
   }, []);
 
-  return <>{children}</>;
+  return <div ref={wrapperRef} style={{ position: "relative" }}>{children}</div>;
 }

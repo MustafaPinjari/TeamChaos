@@ -5,8 +5,8 @@ import { useRef } from "react";
 const steps = [
   { num: "01", title: "Understand the User", desc: "Deep empathy mapping for shoppers, vendors, and admins." },
   { num: "02", title: "Design for Clarity", desc: "Every interaction stripped to its essential form. No noise." },
-  { num: "03", title: "Build with AI-First", desc: "TeamChaos's intelligence layer powers every recommendation." },
-  { num: "04", title: "Iterate Relentlessly", desc: "12 prototypes in 48 hours. Ship, test, refine, repeat." },
+  { num: "03", title: "Build with AI-First", desc: "Team Chaos's intelligence layer powers every recommendation." },
+  { num: "04", title: "Iterate Relentlessly", desc: "12 prototypes in 24 hours. Ship, test, refine, repeat." },
 ];
 
 export default function OurApproach() {
@@ -14,11 +14,11 @@ export default function OurApproach() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 px-6 relative overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/8 rounded-full blur-[120px] pointer-events-none" />
+    <section className="py-16 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-32 sm:w-[600px] h-32 sm:h-[600px] bg-blue-600/8 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
           {/* Left: Text */}
           <div>
             <motion.div
@@ -34,7 +34,7 @@ export default function OurApproach() {
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight"
             >
               Clarity over{" "}
               <span className="gradient-text">complexity.</span>
@@ -44,7 +44,7 @@ export default function OurApproach() {
               initial={{ opacity: 0, x: -30 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/50 text-lg mb-12 leading-relaxed"
+              className="text-white/50 text-base sm:text-lg mb-10 sm:mb-12 leading-relaxed"
             >
               We didn't try to build everything. We built the right things, exceptionally well.
               Every decision was driven by one question: does this make the experience better?

@@ -1,11 +1,17 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Cursor() {
   const dot = useRef<HTMLDivElement>(null);
   const ring = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
+    // Only show custom cursor on non-touch devices
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+    if (isTouch) return;
+
+    setVisible(true);
     let mouseX = 0, mouseY = 0;
     let ringX = 0, ringY = 0;
     let raf: number;
@@ -30,12 +36,16 @@ export default function Cursor() {
     };
 
     const onEnter = () => {
-      if (ring.current) ring.current.style.transform = "translate(-50%, -50%) scale(1.8)";
-      if (ring.current) ring.current.style.borderColor = "rgba(168,85,247,0.9)";
+      if (ring.current) {
+        ring.current.style.transform = "translate(-50%, -50%) scale(1.8)";
+        ring.current.style.borderColor = "rgba(168,85,247,0.9)";
+      }
     };
     const onLeave = () => {
-      if (ring.current) ring.current.style.transform = "translate(-50%, -50%) scale(1)";
-      if (ring.current) ring.current.style.borderColor = "rgba(168,85,247,0.5)";
+      if (ring.current) {
+        ring.current.style.transform = "translate(-50%, -50%) scale(1)";
+        ring.current.style.borderColor = "rgba(168,85,247,0.5)";
+      }
     };
 
     document.addEventListener("mousemove", onMove);
@@ -50,6 +60,8 @@ export default function Cursor() {
       cancelAnimationFrame(raf);
     };
   }, []);
+
+  if (!visible) return null;
 
   return (
     <>

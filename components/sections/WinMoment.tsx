@@ -27,8 +27,8 @@ function AnnouncementLine({ text, index }: { text: string; index: number }) {
       transition={{ duration: 0.9, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
       className={`leading-tight ${
         isLast
-          ? "text-5xl md:text-8xl font-black gradient-text text-glow"
-          : "text-3xl md:text-5xl font-bold text-white/70"
+          ? "text-4xl sm:text-5xl md:text-8xl font-black gradient-text text-glow"
+          : "text-2xl sm:text-3xl md:text-5xl font-bold text-white/70"
       }`}
     >
       {text}
@@ -41,7 +41,7 @@ export default function WinMoment() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-40 px-6 relative overflow-hidden">
+    <section className="py-20 sm:py-40 px-4 sm:px-6 relative overflow-hidden">
       {/* Spotlight effect */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15)_0%,transparent_70%)] pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/30 to-transparent pointer-events-none" />
@@ -51,7 +51,7 @@ export default function WinMoment() {
         <motion.div
           key={i}
           className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-500/10 pointer-events-none"
-          style={{ width: `${i * 300}px`, height: `${i * 300}px` }}
+          style={{ width: `min(${i * 300}px, ${i * 28}vw + 80px)`, height: `min(${i * 300}px, ${i * 28}vw + 80px)` }}
           animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.5 }}
         />
@@ -74,7 +74,7 @@ export default function WinMoment() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-yellow-500/30 text-yellow-300 text-sm mb-8"
           >
-            🏆 The Win Moment
+            🥈 Runner-Up
           </motion.div>
         </div>
 
@@ -92,7 +92,7 @@ export default function WinMoment() {
           transition={{ duration: 1, delay: 1.5 }}
           className="mt-20 flex flex-wrap justify-center gap-3"
         >
-          {["🥇 1st Place", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((award) => (
+          {["🥈 Runner-Up", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((award) => (
             <span
               key={award}
               className="px-4 py-2 rounded-full glass border border-yellow-500/20 text-yellow-300/80 text-sm"

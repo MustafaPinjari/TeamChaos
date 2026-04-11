@@ -6,9 +6,9 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TeamChaos — From 25+ Hackathons to Our First Win",
+  title: "TeamChaos — From 25+ Hackathons to Runner-Up",
   description:
-    "The story of Team Chaos — how persistence, sleepless nights, and relentless iteration led to building TeamChaos and winning our first hackathon.",
+    "The story of Team Chaos — how persistence, sleepless nights, and relentless iteration led to finishing runner-up in just 24 hours.",
   keywords: ["TeamChaos", "Team Chaos", "Hackathon", "AI", "E-commerce", "Next.js"],
   openGraph: {
     title: "TeamChaos — From 25+ Hackathons to Our First Win",
@@ -20,6 +20,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+      </head>
       <body className={`${geistSans.variable} ${geistMono.variable} noise antialiased`}>
         {children}
       </body>

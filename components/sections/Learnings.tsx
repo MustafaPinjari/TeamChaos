@@ -46,8 +46,8 @@ export default function Learnings() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="py-32 px-6 relative">
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-purple-600/6 rounded-full blur-[120px] pointer-events-none" />
+    <section className="py-16 sm:py-32 px-4 sm:px-6 relative">
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 sm:w-[600px] h-48 sm:h-[600px] bg-purple-600/6 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
 
       <div className="max-w-4xl mx-auto">
         <div ref={ref} className="text-center mb-20">
@@ -63,7 +63,7 @@ export default function Learnings() {
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-black tracking-tight mb-6"
+            className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-6"
           >
             25 losses.{" "}
             <span className="gradient-text">6 lessons.</span>

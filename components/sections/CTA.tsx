@@ -8,7 +8,7 @@ export default function CTA() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="cta" className="py-40 px-6 relative overflow-hidden">
+    <section id="cta" className="py-20 sm:py-40 px-4 sm:px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.12)_0%,transparent_60%)] pointer-events-none" />
@@ -28,7 +28,7 @@ export default function CTA() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight"
+          className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 leading-tight"
         >
           Ready to explore{" "}
           <span className="gradient-text">TeamChaos?</span>
@@ -38,7 +38,7 @@ export default function CTA() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-white/50 text-xl mb-12 max-w-2xl mx-auto leading-relaxed"
+          className="text-white/50 text-base sm:text-xl mb-10 sm:mb-12 max-w-2xl mx-auto leading-relaxed"
         >
           See the full system in action. Explore the codebase. 
           Understand how we turned 25 failures into one win.
@@ -51,7 +51,9 @@ export default function CTA() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <a
-            href="#"
+            href="https://nauros.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-3 px-8 py-4 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 glow-purple"
           >
             <ExternalLink className="w-4 h-4" />
@@ -59,7 +61,9 @@ export default function CTA() {
             <span className="group-hover:translate-x-1 inline-block transition-transform">→</span>
           </a>
           <a
-            href="#"
+            href="https://github.com/Nick7020/NeuroCart"
+            target="_blank"
+            rel="noopener noreferrer"
             className="group flex items-center gap-3 px-8 py-4 rounded-full glass border border-white/15 text-white font-semibold hover:border-white/30 transition-all duration-300 hover:scale-105"
           >
             <GitFork className="w-4 h-4" />
@@ -72,10 +76,10 @@ export default function CTA() {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-20 pt-12 border-t border-white/8 grid grid-cols-2 md:grid-cols-4 gap-8"
+          className="mt-16 sm:mt-20 pt-10 sm:pt-12 border-t border-white/8 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"
         >
           {[
-            { value: "48hrs", label: "Build Time" },
+            { value: "24hrs", label: "Build Time" },
             { value: "12k+", label: "Lines of Code" },
             { value: "99%", label: "Uptime" },
             { value: "< 50ms", label: "API Response" },

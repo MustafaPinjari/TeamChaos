@@ -113,7 +113,7 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
                     `conic-gradient(from 360deg, ${member.borderGlow}, transparent, ${member.borderGlow})`,
                   ],
                 }
-              : { background: "transparent" }
+              : { background: "rgba(0,0,0,0)" }
           }
           transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
         />
@@ -219,7 +219,7 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
               >
                 Team Chaos
               </span>
-              <span className="text-xs text-white/25">· NeuroCart</span>
+              <span className="text-xs text-white/25">· Team Chaos</span>
             </motion.div>
           </div>
         </motion.div>
@@ -241,7 +241,7 @@ export default function TeamChaos() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="team" className="relative py-32 px-6 overflow-hidden" style={{ background: "#000" }}>
+    <section id="team" className="relative py-16 sm:py-32 px-4 sm:px-6 overflow-hidden" style={{ background: "#000" }}>
 
       {/* Top fade from site bg */}
       <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-[#030712] to-transparent pointer-events-none z-10" />
@@ -249,19 +249,19 @@ export default function TeamChaos() {
       {/* Purple wave glow — bottom */}
       <div className="absolute bottom-0 left-0 right-0 h-[500px] pointer-events-none z-0">
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[900px] h-[400px] rounded-full blur-[120px]"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[900px] h-[300px] sm:h-[400px] rounded-full blur-[80px] sm:blur-[120px]"
           style={{ background: "radial-gradient(ellipse, rgba(168,85,247,0.25) 0%, rgba(109,40,217,0.12) 50%, transparent 70%)" }}
         />
         <div
-          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[200px] rounded-full blur-[80px]"
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[600px] h-[150px] sm:h-[200px] rounded-full blur-[60px] sm:blur-[80px]"
           style={{ background: "rgba(168,85,247,0.15)" }}
         />
       </div>
 
       {/* Ambient side glows */}
-      <div className="absolute top-1/3 -left-32 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+      <div className="absolute top-1/3 -left-16 w-32 sm:w-[400px] h-32 sm:h-[400px] rounded-full blur-[80px] sm:blur-[120px] pointer-events-none"
         style={{ background: "rgba(168,85,247,0.06)" }} />
-      <div className="absolute top-1/3 -right-32 w-[400px] h-[400px] rounded-full blur-[120px] pointer-events-none"
+      <div className="absolute top-1/3 -right-16 w-32 sm:w-[400px] h-32 sm:h-[400px] rounded-full blur-[80px] sm:blur-[120px] pointer-events-none"
         style={{ background: "rgba(59,130,246,0.06)" }} />
 
       <div className="max-w-7xl mx-auto relative z-10">
@@ -276,14 +276,14 @@ export default function TeamChaos() {
             style={{ background: "rgba(168,85,247,0.06)", backdropFilter: "blur(12px)" }}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-            The People Behind NeuroCart
+            The People Behind the Project
           </motion.div>
 
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-5xl md:text-7xl font-black tracking-tight mb-6 leading-none"
+            className="text-4xl sm:text-5xl md:text-7xl font-black tracking-tight mb-6 leading-none"
           >
             Meet{" "}
             <span
@@ -303,10 +303,10 @@ export default function TeamChaos() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/40 text-lg max-w-xl mx-auto leading-relaxed"
+            className="text-white/40 text-base sm:text-lg max-w-xl mx-auto leading-relaxed"
           >
             Four engineers. One vision. Zero compromises.
-            Built NeuroCart in 48 hours and took home the win.
+            Built an AI-powered smart cart in 24 hours and took home the win.
           </motion.p>
 
           {/* Divider line */}
@@ -335,7 +335,7 @@ export default function TeamChaos() {
           className="mt-20 text-center"
         >
           <p className="text-white/15 text-sm font-mono tracking-widest uppercase">
-            Hackathon Winners · 2025
+            Hackathon Runner-Up · 2025
           </p>
         </motion.div>
       </div>

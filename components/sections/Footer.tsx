@@ -11,7 +11,7 @@ const socials = [
 
 export default function Footer() {
   return (
-    <footer className="py-16 px-6 border-t border-white/8 relative">
+    <footer className="py-10 sm:py-16 px-4 sm:px-6 border-t border-white/8 relative">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Brand */}
@@ -36,7 +36,7 @@ export default function Footer() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="flex items-center gap-6 text-sm text-white/40"
+            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-white/40"
           >
             {["Story", "Team", "Architecture", "Features"].map((item) => (
               <a
@@ -80,7 +80,7 @@ export default function Footer() {
           <span>© 2025 TeamChaos. Built with ❤️ by Team Chaos.</span>
           <span className="font-mono">
             From 25+ attempts to{" "}
-            <span className="gradient-text font-bold">1 win.</span>
+            <span className="gradient-text font-bold">runner-up.</span>
           </span>
         </motion.div>
       </div>
