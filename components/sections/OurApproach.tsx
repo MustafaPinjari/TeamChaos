@@ -4,17 +4,17 @@ import { useRef } from "react";
 import { ScanLine, Sparkles, RefreshCw, CreditCard } from "lucide-react";
 
 const steps = [
-  { num: "01", title: "Understand the User",  desc: "Deep empathy mapping for shoppers, vendors, and admins.", color: "#a855f7" },
-  { num: "02", title: "Design for Clarity",   desc: "Every interaction stripped to its essential form. No noise.", color: "#3b82f6" },
-  { num: "03", title: "Build with AI-First",  desc: "Team Chaos's intelligence layer powers every recommendation.", color: "#06b6d4" },
-  { num: "04", title: "Iterate Relentlessly", desc: "12 prototypes in 24 hours. Ship, test, refine, repeat.", color: "#10b981" },
+  { num: "01", title: "Define Every Role",       desc: "Mapped customer, vendor, and admin flows before writing a single line of code.", color: "#a855f7" },
+  { num: "02", title: "API-First Backend",       desc: "Django REST Framework with JWT auth, role-based routing, and clean service layers.", color: "#3b82f6" },
+  { num: "03", title: "AI & Blockchain Layer",   desc: "Co-occurrence recommendations, OpenAI re-ranking, and Ethereum Sepolia order fingerprinting.", color: "#06b6d4" },
+  { num: "04", title: "Iterate Relentlessly",    desc: "12 prototypes in 24 hours. Ship, test, refine, repeat until every feature held.", color: "#10b981" },
 ];
 
 const flowNodes = [
-  { icon: ScanLine,   label: "Customer Scans Item",       sub: "RFID + Barcode",        color: "#a855f7", bg: "rgba(168,85,247,0.12)", border: "rgba(168,85,247,0.25)" },
-  { icon: Sparkles,   label: "AI Processes & Suggests",   sub: "Neural Network",         color: "#3b82f6", bg: "rgba(59,130,246,0.12)",  border: "rgba(59,130,246,0.25)"  },
-  { icon: RefreshCw,  label: "Cart Updates in Real-time", sub: "Live Sync",              color: "#06b6d4", bg: "rgba(6,182,212,0.12)",   border: "rgba(6,182,212,0.25)"   },
-  { icon: CreditCard, label: "Instant Checkout",          sub: "Zero Queue",             color: "#10b981", bg: "rgba(16,185,129,0.12)",  border: "rgba(16,185,129,0.25)"  },
+  { icon: ScanLine,   label: "Customer Browses & Orders",    sub: "JWT Auth · Razorpay",     color: "#a855f7", bg: "rgba(168,85,247,0.12)", border: "rgba(168,85,247,0.25)" },
+  { icon: Sparkles,   label: "AI Recommends Products",       sub: "Co-occurrence · OpenAI",  color: "#3b82f6", bg: "rgba(59,130,246,0.12)",  border: "rgba(59,130,246,0.25)"  },
+  { icon: RefreshCw,  label: "Vendor Manages Inventory",     sub: "Live Stock · Invoices",   color: "#06b6d4", bg: "rgba(6,182,212,0.12)",   border: "rgba(6,182,212,0.25)"   },
+  { icon: CreditCard, label: "Admin Sees Everything",        sub: "Analytics · Reports",     color: "#10b981", bg: "rgba(16,185,129,0.12)",  border: "rgba(16,185,129,0.25)"  },
 ];
 
 export default function OurApproach() {
@@ -78,49 +78,48 @@ export default function OurApproach() {
             </div>
           </div>
 
-          {/* ── Right: flow diagram ── */}
+          {/* ── Right: hour-by-hour timeline ── */}
           <motion.div
             initial={{ opacity: 0, x: 24 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
             className="lg:pt-12"
           >
-            <p className="text-white/20 text-[10px] uppercase tracking-[0.22em] mb-6 font-medium">Team Chaos Flow</p>
+            <p className="text-white/20 text-[10px] uppercase tracking-[0.22em] mb-6 font-medium">24-Hour Build Timeline</p>
 
             <div className="flex flex-col gap-0">
-              {flowNodes.map((node, i) => (
-                <div key={node.label} className="flex flex-col items-start">
+              {[
+                { hours: "0 – 3h",   label: "Architecture First",      desc: "Mapped all three roles, service layer, JWT auth, React context pattern. No code yet.", color: "#a855f7", bg: "rgba(168,85,247,0.12)", border: "rgba(168,85,247,0.25)" },
+                { hours: "3 – 10h",  label: "Core Platform",           desc: "Auth, products, cart, checkout, Razorpay, vendor profiles, role-based routing.", color: "#3b82f6", bg: "rgba(59,130,246,0.12)",  border: "rgba(59,130,246,0.25)"  },
+                { hours: "10 – 16h", label: "The Differentiators",     desc: "Smart recommendations (3 surfaces), blockchain verification, real-time analytics dashboard.", color: "#06b6d4", bg: "rgba(6,182,212,0.12)",   border: "rgba(6,182,212,0.25)"   },
+                { hours: "16 – 22h", label: "Polish & Integration",    desc: "AI chatbot, invoice auto-gen, edge case fixes, global error handling, property-based tests.", color: "#10b981", bg: "rgba(16,185,129,0.12)",  border: "rgba(16,185,129,0.25)"  },
+                { hours: "22 – 24h", label: "Final Push",              desc: "Seed data, end-to-end smoke tests across all three roles, documentation.", color: "#f59e0b", bg: "rgba(245,158,11,0.12)",  border: "rgba(245,158,11,0.25)"  },
+              ].map((node, i, arr) => (
+                <div key={node.hours} className="flex flex-col items-start">
                   <motion.div
                     initial={{ opacity: 0, x: 20 }}
                     animate={inView ? { opacity: 1, x: 0 } : {}}
                     transition={{ duration: 0.5, delay: 0.55 + i * 0.1 }}
                     whileHover={{ x: 4, scale: 1.01 }}
-                    className="w-full flex items-center gap-4 p-4 rounded-2xl border cursor-default transition-all duration-300"
+                    className="w-full flex items-start gap-4 p-4 rounded-2xl border cursor-default transition-all duration-300"
                     style={{ background: node.bg, borderColor: node.border }}
                   >
-                    {/* Icon circle */}
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                      style={{ background: `${node.color}20`, border: `1px solid ${node.color}35` }}>
-                      <node.icon className="w-5 h-5" style={{ color: node.color }} />
+                    <div className="shrink-0 mt-0.5 px-2 py-1 rounded-lg text-[10px] font-black font-mono"
+                      style={{ background: `rgba(0,0,0,0.3)`, color: node.color, border: `1px solid ${node.border}` }}>
+                      {node.hours}
                     </div>
-                    {/* Text */}
                     <div className="flex-1 min-w-0">
                       <p className="font-semibold text-white text-sm leading-tight">{node.label}</p>
-                      <p className="text-white/35 text-xs mt-0.5">{node.sub}</p>
+                      <p className="text-white/40 text-xs mt-0.5 leading-relaxed">{node.desc}</p>
                     </div>
-                    {/* Step number */}
-                    <span className="text-xs font-mono font-bold shrink-0" style={{ color: node.color }}>
-                      0{i + 1}
-                    </span>
                   </motion.div>
 
-                  {/* Connector */}
-                  {i < flowNodes.length - 1 && (
+                  {i < arr.length - 1 && (
                     <motion.div
                       initial={{ scaleY: 0 }} animate={inView ? { scaleY: 1 } : {}}
                       transition={{ duration: 0.3, delay: 0.65 + i * 0.1 }}
-                      className="ml-9 w-px h-5 origin-top"
-                      style={{ background: `linear-gradient(to bottom, ${node.color}50, ${flowNodes[i+1].color}50)` }}
+                      className="ml-9 w-px h-4 origin-top"
+                      style={{ background: `linear-gradient(to bottom, ${node.color}50, ${arr[i+1].color}50)` }}
                     />
                   )}
                 </div>

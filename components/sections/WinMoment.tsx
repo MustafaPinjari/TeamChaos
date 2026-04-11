@@ -4,10 +4,11 @@ import { useRef } from "react";
 import { Trophy } from "lucide-react";
 
 const storyLines = [
-  { text: "The judges reviewed",      delay: 0    },
-  { text: "over 40 projects.",        delay: 0.12 },
-  { text: "They deliberated.",        delay: 0.24 },
-  { text: "Then they called a name.", delay: 0.36 },
+  { text: "The judges reviewed",           delay: 0    },
+  { text: "over 30 projects.",             delay: 0.12 },
+  { text: "Most built a CRUD app.",        delay: 0.24 },
+  { text: "We built a SaaS product.",      delay: 0.36 },
+  { text: "Then they called a name.",      delay: 0.48 },
 ];
 
 function StoryLine({ text, delay }: { text: string; delay: number }) {
@@ -96,7 +97,7 @@ export default function WinMoment() {
           initial={{ opacity: 0, y: 16 }}
           animate={awardsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex flex-wrap gap-2 sm:gap-3"
+          className="flex flex-wrap gap-2 sm:gap-3 mb-14 sm:mb-16"
         >
           {["🥈 Runner-Up", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((a, i) => (
             <motion.span key={a}
@@ -110,6 +111,54 @@ export default function WinMoment() {
               {a}
             </motion.span>
           ))}
+        </motion.div>
+
+        {/* What made us win */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6 }}
+        >
+          <p className="text-white/20 text-[10px] uppercase tracking-[0.22em] mb-6 font-medium">What Made the Difference</p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            {[
+              { n: "01", title: "Treated extras as the main brief",  desc: "\"Additional features carry added weightage\" — we read that as the real brief. Blockchain, AI recs, real-time dashboard. All production-quality.", color: "#a855f7", rgb: "168,85,247" },
+              { n: "02", title: "Architecture that looks real",       desc: "Service layer, JWT blacklisting, role-based routing, caching, DB indexes, graceful fallbacks — decisions real engineering teams make.", color: "#3b82f6", rgb: "59,130,246" },
+              { n: "03", title: "Blockchain was unexpected",          desc: "Nobody else ships Ethereum integration in a 24h e-commerce hackathon. A real Sepolia tx hash on the order page was a moment that stood out.", color: "#06b6d4", rgb: "6,182,212" },
+              { n: "04", title: "Recommendation system had depth",    desc: "Co-occurrence analysis, personalisation, trending with configurable windows, OpenAI re-ranking, full fallback chain, 1-hour caching.", color: "#10b981", rgb: "16,185,129" },
+              { n: "05", title: "Correctness, not just demos",        desc: "Property-based tests, composite DB indexes, select_related to kill N+1s, race-safe invoice numbering — details that signal production thinking.", color: "#f59e0b", rgb: "245,158,11" },
+              { n: "06", title: "UI felt like a SaaS product",        desc: "Loading skeletons, Recharts charts, blockchain badge, recommendation carousels — the frontend looked polished. Presentation matters.", color: "#ec4899", rgb: "236,72,153" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.n}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-20px" }}
+                transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+                whileHover={{ y: -4 }}
+                className="group relative rounded-2xl p-4 sm:p-5 border cursor-default overflow-hidden transition-all duration-300"
+                style={{ background: `rgba(${item.rgb},0.04)`, borderColor: `rgba(${item.rgb},0.15)` }}
+              >
+                <div className="flex items-start gap-3">
+                  <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-black font-mono border"
+                    style={{ background: `rgba(${item.rgb},0.12)`, color: item.color, borderColor: `rgba(${item.rgb},0.25)` }}>
+                    {item.n}
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-white/80 text-xs sm:text-sm mb-1 group-hover:text-white transition-colors">{item.title}</h3>
+                    <p className="text-white/25 text-xs leading-relaxed group-hover:text-white/40 transition-colors">{item.desc}</p>
+                  </div>
+                </div>
+                <motion.div
+                  initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="absolute bottom-0 left-0 right-0 h-[1.5px] origin-left"
+                  style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
+                />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

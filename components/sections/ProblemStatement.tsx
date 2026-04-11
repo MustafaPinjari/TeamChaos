@@ -4,12 +4,12 @@ import { useRef } from "react";
 import { ShoppingCart, Brain, Zap, BarChart3, Shield, Wifi } from "lucide-react";
 
 const problems = [
-  { icon: ShoppingCart, title: "Inefficient Checkout",   desc: "Long queues waste customer time and reduce store throughput.", num: "01", accent: "#a855f7" },
-  { icon: Brain,        title: "No Personalization",     desc: "Stores lack real-time AI to suggest relevant products.", num: "02", accent: "#3b82f6" },
-  { icon: BarChart3,    title: "Poor Inventory Insight", desc: "Vendors have no live visibility into what customers pick up.", num: "03", accent: "#06b6d4" },
-  { icon: Zap,          title: "Slow Billing Process",   desc: "Manual scanning is error-prone and creates buying friction.", num: "04", accent: "#f59e0b" },
-  { icon: Shield,       title: "Theft & Shrinkage",      desc: "Retailers lose billions with no real-time detection.", num: "05", accent: "#ef4444" },
-  { icon: Wifi,         title: "Disconnected Systems",   desc: "Customer, vendor, and admin systems operate in silos.", num: "06", accent: "#10b981" },
+  { icon: ShoppingCart, title: "Authentication & Trust",    desc: "Platforms struggle to verify genuine users during registration and prevent misuse.", num: "01", accent: "#a855f7" },
+  { icon: Brain,        title: "No Smart Recommendations", desc: "E-commerce sites lack AI-driven personalization based on real browsing patterns.", num: "02", accent: "#3b82f6" },
+  { icon: BarChart3,    title: "Weak Admin Visibility",    desc: "Admins have no real-time dashboard for revenue, stock alerts, or order trends.", num: "03", accent: "#06b6d4" },
+  { icon: Zap,          title: "Complex Order Lifecycle",  desc: "Managing order states from placement to delivery is error-prone without automation.", num: "04", accent: "#f59e0b" },
+  { icon: Shield,       title: "No Tamper-Proof Records",  desc: "Order data can be altered with no cryptographic proof of purchase for customers.", num: "05", accent: "#ef4444" },
+  { icon: Wifi,         title: "Siloed Multi-Vendor Ops",  desc: "Vendors, admins, and customers operate in disconnected systems with no unified platform.", num: "06", accent: "#10b981" },
 ];
 
 const container = {
@@ -18,7 +18,7 @@ const container = {
 };
 const item = {
   hidden: { opacity: 0, y: 28 },
-  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] } },
 };
 
 export default function ProblemStatement() {
@@ -45,7 +45,7 @@ export default function ProblemStatement() {
               className="font-black tracking-tighter text-white leading-[0.9]"
               style={{ fontSize: "clamp(2rem, 5.5vw, 5rem)" }}
             >
-              Retail is <span className="gradient-text-warm">broken.</span>
+              E-commerce is <span className="gradient-text-warm">broken.</span>
             </motion.h2>
           </div>
           <motion.p
@@ -53,7 +53,7 @@ export default function ProblemStatement() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="text-white/35 text-sm sm:text-base max-w-xl leading-relaxed"
           >
-            We identified 6 critical pain points costing retailers and customers billions every year.
+            We identified 6 critical pain points in multi-vendor e-commerce that cost businesses and customers every day.
           </motion.p>
         </div>
 

@@ -8,7 +8,7 @@ const team = [
     name: "Mustafa Pinjari",
     role: "Team Captain",
     tag: "Backend & Blockchain",
-    image: "/images/mustufa.jpeg",
+    image: "/images/Mustafa.jpg",
     accent: "#a855f7",
     rgb: "168,85,247",
     number: "01",
@@ -28,7 +28,7 @@ const team = [
     name: "Tanmay Bhogekar",
     role: "DevOps Engineer",
     tag: "Cloud & Infrastructure",
-    image: "/images/tanmay.png",
+    image: "/images/tanmay.jpeg",
     accent: "#06b6d4",
     rgb: "6,182,212",
     number: "03",
@@ -291,7 +291,7 @@ export default function TeamChaos() {
           <div className="h-px flex-1 max-w-24"
             style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.07))" }} />
           <p className="text-white/12 text-[10px] font-mono tracking-[0.2em] uppercase">
-            Hackathon Runner-Up · 2025
+            Hackathon Runner-Up · 2026
           </p>
           <div className="h-px flex-1 max-w-24"
             style={{ background: "linear-gradient(to left, transparent, rgba(255,255,255,0.07))" }} />

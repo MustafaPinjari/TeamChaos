@@ -4,14 +4,14 @@ import { useRef, useState } from "react";
 import { Scan, Brain, Zap, BarChart3, Bell, Shield, Smartphone, Globe } from "lucide-react";
 
 const features = [
-  { icon: Scan,       title: "Smart Scanning",      desc: "Instant barcode + RFID scanning. Items added in milliseconds.", tag: "Core",       accent: "#a855f7" },
-  { icon: Brain,      title: "AI Recommendations",  desc: "Neural network suggests products based on cart contents.",       tag: "AI",         accent: "#3b82f6" },
-  { icon: Zap,        title: "Instant Checkout",    desc: "Skip the queue. Pay from the cart app. Zero wait time.",         tag: "UX",         accent: "#06b6d4" },
-  { icon: BarChart3,  title: "Live Analytics",      desc: "Real-time vendor dashboards — sales, velocity, revenue.",        tag: "Analytics",  accent: "#10b981" },
-  { icon: Bell,       title: "Smart Alerts",        desc: "Low-stock notifications, price alerts, promo triggers.",         tag: "Automation", accent: "#f59e0b" },
-  { icon: Shield,     title: "Theft Prevention",    desc: "Weight sensors + AI detect item mismatches before checkout.",    tag: "Security",   accent: "#ef4444" },
-  { icon: Smartphone, title: "Mobile-First",        desc: "Native iOS & Android with offline capability and sync.",         tag: "Mobile",     accent: "#ec4899" },
-  { icon: Globe,      title: "Multi-Store",         desc: "One platform, unlimited stores. Centralized admin.",             tag: "Scale",      accent: "#8b5cf6" },
+  { icon: Scan,       title: "JWT Auth & Roles",           desc: "Single login routes customers, vendors, and admins. Token blacklisting on logout.", tag: "Auth",       accent: "#a855f7" },
+  { icon: Brain,      title: "AI Recommendations",         desc: "Co-occurrence, personalised, trending, and optional OpenAI GPT-4o-mini re-ranking.", tag: "AI",         accent: "#3b82f6" },
+  { icon: Zap,        title: "Razorpay Payments",          desc: "Full checkout flow with payment status tracking and webhook support.",               tag: "Payments",   accent: "#06b6d4" },
+  { icon: BarChart3,  title: "Admin Dashboard",            desc: "Real-time revenue, trending products, low-stock alerts, and top customer of the day.", tag: "Analytics",  accent: "#10b981" },
+  { icon: Bell,       title: "Order Lifecycle",            desc: "Placed → Accepted → Processed → Dispatched → Delivered, enforced server-side.",      tag: "Orders",     accent: "#f59e0b" },
+  { icon: Shield,     title: "Blockchain Verification",    desc: "SHA-256 order fingerprint stored on Ethereum Sepolia — tamper-proof proof of purchase.", tag: "Web3",    accent: "#ef4444" },
+  { icon: Smartphone, title: "Vendor Panel",               desc: "Dedicated /vendor route with product CRUD, order management, and customer insights.", tag: "Vendor",     accent: "#ec4899" },
+  { icon: Globe,      title: "Report Exports",             desc: "Admin generates payment reports for any date range, downloadable as Excel or PDF.",   tag: "Reports",    accent: "#8b5cf6" },
 ];
 
 function FeatureCard({ f, i }: { f: typeof features[0]; i: number }) {
@@ -89,7 +89,7 @@ export default function Features() {
               className="font-black tracking-tighter text-white leading-[0.9] mb-4"
               style={{ fontSize: "clamp(2rem, 5.5vw, 5rem)" }}
             >
-              Everything retail <span className="gradient-text">needs.</span>
+              Everything NeuroCart <span className="gradient-text">delivers.</span>
             </motion.h2>
           </div>
           <motion.p
@@ -97,7 +97,7 @@ export default function Features() {
             transition={{ delay: 0.3 }}
             className="text-white/35 text-sm sm:text-base max-w-lg"
           >
-            Eight powerful features built in 24 hours. Each one solving a real problem.
+            Eight production-grade features built in 24 hours. Each one solving a real requirement.
           </motion.p>
         </div>
 

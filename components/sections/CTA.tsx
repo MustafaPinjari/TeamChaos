@@ -163,7 +163,7 @@ export default function CTA() {
 
             {/* Description */}
             <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4 max-w-2xl">
-              🛒 An AI-powered smart cart system built in 24 hours. Features real-time scanning, neural recommendations, instant checkout, and live vendor analytics.
+              🛒 An AI-powered multi-vendor e-commerce platform built in 24 hours. Features JWT auth, smart recommendations, Razorpay payments, blockchain order verification, and a real-time admin dashboard.
             </p>
 
             {/* Meta row */}
@@ -193,8 +193,8 @@ export default function CTA() {
               <p className="text-white/40 text-xs font-semibold mb-2">Key Features:</p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-1">
                 {[
-                  "AI-Powered Recommendations", "Instant Checkout", "Live Vendor Analytics",
-                  "RFID + Barcode Scanning",    "Theft Prevention",  "Blockchain Payments",
+                  "AI-Powered Recommendations", "Razorpay Payments",    "Real-time Admin Dashboard",
+                  "Blockchain Order Verification", "Vendor Panel",      "Report Exports (PDF/Excel)",
                 ].map((f) => (
                   <span key={f} className="flex items-center gap-1.5 text-white/35 text-xs">
                     <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#a855f7" }} />

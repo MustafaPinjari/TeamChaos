@@ -57,7 +57,7 @@ export default function Footer() {
         transition={{ delay: 0.3 }}
         className="text-center text-white/15 text-[10px] mt-8 font-mono tracking-widest uppercase"
       >
-        © 2025 Team Chaos · Hackathon Runner-Up · Built in 24 hours
+        © 2026 Team Chaos · TecDrill Deep-Hack · Built in 24 hours
       </motion.p>
     </footer>
   );

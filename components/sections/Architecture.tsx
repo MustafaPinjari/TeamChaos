@@ -7,25 +7,25 @@ import { SiVite, SiTailwindcss, SiFramer, SiReactrouter, SiAxios, SiDjango, SiRa
 import { BarChart2 } from "lucide-react";
 
 const nodes = [
-  { icon: User,          label: "Customer",      desc: "Scans items, gets AI suggestions, checks out instantly",          color: "#a855f7", rgb: "168,85,247"  },
-  { icon: Cpu,           label: "Team Chaos AI", desc: "Processes data, runs recommendations, syncs in real-time",        color: "#3b82f6", rgb: "59,130,246"  },
-  { icon: Store,         label: "Vendor",        desc: "Live inventory updates, sales analytics, stock alerts",           color: "#06b6d4", rgb: "6,182,212"   },
-  { icon: LayoutDashboard,label: "Admin",        desc: "Full platform control, user management, system health",           color: "#10b981", rgb: "16,185,129"  },
+  { icon: User,           label: "Customer",       desc: "Browse products, manage cart, checkout with Razorpay, track orders, view history",  color: "#a855f7", rgb: "168,85,247"  },
+  { icon: Cpu,            label: "NeuroCart AI",   desc: "Co-occurrence recs, personalised suggestions, trending products, OpenAI re-ranking", color: "#3b82f6", rgb: "59,130,246"  },
+  { icon: Store,          label: "Vendor",         desc: "Manage products, view own orders, track invoices, see customer analytics",           color: "#06b6d4", rgb: "6,182,212"   },
+  { icon: LayoutDashboard,label: "Admin",          desc: "Real-time dashboard, user management, order lifecycle, payment reports, exports",    color: "#10b981", rgb: "16,185,129"  },
 ];
 
 const techStack = [
-  { label: "React 19",        category: "Frontend",   icon: FaReact,       color: "#61DAFB" },
+  { label: "React 18",        category: "Frontend",   icon: FaReact,       color: "#61DAFB" },
   { label: "Vite",            category: "Build",      icon: SiVite,        color: "#646CFF" },
-  { label: "Tailwind v4",     category: "Styling",    icon: SiTailwindcss, color: "#06B6D4" },
+  { label: "Tailwind CSS",    category: "Styling",    icon: SiTailwindcss, color: "#06B6D4" },
   { label: "Framer Motion",   category: "Animation",  icon: SiFramer,      color: "#EC4899" },
-  { label: "React Router v7", category: "Routing",    icon: SiReactrouter, color: "#EF4444" },
+  { label: "React Router",    category: "Routing",    icon: SiReactrouter, color: "#EF4444" },
   { label: "Axios",           category: "API",        icon: SiAxios,       color: "#5A29E4" },
   { label: "Recharts",        category: "Charts",     icon: BarChart2,     color: "#F97316" },
   { label: "Lucide React",    category: "Icons",      icon: SiLucide,      color: "#e2e8f0" },
-  { label: "Django",          category: "Backend",    icon: SiDjango,      color: "#10B981" },
+  { label: "Django 6",        category: "Backend",    icon: SiDjango,      color: "#10B981" },
   { label: "Razorpay",        category: "Payments",   icon: SiRazorpay,    color: "#3B82F6" },
-  { label: "Blockchain",      category: "Web3",       icon: FaEthereum,    color: "#F59E0B" },
-  { label: "MetaMask",        category: "Wallet",     icon: FaWallet,      color: "#F97316" },
+  { label: "Ethereum",        category: "Blockchain", icon: FaEthereum,    color: "#F59E0B" },
+  { label: "OpenAI",          category: "AI",         icon: FaWallet,      color: "#F97316" },
 ];
 
 function NodeCard({ node, i, inView }: { node: typeof nodes[0]; i: number; inView: boolean }) {
@@ -102,7 +102,7 @@ export default function Architecture() {
             transition={{ delay: 0.3 }}
             className="text-white/30 text-sm sm:text-base mt-4 max-w-xl"
           >
-            Four interconnected layers — customer, AI, vendor, and admin — working in perfect sync.
+            Four interconnected layers — customer, AI, vendor, and admin — all communicating through a clean DRF API with JWT auth.
           </motion.p>
         </div>
 

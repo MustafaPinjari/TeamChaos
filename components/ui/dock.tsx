@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { motion, useMotionValue, useSpring, useTransform, MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export interface DockProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DockProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onAnimationStart" | "onDragStart" | "onDragEnd" | "onDrag"> {
   iconSize?: number;
   iconMagnification?: number;
   iconDistance?: number;

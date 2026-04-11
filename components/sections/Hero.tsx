@@ -150,8 +150,8 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.85 }}
           className="text-white/40 text-sm sm:text-base md:text-lg max-w-lg mx-auto leading-relaxed mb-8 sm:mb-10"
         >
-          The story of how Team Chaos built an AI-powered smart cart system through
-          persistence, sleepless nights, and relentless iteration — in just 24 hours.
+          The story of how Team Chaos built NeuroCart — an AI-powered multi-vendor e-commerce platform
+          with blockchain verification, smart recommendations, and a real-time admin dashboard — in just 24 hours.
         </motion.p>
 
         {/* CTAs */}

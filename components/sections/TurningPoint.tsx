@@ -3,13 +3,13 @@ import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const lines = [
-  { text: "25+ hackathons.",     big: true,  gradient: false },
-  { text: "Lost every one.",     big: false, gradient: false },
-  { text: "Built faster.",       big: false, gradient: false },
-  { text: "Thought clearer.",    big: false, gradient: false },
-  { text: "Failed better.",      big: false, gradient: false },
-  { text: "Then came our win.",  big: true,  gradient: true  },
-  { text: "Everything changed.", big: true,  gradient: false },
+  { text: "25+ hackathons.",          big: true,  gradient: false },
+  { text: "Lost every one.",          big: false, gradient: false },
+  { text: "Read the problem statement.", big: false, gradient: false },
+  { text: "Saw what others missed.",  big: false, gradient: false },
+  { text: "Built it production-grade.", big: false, gradient: false },
+  { text: "Then came our win.",       big: true,  gradient: true  },
+  { text: "Everything changed.",      big: true,  gradient: false },
 ];
 
 function Line({ line, i }: { line: typeof lines[0]; i: number }) {
@@ -68,13 +68,14 @@ export default function TurningPoint() {
           className="pl-5 border-l-2 border-purple-500/35 max-w-2xl"
         >
           <p className="text-white/40 text-sm sm:text-base md:text-lg leading-relaxed italic">
-            "We didn't just build a product. We built proof that persistence beats talent,
-            and that every failure is just a prototype for success."
+            "When the problem statement dropped, most teams saw a standard e-commerce CRUD app.
+            We saw something different. That last line — <em>additional features carry added weightage</em> — was the key.
+            We decided in the first 30 minutes we weren't going to build a student project."
           </p>
           <div className="mt-4 flex items-center gap-3">
             <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0"
               style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)" }}>TC</div>
-            <span className="text-white/25 text-sm">Team Chaos</span>
+            <span className="text-white/25 text-sm">Team Chaos · Hour 0</span>
           </div>
         </motion.blockquote>
       </div>

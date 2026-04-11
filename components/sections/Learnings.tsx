@@ -3,12 +3,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
 const learnings = [
-  { n: "01", title: "Scope is everything",           desc: "A focused MVP beats a bloated prototype every time.", color: "#a855f7", rgb: "168,85,247" },
-  { n: "02", title: "Communication wins hackathons", desc: "The team that communicates clearly moves 3× faster.", color: "#3b82f6", rgb: "59,130,246" },
-  { n: "03", title: "Demo > Code",                   desc: "A polished 3-min demo is worth 10 hours of refactoring.", color: "#06b6d4", rgb: "6,182,212" },
-  { n: "04", title: "Solve a real problem",          desc: "Every winning project solves something people actually feel.", color: "#10b981", rgb: "16,185,129" },
-  { n: "05", title: "Sleep is a feature",            desc: "A rested mind at hour 20 outperforms an exhausted one at 24.", color: "#f59e0b", rgb: "245,158,11" },
-  { n: "06", title: "Failure is the curriculum",     desc: "25 losses gave us the exact knowledge we needed.", color: "#ec4899", rgb: "236,72,153" },
+  { n: "01", title: "Scope is everything",           desc: "A focused MVP beats a bloated prototype every time. We shipped 12 features, not 30.", color: "#a855f7", rgb: "168,85,247" },
+  { n: "02", title: "Communication wins hackathons", desc: "The team that communicates clearly moves 3× faster. Daily syncs kept us aligned.", color: "#3b82f6", rgb: "59,130,246" },
+  { n: "03", title: "Demo > Code",                   desc: "A polished 3-min demo of NeuroCart's AI recs and blockchain badge won the judges.", color: "#06b6d4", rgb: "6,182,212" },
+  { n: "04", title: "Solve a real problem",          desc: "Every winning project solves something people actually feel. Multi-vendor pain is real.", color: "#10b981", rgb: "16,185,129" },
+  { n: "05", title: "Fallbacks are features",        desc: "Every AI and blockchain call has a graceful fallback. Resilience is a design choice.", color: "#f59e0b", rgb: "245,158,11" },
+  { n: "06", title: "Failure is the curriculum",     desc: "25 losses gave us the exact knowledge to build NeuroCart in one shot.", color: "#ec4899", rgb: "236,72,153" },
 ];
 
 function LearningCard({ item, i }: { item: typeof learnings[0]; i: number }) {
@@ -116,7 +116,7 @@ export default function Learnings() {
             transition={{ delay: 0.35 }}
             className="text-white/25 text-sm mt-4 max-w-md"
           >
-            Every failure sharpened us. Here's what 25 hackathons taught us.
+            Every failure sharpened us. Here's what 25 hackathons taught us — distilled into the decisions that built NeuroCart.
           </motion.p>
         </div>
 
