@@ -1,13 +1,14 @@
 "use client";
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
+import Image from "next/image";
 
 const team = [
   {
     name: "Mustafa Pinjari",
     role: "Team Captain",
     description: "Backend Integration & Blockchain",
-    avatar: "MP",
+    image: "/images/mustufa.jpeg",
     initials: "MP",
     accent: "#a855f7",
     gradientFrom: "from-purple-600",
@@ -15,12 +16,13 @@ const team = [
     glowColor: "rgba(168,85,247,0.35)",
     borderGlow: "rgba(168,85,247,0.6)",
     number: "01",
+    objectPosition: "top",
   },
   {
     name: "Nikhil Mistari",
     role: "Full Stack Developer",
     description: "Frontend-Backend Integration & AI/ML",
-    avatar: "NM",
+    image: "/images/nikhil.jpeg",
     initials: "NM",
     accent: "#3b82f6",
     gradientFrom: "from-blue-600",
@@ -28,12 +30,13 @@ const team = [
     glowColor: "rgba(59,130,246,0.35)",
     borderGlow: "rgba(59,130,246,0.6)",
     number: "02",
+    objectPosition: "top center",
   },
   {
     name: "Tanmay Bhogekar",
     role: "DevOps Engineer",
     description: "DevOps & Cloud Services",
-    avatar: "TB",
+    image: "/images/tanmay.png",
     initials: "TB",
     accent: "#06b6d4",
     gradientFrom: "from-cyan-600",
@@ -41,12 +44,13 @@ const team = [
     glowColor: "rgba(6,182,212,0.35)",
     borderGlow: "rgba(6,182,212,0.6)",
     number: "03",
+    objectPosition: "top",
   },
   {
     name: "Aakash Chauhan",
     role: "R&D Engineer",
     description: "R&D, Debugging & STQA",
-    avatar: "AC",
+    image: "/images/aakash.png",
     initials: "AC",
     accent: "#ec4899",
     gradientFrom: "from-pink-600",
@@ -54,6 +58,7 @@ const team = [
     glowColor: "rgba(236,72,153,0.35)",
     borderGlow: "rgba(236,72,153,0.6)",
     number: "04",
+    objectPosition: "top",
   },
 ];
 
@@ -130,49 +135,36 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
         >
           {/* Portrait image area */}
           <div className="relative h-72 overflow-hidden">
-            {/* Gradient background as portrait placeholder */}
+            {/* Real photo */}
             <motion.div
               animate={hovered ? { scale: 1.08 } : { scale: 1 }}
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className={`absolute inset-0 bg-gradient-to-br ${member.gradientFrom} ${member.gradientTo}`}
-            />
+              className="absolute inset-0"
+            >
+              <Image
+                src={member.image}
+                alt={member.name}
+                fill
+                className="object-cover"
+                style={{ objectPosition: member.objectPosition }}
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+              />
+            </motion.div>
 
-            {/* Noise texture overlay */}
+            {/* Gradient overlay for depth */}
             <div
-              className="absolute inset-0 opacity-20"
+              className="absolute inset-0"
               style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")",
+                background: `linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, transparent 100%)`,
               }}
             />
 
-            {/* Large initials */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.span
-                animate={hovered ? { scale: 1.1, opacity: 0.15 } : { scale: 1, opacity: 0.1 }}
-                transition={{ duration: 0.4 }}
-                className="text-[120px] font-black text-white select-none leading-none"
-              >
-                {member.initials}
-              </motion.span>
-            </div>
-
-            {/* Centered avatar circle */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <motion.div
-                animate={hovered ? { scale: 1.1 } : { scale: 1 }}
-                transition={{ duration: 0.4 }}
-                className="w-24 h-24 rounded-full flex items-center justify-center text-white font-black text-2xl shadow-2xl"
-                style={{
-                  background: "rgba(0,0,0,0.4)",
-                  backdropFilter: "blur(12px)",
-                  border: `2px solid rgba(255,255,255,0.2)`,
-                  boxShadow: `0 0 40px ${member.glowColor}`,
-                }}
-              >
-                {member.initials}
-              </motion.div>
-            </div>
+            {/* Accent color tint on hover */}
+            <motion.div
+              animate={hovered ? { opacity: 0.15 } : { opacity: 0 }}
+              transition={{ duration: 0.4 }}
+              className={`absolute inset-0 bg-gradient-to-t ${member.gradientFrom} ${member.gradientTo}`}
+            />
 
             {/* Number badge */}
             <div
