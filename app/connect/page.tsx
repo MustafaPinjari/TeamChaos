@@ -66,7 +66,7 @@ const team = [
     name: "Aakash Chauhan",
     role: "R&D Engineer",
     specialty: "Research, Debug & QA",
-    image: "/images/aakash.png",
+    image: "/images/aakash.jpeg",
     objectPosition: "top",
     accent: "#ec4899",
     accentRgb: "236,72,153",

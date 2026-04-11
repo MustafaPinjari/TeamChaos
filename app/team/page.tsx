@@ -62,7 +62,7 @@ const team = [
     slug: "aakash-chauhan",
     name: "Aakash Chauhan",
     role: "R&D Engineer",
-    image: "/images/aakash.png",
+    image: "/images/aakash.jpeg",
     objectPosition: "top",
     accent: "#ec4899",
     accentRgb: "236,72,153",

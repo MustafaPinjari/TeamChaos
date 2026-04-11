@@ -38,7 +38,7 @@ const team = [
     name: "Aakash Chauhan",
     role: "R&D Engineer",
     tag: "Research · Debug · QA",
-    image: "/images/aakash.png",
+    image: "/images/aakash.jpeg",
     accent: "#ec4899",
     rgb: "236,72,153",
     number: "04",
