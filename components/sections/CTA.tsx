@@ -136,29 +136,83 @@ export default function CTA() {
           </motion.div>
         </div>
 
-        {/* Bottom — project link card */}
+        {/* Bottom — GitHub-style repo card */}
         <motion.div
           initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.6 }}
-          className="relative rounded-2xl p-6 sm:p-8 border border-white/[0.06] overflow-hidden"
-          style={{ background: "rgba(255,255,255,0.02)" }}
+          className="relative rounded-2xl border border-white/[0.08] overflow-hidden"
+          style={{ background: "rgba(13,13,18,0.9)" }}
         >
-          <div className="absolute inset-0 pointer-events-none"
-            style={{ background: "radial-gradient(ellipse 50% 80% at 0% 50%, rgba(168,85,247,0.06) 0%, transparent 60%)" }} />
+          {/* Subtle top accent */}
+          <div className="absolute top-0 inset-x-0 h-px"
+            style={{ background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), rgba(59,130,246,0.3), transparent)" }} />
 
-          <div className="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <div>
-              <p className="text-white/20 text-[10px] uppercase tracking-[0.2em] mb-1 font-mono">Project</p>
-              <h3 className="font-bold text-white text-base sm:text-lg">NeuroCart — AI Smart Cart System</h3>
-              <p className="text-white/30 text-xs sm:text-sm mt-1">Built in 24 hours · Hackathon Runner-Up 2025</p>
+          <div className="p-5 sm:p-6">
+            {/* Repo header */}
+            <div className="flex items-center gap-3 mb-3">
+              <GitFork className="w-4 h-4 text-white/40 shrink-0" />
+              <a href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+                className="font-bold text-purple-400 hover:text-purple-300 transition-colors text-sm sm:text-base">
+                Nick7020 / NeuroCart
+              </a>
+              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border border-yellow-500/30 text-yellow-400/70"
+                style={{ background: "rgba(234,179,8,0.06)" }}>
+                🏆 Runner-Up
+              </span>
             </div>
+
+            {/* Description */}
+            <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4 max-w-2xl">
+              🛒 An AI-powered smart cart system built in 24 hours. Features real-time scanning, neural recommendations, instant checkout, and live vendor analytics.
+            </p>
+
+            {/* Meta row */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-5 mb-4 text-white/30 text-xs">
+              <span className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shrink-0" />
+                TypeScript
+              </span>
+              <span className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-green-400 shrink-0" />
+                Python
+              </span>
+              <span className="flex items-center gap-1.5">
+                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
+                24
+              </span>
+              <span className="flex items-center gap-1.5">
+                <GitFork className="w-3 h-3" />
+                8
+              </span>
+              <span>Updated 2 days ago</span>
+              <span>MIT License</span>
+            </div>
+
+            {/* Key features */}
+            <div className="mb-5">
+              <p className="text-white/40 text-xs font-semibold mb-2">Key Features:</p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-1">
+                {[
+                  "AI-Powered Recommendations", "Instant Checkout", "Live Vendor Analytics",
+                  "RFID + Barcode Scanning",    "Theft Prevention",  "Blockchain Payments",
+                ].map((f) => (
+                  <span key={f} className="flex items-center gap-1.5 text-white/35 text-xs">
+                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#a855f7" }} />
+                    {f}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* CTA button */}
             <motion.a
-              href="https://nauros.netlify.app/" target="_blank" rel="noopener noreferrer"
-              whileHover={{ scale: 1.05, x: 4 }} whileTap={{ scale: 0.97 }}
-              className="flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white shrink-0"
-              style={{ background: "rgba(168,85,247,0.15)", border: "1px solid rgba(168,85,247,0.25)" }}
+              href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+              whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
+              className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white"
+              style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 20px rgba(168,85,247,0.2)" }}
             >
-              Open Project <ArrowUpRight className="w-4 h-4" />
+              <GitFork className="w-4 h-4" />
+              View Repository
             </motion.a>
           </div>
         </motion.div>
