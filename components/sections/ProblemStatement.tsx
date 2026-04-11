@@ -4,109 +4,94 @@ import { useRef } from "react";
 import { ShoppingCart, Brain, Zap, BarChart3, Shield, Wifi } from "lucide-react";
 
 const problems = [
-  {
-    icon: ShoppingCart,
-    title: "Inefficient Checkout",
-    desc: "Traditional retail checkout creates long queues, wasting customer time and reducing store throughput.",
-    color: "from-purple-500/20 to-purple-500/5",
-    border: "border-purple-500/20",
-  },
-  {
-    icon: Brain,
-    title: "No Personalization",
-    desc: "Stores lack real-time AI to suggest relevant products based on what's already in the cart.",
-    color: "from-blue-500/20 to-blue-500/5",
-    border: "border-blue-500/20",
-  },
-  {
-    icon: BarChart3,
-    title: "Poor Inventory Insight",
-    desc: "Vendors have no live visibility into what customers are picking up or putting back.",
-    color: "from-cyan-500/20 to-cyan-500/5",
-    border: "border-cyan-500/20",
-  },
-  {
-    icon: Zap,
-    title: "Slow Billing Process",
-    desc: "Manual scanning at checkout is error-prone and creates friction in the buying experience.",
-    color: "from-yellow-500/20 to-yellow-500/5",
-    border: "border-yellow-500/20",
-  },
-  {
-    icon: Shield,
-    title: "Theft & Shrinkage",
-    desc: "Retailers lose billions annually to shoplifting with no real-time detection mechanism.",
-    color: "from-red-500/20 to-red-500/5",
-    border: "border-red-500/20",
-  },
-  {
-    icon: Wifi,
-    title: "Disconnected Systems",
-    desc: "Customer, vendor, and admin systems operate in silos with no unified data layer.",
-    color: "from-green-500/20 to-green-500/5",
-    border: "border-green-500/20",
-  },
+  { icon: ShoppingCart, title: "Inefficient Checkout",   desc: "Long queues waste customer time and reduce store throughput.", num: "01", accent: "#a855f7" },
+  { icon: Brain,        title: "No Personalization",     desc: "Stores lack real-time AI to suggest relevant products.", num: "02", accent: "#3b82f6" },
+  { icon: BarChart3,    title: "Poor Inventory Insight", desc: "Vendors have no live visibility into what customers pick up.", num: "03", accent: "#06b6d4" },
+  { icon: Zap,          title: "Slow Billing Process",   desc: "Manual scanning is error-prone and creates buying friction.", num: "04", accent: "#f59e0b" },
+  { icon: Shield,       title: "Theft & Shrinkage",      desc: "Retailers lose billions with no real-time detection.", num: "05", accent: "#ef4444" },
+  { icon: Wifi,         title: "Disconnected Systems",   desc: "Customer, vendor, and admin systems operate in silos.", num: "06", accent: "#10b981" },
 ];
+
+const container = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.08, delayChildren: 0.2 } },
+};
+const item = {
+  hidden: { opacity: 0, y: 28 },
+  show:   { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+};
 
 export default function ProblemStatement() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-16 sm:py-32 px-4 sm:px-6 relative">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/10 to-transparent pointer-events-none" />
-
+    <section className="py-16 sm:py-24 px-5 sm:px-8 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 text-white/50 text-sm mb-6"
+
+        {/* Header */}
+        <div ref={ref} className="mb-12 sm:mb-16">
+          <motion.p
+            initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.5 }}
+            className="text-purple-400/70 text-xs uppercase tracking-[0.22em] mb-4 font-medium"
           >
             The Problem
-          </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight mb-6"
-          >
-            Retail is{" "}
-            <span className="gradient-text-warm">broken.</span>
-          </motion.h2>
+          </motion.p>
+          <div className="overflow-hidden mb-4">
+            <motion.h2
+              initial={{ y: "100%" }} animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="font-black tracking-tighter text-white leading-[0.9]"
+              style={{ fontSize: "clamp(2rem, 5.5vw, 5rem)" }}
+            >
+              Retail is <span className="gradient-text-warm">broken.</span>
+            </motion.h2>
+          </div>
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/50 text-lg max-w-2xl mx-auto"
+            initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="text-white/35 text-sm sm:text-base max-w-xl leading-relaxed"
           >
-            We identified 6 critical pain points that cost retailers and customers billions every year.
+            We identified 6 critical pain points costing retailers and customers billions every year.
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {problems.map((p, i) => (
-            <motion.div
-              key={p.title}
-              initial={{ opacity: 0, y: 40 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.1 * i + 0.3 }}
-              whileHover={{ y: -6, scale: 1.02 }}
-              className={`glass rounded-2xl p-6 border ${p.border} bg-gradient-to-br ${p.color} group cursor-default`}
+        {/* Grid */}
+        <motion.div
+          variants={container} initial="hidden" animate={inView ? "show" : "hidden"}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden"
+          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.05)" }}
+        >
+          {problems.map((p) => (
+            <motion.div key={p.title} variants={item}
+              whileHover={{ backgroundColor: "rgba(255,255,255,0.03)" }}
+              className="group p-6 sm:p-8 cursor-default transition-colors duration-300"
+              style={{ background: "#050508" }}
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-                  <p.icon className="w-5 h-5 text-white/70" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-white mb-2">{p.title}</h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{p.desc}</p>
-                </div>
+              <div className="flex items-start justify-between mb-5">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                  className="p-2.5 rounded-xl border border-white/[0.06] transition-colors duration-300"
+                  style={{ background: "rgba(255,255,255,0.04)" }}
+                >
+                  <p.icon className="w-4 h-4 sm:w-5 sm:h-5 text-white/45 group-hover:text-white/80 transition-colors duration-300" />
+                </motion.div>
+                <span className="text-white/10 text-xs font-mono tabular-nums group-hover:text-white/20 transition-colors">{p.num}</span>
               </div>
+              <h3 className="font-bold text-white/80 text-sm sm:text-base mb-2 group-hover:text-white transition-colors duration-300">{p.title}</h3>
+              <p className="text-white/30 text-xs sm:text-sm leading-relaxed group-hover:text-white/45 transition-colors duration-300">{p.desc}</p>
+              {/* Bottom accent line */}
+              <motion.div
+                initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }}
+                transition={{ duration: 0.3 }}
+                className="mt-5 h-px origin-left rounded-full"
+                style={{ background: `linear-gradient(90deg, ${p.accent}, transparent)` }}
+              />
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

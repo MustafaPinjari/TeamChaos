@@ -1,89 +1,64 @@
 "use client";
 import { motion } from "framer-motion";
-import { GitFork, Share2, Code2, Mail } from "lucide-react";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Mail } from "lucide-react";
 
 const socials = [
-  { icon: GitFork, label: "GitHub", href: "#" },
-  { icon: Share2, label: "Twitter", href: "#" },
-  { icon: Code2, label: "LinkedIn", href: "#" },
-  { icon: Mail, label: "Email", href: "mailto:team@teamchaos.dev" },
+  { icon: FaGithub,   label: "GitHub",   href: "https://github.com/Nick7020/NeuroCart" },
+  { icon: FaLinkedin, label: "LinkedIn", href: "#" },
+  { icon: FaTwitter,  label: "Twitter",  href: "#" },
+  { icon: Mail,       label: "Email",    href: "mailto:team@teamchaos.dev" },
 ];
 
 export default function Footer() {
   return (
-    <footer className="py-10 sm:py-16 px-4 sm:px-6 border-t border-white/8 relative">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-          {/* Brand */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="flex items-center gap-3"
-          >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white font-bold text-sm">
-              T
-            </div>
-            <div>
-              <div className="font-bold text-white">TeamChaos</div>
-              <div className="text-white/30 text-xs">by Team Chaos</div>
-            </div>
-          </motion.div>
-
-          {/* Nav links */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-white/40"
-          >
-            {["Story", "Team", "Architecture", "Features"].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className="hover:text-white transition-colors"
-              >
-                {item}
-              </a>
-            ))}
-          </motion.div>
-
-          {/* Socials */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex items-center gap-3"
-          >
-            {socials.map(({ icon: Icon, label, href }) => (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                className="p-2.5 rounded-xl glass border border-white/8 text-white/40 hover:text-white hover:border-white/20 transition-all duration-200"
-              >
-                <Icon className="w-4 h-4" />
-              </a>
-            ))}
-          </motion.div>
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 text-white/20 text-xs"
+    <footer className="px-5 sm:px-8 pb-8 sm:pb-10 pt-0">
+      <hr className="hr-gradient mb-8 sm:mb-10" />
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+        {/* Brand */}
+        <motion.a href="/"
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          className="flex items-center gap-2.5 group"
         >
-          <span>© 2025 TeamChaos. Built with ❤️ by Team Chaos.</span>
-          <span className="font-mono">
-            From 25+ attempts to{" "}
-            <span className="gradient-text font-bold">runner-up.</span>
-          </span>
+          <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white font-black text-xs"
+            style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)" }}>TC</div>
+          <span className="font-bold text-white/70 text-sm group-hover:text-white transition-colors">Team Chaos</span>
+        </motion.a>
+
+        {/* Links */}
+        <motion.div
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-white/30"
+        >
+          {["Story", "Team", "Architecture", "Features", "Connect"].map((item) => (
+            <a key={item} href={item === "Connect" ? "/connect" : `#${item.toLowerCase()}`}
+              className="hover:text-white/70 transition-colors">{item}</a>
+          ))}
+        </motion.div>
+
+        {/* Socials */}
+        <motion.div
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="flex items-center gap-2"
+        >
+          {socials.map(({ icon: Icon, label, href }) => (
+            <a key={label} href={href} aria-label={label}
+              className="p-2 rounded-lg text-white/25 hover:text-white/70 hover:bg-white/5 transition-all duration-200">
+              <Icon className="w-4 h-4" />
+            </a>
+          ))}
         </motion.div>
       </div>
+
+      <motion.p
+        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }}
+        transition={{ delay: 0.3 }}
+        className="text-center text-white/15 text-[10px] mt-8 font-mono tracking-widest uppercase"
+      >
+        © 2025 Team Chaos · Hackathon Runner-Up · Built in 24 hours
+      </motion.p>
     </footer>
   );
 }

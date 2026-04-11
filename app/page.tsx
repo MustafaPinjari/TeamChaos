@@ -5,6 +5,7 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import Cursor from "@/components/ui/Cursor";
 import Navbar from "@/components/ui/Navbar";
 import Hero from "@/components/sections/Hero";
+import Marquee from "@/components/ui/Marquee";
 import ProblemStatement from "@/components/sections/ProblemStatement";
 import OurApproach from "@/components/sections/OurApproach";
 import TeamChaos from "@/components/sections/TeamChaos";
@@ -23,8 +24,9 @@ export default function Home() {
       <Cursor />
       <SmoothScroll>
         <Navbar />
-        <main>
+        <main className="pb-24 md:pb-28">
           <Hero />
+          <Marquee />
           <ProblemStatement />
           <OurApproach />
           <TeamChaos />

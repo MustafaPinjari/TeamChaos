@@ -1,119 +1,130 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { ScanLine, Sparkles, RefreshCw, CreditCard } from "lucide-react";
 
 const steps = [
-  { num: "01", title: "Understand the User", desc: "Deep empathy mapping for shoppers, vendors, and admins." },
-  { num: "02", title: "Design for Clarity", desc: "Every interaction stripped to its essential form. No noise." },
-  { num: "03", title: "Build with AI-First", desc: "Team Chaos's intelligence layer powers every recommendation." },
-  { num: "04", title: "Iterate Relentlessly", desc: "12 prototypes in 24 hours. Ship, test, refine, repeat." },
+  { num: "01", title: "Understand the User",  desc: "Deep empathy mapping for shoppers, vendors, and admins.", color: "#a855f7" },
+  { num: "02", title: "Design for Clarity",   desc: "Every interaction stripped to its essential form. No noise.", color: "#3b82f6" },
+  { num: "03", title: "Build with AI-First",  desc: "Team Chaos's intelligence layer powers every recommendation.", color: "#06b6d4" },
+  { num: "04", title: "Iterate Relentlessly", desc: "12 prototypes in 24 hours. Ship, test, refine, repeat.", color: "#10b981" },
+];
+
+const flowNodes = [
+  { icon: ScanLine,   label: "Customer Scans Item",       sub: "RFID + Barcode",        color: "#a855f7", bg: "rgba(168,85,247,0.12)", border: "rgba(168,85,247,0.25)" },
+  { icon: Sparkles,   label: "AI Processes & Suggests",   sub: "Neural Network",         color: "#3b82f6", bg: "rgba(59,130,246,0.12)",  border: "rgba(59,130,246,0.25)"  },
+  { icon: RefreshCw,  label: "Cart Updates in Real-time", sub: "Live Sync",              color: "#06b6d4", bg: "rgba(6,182,212,0.12)",   border: "rgba(6,182,212,0.25)"   },
+  { icon: CreditCard, label: "Instant Checkout",          sub: "Zero Queue",             color: "#10b981", bg: "rgba(16,185,129,0.12)",  border: "rgba(16,185,129,0.25)"  },
 ];
 
 export default function OurApproach() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-16 sm:py-32 px-4 sm:px-6 relative overflow-hidden">
-      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-32 sm:w-[600px] h-32 sm:h-[600px] bg-blue-600/8 rounded-full blur-[80px] sm:blur-[120px] pointer-events-none" />
+    <section className="py-16 sm:py-24 px-5 sm:px-8 relative overflow-hidden">
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-48 sm:w-[400px] h-48 sm:h-[400px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%)" }} />
 
       <div className="max-w-7xl mx-auto">
-        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
-          {/* Left: Text */}
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+          {/* ── Left: steps ── */}
           <div>
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-white/10 text-white/50 text-sm mb-6"
+            <motion.p
+              initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+              className="text-blue-400/70 text-xs uppercase tracking-[0.22em] mb-4 font-medium"
             >
               Our Approach
-            </motion.div>
-
-            <motion.h2
-              initial={{ opacity: 0, x: -30 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight"
-            >
-              Clarity over{" "}
-              <span className="gradient-text">complexity.</span>
-            </motion.h2>
-
+            </motion.p>
+            <div style={{ overflow: "hidden" }} className="mb-5">
+              <motion.h2
+                initial={{ y: "100%" }} animate={inView ? { y: "0%" } : {}}
+                transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+                className="font-black tracking-tighter text-white leading-[0.9]"
+                style={{ fontSize: "clamp(1.8rem, 4.5vw, 4rem)" }}
+              >
+                Clarity over <span className="gradient-text">complexity.</span>
+              </motion.h2>
+            </div>
             <motion.p
-              initial={{ opacity: 0, x: -30 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-white/50 text-base sm:text-lg mb-10 sm:mb-12 leading-relaxed"
+              initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+              transition={{ delay: 0.3 }}
+              className="text-white/35 text-sm sm:text-base mb-10 leading-relaxed"
             >
               We didn't try to build everything. We built the right things, exceptionally well.
-              Every decision was driven by one question: does this make the experience better?
             </motion.p>
 
-            <div className="space-y-6">
+            <div className="space-y-3">
               {steps.map((step, i) => (
-                <motion.div
-                  key={step.num}
-                  initial={{ opacity: 0, x: -30 }}
+                <motion.div key={step.num}
+                  initial={{ opacity: 0, x: -20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                  className="flex items-start gap-4 group"
+                  transition={{ duration: 0.55, delay: 0.35 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ x: 5 }}
+                  className="group flex items-start gap-4 p-4 rounded-xl border border-white/[0.05] hover:border-white/10 transition-all duration-300 cursor-default"
+                  style={{ background: "rgba(255,255,255,0.02)" }}
                 >
-                  <span className="text-xs font-mono text-purple-400/60 mt-1 w-8 shrink-0">{step.num}</span>
-                  <div>
-                    <h3 className="font-semibold text-white mb-1 group-hover:text-purple-300 transition-colors">
-                      {step.title}
-                    </h3>
-                    <p className="text-white/40 text-sm">{step.desc}</p>
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center text-[10px] font-black font-mono shrink-0"
+                    style={{ background: `${step.color}15`, color: step.color, border: `1px solid ${step.color}25` }}>
+                    {step.num}
+                  </div>
+                  <div className="pt-0.5">
+                    <h3 className="font-semibold text-white/80 text-sm mb-0.5 group-hover:text-white transition-colors">{step.title}</h3>
+                    <p className="text-white/30 text-xs leading-relaxed">{step.desc}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Right: Visual diagram */}
+          {/* ── Right: flow diagram ── */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="relative"
+            initial={{ opacity: 0, x: 24 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:pt-12"
           >
-            <div className="glass rounded-3xl p-8 border border-white/8">
-              <div className="text-center mb-8">
-                <span className="text-white/30 text-xs uppercase tracking-widest">TeamChaos Flow</span>
-              </div>
+            <p className="text-white/20 text-[10px] uppercase tracking-[0.22em] mb-6 font-medium">Team Chaos Flow</p>
 
-              {/* Flow nodes */}
-              <div className="flex flex-col items-center gap-0">
-                {[
-                  { label: "Customer Scans Item", color: "from-purple-500 to-purple-600" },
-                  { label: "AI Processes & Suggests", color: "from-blue-500 to-blue-600" },
-                  { label: "Cart Updates in Real-time", color: "from-cyan-500 to-cyan-600" },
-                  { label: "Instant Checkout", color: "from-green-500 to-green-600" },
-                ].map((node, i) => (
-                  <div key={node.label} className="flex flex-col items-center w-full">
+            <div className="flex flex-col gap-0">
+              {flowNodes.map((node, i) => (
+                <div key={node.label} className="flex flex-col items-start">
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ duration: 0.5, delay: 0.55 + i * 0.1 }}
+                    whileHover={{ x: 4, scale: 1.01 }}
+                    className="w-full flex items-center gap-4 p-4 rounded-2xl border cursor-default transition-all duration-300"
+                    style={{ background: node.bg, borderColor: node.border }}
+                  >
+                    {/* Icon circle */}
+                    <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
+                      style={{ background: `${node.color}20`, border: `1px solid ${node.color}35` }}>
+                      <node.icon className="w-5 h-5" style={{ color: node.color }} />
+                    </div>
+                    {/* Text */}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-white text-sm leading-tight">{node.label}</p>
+                      <p className="text-white/35 text-xs mt-0.5">{node.sub}</p>
+                    </div>
+                    {/* Step number */}
+                    <span className="text-xs font-mono font-bold shrink-0" style={{ color: node.color }}>
+                      0{i + 1}
+                    </span>
+                  </motion.div>
+
+                  {/* Connector */}
+                  {i < flowNodes.length - 1 && (
                     <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={inView ? { opacity: 1, scale: 1 } : {}}
-                      transition={{ duration: 0.5, delay: 0.5 + i * 0.15 }}
-                      className={`w-full max-w-xs px-6 py-3 rounded-xl bg-gradient-to-r ${node.color} text-white text-sm font-semibold text-center shadow-lg`}
-                    >
-                      {node.label}
-                    </motion.div>
-                    {i < 3 && (
-                      <motion.div
-                        initial={{ scaleY: 0 }}
-                        animate={inView ? { scaleY: 1 } : {}}
-                        transition={{ duration: 0.4, delay: 0.65 + i * 0.15 }}
-                        className="w-[2px] h-8 bg-gradient-to-b from-white/20 to-white/5 origin-top"
-                      />
-                    )}
-                  </div>
-                ))}
-              </div>
-
-              {/* Decorative glow */}
-              <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-purple-500/5 to-blue-500/5 pointer-events-none" />
+                      initial={{ scaleY: 0 }} animate={inView ? { scaleY: 1 } : {}}
+                      transition={{ duration: 0.3, delay: 0.65 + i * 0.1 }}
+                      className="ml-9 w-px h-5 origin-top"
+                      style={{ background: `linear-gradient(to bottom, ${node.color}50, ${flowNodes[i+1].color}50)` }}
+                    />
+                  )}
+                </div>
+              ))}
             </div>
           </motion.div>
         </div>

@@ -3,102 +3,112 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Trophy } from "lucide-react";
 
-const announcement = [
-  "The judges reviewed",
-  "over 40 projects.",
-  "They deliberated",
-  "for two hours.",
-  "Then they called",
-  "a name.",
-  "Team Chaos.",
+const storyLines = [
+  { text: "The judges reviewed",      delay: 0    },
+  { text: "over 40 projects.",        delay: 0.12 },
+  { text: "They deliberated.",        delay: 0.24 },
+  { text: "Then they called a name.", delay: 0.36 },
 ];
 
-function AnnouncementLine({ text, index }: { text: string; index: number }) {
+function StoryLine({ text, delay }: { text: string; delay: number }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-
-  const isLast = index === announcement.length - 1;
-
+  const inView = useInView(ref, { once: true, margin: "-20px" });
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-      animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-      transition={{ duration: 0.9, delay: index * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`leading-tight ${
-        isLast
-          ? "text-4xl sm:text-5xl md:text-8xl font-black gradient-text text-glow"
-          : "text-2xl sm:text-3xl md:text-5xl font-bold text-white/70"
-      }`}
-    >
-      {text}
-    </motion.div>
+    <div ref={ref} style={{ overflow: "hidden" }}>
+      <motion.p
+        initial={{ y: "110%", opacity: 0 }}
+        animate={inView ? { y: "0%", opacity: 1 } : {}}
+        transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
+        className="text-white/40 font-semibold leading-tight"
+        style={{ fontSize: "clamp(1.1rem, 3vw, 2.2rem)" }}
+      >
+        {text}
+      </motion.p>
+    </div>
   );
 }
 
 export default function WinMoment() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const badgeRef = useRef(null);
+  const badgeInView = useInView(badgeRef, { once: true, margin: "-60px" });
+
+  const nameRef = useRef(null);
+  const nameInView = useInView(nameRef, { once: true, margin: "-60px" });
+
+  const awardsRef = useRef(null);
+  const awardsInView = useInView(awardsRef, { once: true, margin: "-40px" });
 
   return (
-    <section className="py-20 sm:py-40 px-4 sm:px-6 relative overflow-hidden">
-      {/* Spotlight effect */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(168,85,247,0.15)_0%,transparent_70%)] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/30 to-transparent pointer-events-none" />
+    <section className="py-16 sm:py-24 px-5 sm:px-8 relative">
+      {/* Glow */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.06) 0%, transparent 70%)" }} />
 
-      {/* Animated rings */}
-      {[1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-purple-500/10 pointer-events-none"
-          style={{ width: `min(${i * 300}px, ${i * 28}vw + 80px)`, height: `min(${i * 300}px, ${i * 28}vw + 80px)` }}
-          animate={{ scale: [1, 1.05, 1], opacity: [0.3, 0.6, 0.3] }}
-          transition={{ duration: 3 + i, repeat: Infinity, delay: i * 0.5 }}
-        />
-      ))}
+      <div className="max-w-5xl mx-auto relative z-10">
 
-      <div className="max-w-4xl mx-auto relative z-10">
-        <div ref={ref} className="text-center mb-20">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-            className="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 shadow-2xl shadow-yellow-500/30 mb-8 mx-auto"
-          >
-            <Trophy className="w-10 h-10 text-white" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-yellow-500/30 text-yellow-300 text-sm mb-8"
-          >
+        {/* Badge */}
+        <motion.div ref={badgeRef}
+          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+          animate={badgeInView ? { opacity: 1, scale: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, type: "spring", bounce: 0.35 }}
+          className="mb-10 sm:mb-12"
+        >
+          <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-yellow-500/20 text-yellow-300/70 text-sm"
+            style={{ background: "rgba(234,179,8,0.05)" }}>
+            <motion.div
+              animate={{ rotate: [0, -12, 12, -12, 0] }}
+              transition={{ duration: 0.7, delay: 1, repeat: Infinity, repeatDelay: 5 }}
+            >
+              <Trophy className="w-4 h-4" />
+            </motion.div>
             🥈 Runner-Up
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
-        <div className="space-y-6 text-center">
-          {announcement.map((line, i) => (
-            <AnnouncementLine key={i} text={line} index={i} />
+        {/* Story lines */}
+        <div className="space-y-1 sm:space-y-2 mb-10 sm:mb-12">
+          {storyLines.map((l) => (
+            <StoryLine key={l.text} text={l.text} delay={l.delay} />
           ))}
         </div>
 
-        {/* Confetti-like dots */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, delay: 1.5 }}
-          className="mt-20 flex flex-wrap justify-center gap-3"
+        {/* Big name reveal */}
+        <div ref={nameRef} className="mb-10 sm:mb-14">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={nameInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="font-black tracking-tighter leading-[0.88] gradient-text"
+            style={{
+              fontSize: "clamp(2.8rem, 9vw, 9rem)",
+              filter: nameInView
+                ? "drop-shadow(0 0 18px rgba(168,85,247,1)) drop-shadow(0 0 50px rgba(168,85,247,0.6)) drop-shadow(0 0 90px rgba(59,130,246,0.35))"
+                : "drop-shadow(0 0 0px transparent)",
+              transition: "filter 1.6s ease 0.2s",
+            }}
+          >
+            Team Chaos.
+          </motion.h2>
+        </div>
+
+        {/* Awards */}
+        <motion.div ref={awardsRef}
+          initial={{ opacity: 0, y: 16 }}
+          animate={awardsInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6 }}
+          className="flex flex-wrap gap-2 sm:gap-3"
         >
-          {["🥈 Runner-Up", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((award) => (
-            <span
-              key={award}
-              className="px-4 py-2 rounded-full glass border border-yellow-500/20 text-yellow-300/80 text-sm"
+          {["🥈 Runner-Up", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((a, i) => (
+            <motion.span key={a}
+              initial={{ opacity: 0, scale: 0.85 }}
+              animate={awardsInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ delay: 0.1 + i * 0.07, type: "spring", bounce: 0.3 }}
+              whileHover={{ scale: 1.06, y: -2 }}
+              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-yellow-300/55 text-xs sm:text-sm border border-yellow-500/15 cursor-default"
+              style={{ background: "rgba(234,179,8,0.04)" }}
             >
-              {award}
-            </span>
+              {a}
+            </motion.span>
           ))}
         </motion.div>
       </div>

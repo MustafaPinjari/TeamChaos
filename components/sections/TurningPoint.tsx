@@ -1,85 +1,82 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const lines = [
-  { text: "I participated in 25+ hackathons.", size: "text-2xl sm:text-3xl md:text-5xl", weight: "font-black", color: "text-white" },
-  { text: "Lost every single one.", size: "text-xl sm:text-2xl md:text-4xl", weight: "font-bold", color: "text-white/60" },
-  { text: "Each loss taught us something.", size: "text-lg sm:text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
-  { text: "We learned to build faster.", size: "text-lg sm:text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
-  { text: "We learned to think clearer.", size: "text-lg sm:text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
-  { text: "We learned to fail better.", size: "text-lg sm:text-xl md:text-3xl", weight: "font-semibold", color: "text-white/50" },
-  { text: "Then came our win.", size: "text-2xl sm:text-3xl md:text-5xl", weight: "font-black", color: "gradient-text" },
-  { text: "And everything changed.", size: "text-3xl sm:text-4xl md:text-6xl", weight: "font-black", color: "text-white" },
+  { text: "25+ hackathons.",     big: true,  gradient: false },
+  { text: "Lost every one.",     big: false, gradient: false },
+  { text: "Built faster.",       big: false, gradient: false },
+  { text: "Thought clearer.",    big: false, gradient: false },
+  { text: "Failed better.",      big: false, gradient: false },
+  { text: "Then came our win.",  big: true,  gradient: true  },
+  { text: "Everything changed.", big: true,  gradient: false },
 ];
 
-function StoryLine({ line, index }: { line: typeof lines[0]; index: number }) {
+function Line({ line, i }: { line: typeof lines[0]; i: number }) {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
+  const inView = useInView(ref, { once: true, margin: "-30px" });
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, x: -40 }}
-      animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.8, delay: index * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`${line.size} ${line.weight} ${line.color} leading-tight`}
-    >
-      {line.text}
-    </motion.div>
+    <div ref={ref} className="overflow-hidden">
+      <motion.div
+        initial={{ y: "110%", opacity: 0 }}
+        animate={inView ? { y: "0%", opacity: 1 } : {}}
+        transition={{ duration: 0.75, delay: i * 0.05, ease: [0.16, 1, 0.3, 1] }}
+        className={`font-black tracking-tighter leading-[0.92] ${
+          line.gradient ? "gradient-text" : line.big ? "text-white" : "text-white/22"
+        }`}
+        style={{ fontSize: line.big ? "clamp(2rem, 6vw, 5.5rem)" : "clamp(1.2rem, 3.5vw, 3rem)" }}
+      >
+        {line.text}
+      </motion.div>
+    </div>
   );
 }
 
 export default function TurningPoint() {
+  const sectionRef = useRef(null);
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const bgX = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
-    <section className="py-20 sm:py-40 px-4 sm:px-6 relative overflow-hidden">
-      {/* Dramatic background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-950/20 to-transparent pointer-events-none" />
-      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-32 sm:w-[400px] h-48 sm:h-[600px] bg-purple-600/10 rounded-full blur-[60px] sm:blur-[100px] pointer-events-none" />
+    <section ref={sectionRef} className="py-16 sm:py-24 px-5 sm:px-8 overflow-hidden relative">
+      {/* Parallax side glow */}
+      <motion.div
+        style={{ x: bgX, background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, transparent 70%)" }}
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-48 sm:w-80 h-48 sm:h-80 rounded-full pointer-events-none"
+      />
 
-      <div className="max-w-4xl mx-auto">
-        <div ref={ref}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-purple-500/30 text-purple-300 text-sm mb-16"
-          >
-            The Turning Point
-          </motion.div>
+      <div className="max-w-5xl mx-auto">
+        <motion.p ref={ref}
+          initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+          className="text-purple-400/60 text-xs uppercase tracking-[0.22em] mb-10 sm:mb-12 font-medium"
+        >
+          The Turning Point
+        </motion.p>
+
+        <div className="space-y-2 sm:space-y-3 mb-14 sm:mb-16">
+          {lines.map((l, i) => <Line key={i} line={l} i={i} />)}
         </div>
 
-        <div className="space-y-8">
-          {lines.map((line, i) => (
-            <StoryLine key={i} line={line} index={i} />
-          ))}
-        </div>
-
-        {/* Quote block */}
-        <div className="mt-24">
-          <motion.blockquote
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 0.8 }}
-            className="glass rounded-2xl p-5 sm:p-8 border border-purple-500/20 relative"
-          >
-            <div className="absolute -top-4 left-8 text-6xl text-purple-500/30 font-serif leading-none">"</div>
-            <p className="text-base sm:text-xl md:text-2xl text-white/80 leading-relaxed font-medium italic">
-              We didn't just build a product. We built proof that persistence beats talent, 
-              and that every failure is just a prototype for success.
-            </p>
-            <div className="mt-6 flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-white text-xs font-bold">
-                TC
-              </div>
-              <span className="text-white/40 text-sm">Team Chaos</span>
-            </div>
-          </motion.blockquote>
-        </div>
+        {/* Quote */}
+        <motion.blockquote
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7 }}
+          className="pl-5 border-l-2 border-purple-500/35 max-w-2xl"
+        >
+          <p className="text-white/40 text-sm sm:text-base md:text-lg leading-relaxed italic">
+            "We didn't just build a product. We built proof that persistence beats talent,
+            and that every failure is just a prototype for success."
+          </p>
+          <div className="mt-4 flex items-center gap-3">
+            <div className="w-7 h-7 rounded-full flex items-center justify-center text-white text-[10px] font-bold shrink-0"
+              style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)" }}>TC</div>
+            <span className="text-white/25 text-sm">Team Chaos</span>
+          </div>
+        </motion.blockquote>
       </div>
     </section>
   );
