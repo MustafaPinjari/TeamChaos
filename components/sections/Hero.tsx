@@ -89,8 +89,7 @@ export default function Hero() {
           className="flex items-center gap-3 mb-10"
         >
           <div className="h-px w-10 bg-white/15" />
-          <span className="text-white/35 text-[11px] uppercase tracking-[0.28em] font-medium"
-            style={{ fontFamily: "'Syne', sans-serif" }}>
+          <span className="text-white/35 text-[11px] uppercase tracking-[0.22em] font-medium label-eyebrow">
             TecDrill 2026 · Deep-Hack · Runner-Up
           </span>
           <div className="h-px w-10 bg-white/15" />
@@ -105,7 +104,7 @@ export default function Hero() {
               animate={{ y: "0%" }}
               transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
               className="font-black text-white leading-[0.9] tracking-[-0.04em]"
-              style={{ fontSize: "clamp(3rem, 8.5vw, 9rem)", fontFamily: "'Syne', sans-serif" }}
+              style={{ fontSize: "clamp(3rem, 8.5vw, 9rem)", fontFamily: "var(--font-syne), sans-serif" }}
             >
               25 Failures.
             </motion.h1>
@@ -120,7 +119,6 @@ export default function Hero() {
               className="font-black leading-[0.9] tracking-[-0.04em] italic"
               style={{
                 fontSize: "clamp(3rem, 8.5vw, 9rem)",
-                fontFamily: "'Syne', sans-serif",
                 background: "linear-gradient(135deg, #a855f7 0%, #818cf8 40%, #06b6d4 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
@@ -140,7 +138,6 @@ export default function Hero() {
               className="font-black leading-[0.9] tracking-[-0.04em]"
               style={{
                 fontSize: "clamp(3rem, 8.5vw, 9rem)",
-                fontFamily: "'Syne', sans-serif",
                 WebkitTextStroke: "1px rgba(255,255,255,0.18)",
                 color: "transparent",
               }}
@@ -155,8 +152,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.7 }}
-          className="text-white/38 text-sm sm:text-base leading-[1.75] max-w-lg mb-10"
-          style={{ fontFamily: "var(--font-inter), sans-serif", fontWeight: 400 }}
+          className="text-white/40 text-sm sm:text-base leading-[1.75] max-w-lg mb-10"
         >
           An AI-powered multi-vendor e-commerce platform with blockchain order verification,
           smart recommendations, and a real-time admin dashboard — built in 24 hours.
@@ -176,7 +172,6 @@ export default function Hero() {
             style={{
               background: "linear-gradient(135deg, #a855f7, #3b82f6)",
               boxShadow: "0 0 36px rgba(168,85,247,0.3), 0 1px 0 rgba(255,255,255,0.1) inset",
-              fontFamily: "'Syne', sans-serif",
               letterSpacing: "-0.01em",
             }}
           >
@@ -190,7 +185,7 @@ export default function Hero() {
             whileHover={{ scale: 1.04, backgroundColor: "rgba(255,255,255,0.06)" }}
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-semibold text-white/50 border border-white/10 hover:text-white/80 transition-all duration-300"
-            style={{ fontFamily: "'Syne', sans-serif", letterSpacing: "-0.01em" }}
+            style={{ letterSpacing: "-0.01em" }}
           >
             <GitFork className="w-3.5 h-3.5" />
             GitHub
@@ -201,7 +196,7 @@ export default function Hero() {
             whileHover={{ scale: 1.04, backgroundColor: "rgba(255,255,255,0.04)" }}
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white/35 border border-white/[0.07] hover:text-white/60 transition-all duration-300"
-            style={{ fontFamily: "'Syne', sans-serif", letterSpacing: "-0.01em" }}
+            style={{ letterSpacing: "-0.01em" }}
           >
             Meet the Team
           </motion.a>
@@ -250,7 +245,6 @@ export default function Hero() {
               <div className="font-black tabular-nums mb-1"
                 style={{
                   fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
-                  fontFamily: "'Syne', sans-serif",
                   background: "linear-gradient(135deg, #a855f7, #3b82f6)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
@@ -284,3 +278,5 @@ export default function Hero() {
     </section>
   );
 }
+
+

@@ -1,6 +1,7 @@
 "use client";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Highlighter } from "@/components/ui/highlighter";
 
 const lines = [
   { text: "25+ hackathons.",          big: true,  gradient: false },
@@ -69,7 +70,11 @@ export default function TurningPoint() {
         >
           <p className="text-white/40 text-sm sm:text-base md:text-lg leading-relaxed italic">
             "When the problem statement dropped, most teams saw a standard e-commerce CRUD app.
-            We saw something different. That last line — <em>additional features carry added weightage</em> — was the key.
+            We saw something different. That last line —{" "}
+            <Highlighter action="underline" color="#a855f7" strokeWidth={2} animationDuration={800}>
+              additional features carry added weightage
+            </Highlighter>
+            {" "}— was the key.
             We decided in the first 30 minutes we weren't going to build a student project."
           </p>
           <div className="mt-4 flex items-center gap-3">
@@ -82,3 +87,4 @@ export default function TurningPoint() {
     </section>
   );
 }
+

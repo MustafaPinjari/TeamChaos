@@ -104,11 +104,11 @@ export default function Learnings() {
             <motion.h2
               initial={{ y: "100%" }} animate={inView ? { y: "0%" } : {}}
               transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="font-black tracking-tighter text-white leading-[0.9]"
-              style={{ fontSize: "clamp(2rem, 5.5vw, 5rem)" }}
+              className="font-black text-white leading-[0.9]"
+              style={{ fontSize: "clamp(2rem, 5.5vw, 5rem)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.04em" }}
             >
               25 losses.{" "}
-              <span className="gradient-text">6 lessons.</span>
+              <span className="gradient-text italic">6 lessons.</span>
             </motion.h2>
           </div>
           <motion.p
@@ -130,3 +130,4 @@ export default function Learnings() {
     </section>
   );
 }
+

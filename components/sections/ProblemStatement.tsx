@@ -51,7 +51,7 @@ export default function ProblemStatement() {
           <motion.p
             initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-white/35 text-sm sm:text-base max-w-xl leading-relaxed"
+            className="text-white/40 text-sm sm:text-[15px] max-w-xl leading-[1.75]"
           >
             We identified 6 critical pain points in multi-vendor e-commerce that cost businesses and customers every day.
           </motion.p>
@@ -80,8 +80,8 @@ export default function ProblemStatement() {
                 </motion.div>
                 <span className="text-white/10 text-xs font-mono tabular-nums group-hover:text-white/20 transition-colors">{p.num}</span>
               </div>
-              <h3 className="font-bold text-white/80 text-sm sm:text-base mb-2 group-hover:text-white transition-colors duration-300">{p.title}</h3>
-              <p className="text-white/30 text-xs sm:text-sm leading-relaxed group-hover:text-white/45 transition-colors duration-300">{p.desc}</p>
+              <h3 className="font-bold text-white/85 text-sm sm:text-[15px] mb-2 group-hover:text-white transition-colors duration-300">{p.title}</h3>
+              <p className="text-white/35 text-xs sm:text-sm leading-[1.7] group-hover:text-white/50 transition-colors duration-300">{p.desc}</p>
               {/* Bottom accent line */}
               <motion.div
                 initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }}
@@ -96,3 +96,4 @@ export default function ProblemStatement() {
     </section>
   );
 }
+

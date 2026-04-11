@@ -1,33 +1,106 @@
 "use client";
+import React, { forwardRef, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { User, Cpu, Store, LayoutDashboard } from "lucide-react";
+import { User, Cpu, Store, LayoutDashboard, Globe } from "lucide-react";
 import { FaReact, FaEthereum, FaWallet } from "react-icons/fa";
 import { SiVite, SiTailwindcss, SiFramer, SiReactrouter, SiAxios, SiDjango, SiRazorpay, SiLucide } from "react-icons/si";
 import { BarChart2 } from "lucide-react";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
 
 const nodes = [
-  { icon: User,           label: "Customer",       desc: "Browse products, manage cart, checkout with Razorpay, track orders, view history",  color: "#a855f7", rgb: "168,85,247"  },
-  { icon: Cpu,            label: "NeuroCart AI",   desc: "Co-occurrence recs, personalised suggestions, trending products, OpenAI re-ranking", color: "#3b82f6", rgb: "59,130,246"  },
-  { icon: Store,          label: "Vendor",         desc: "Manage products, view own orders, track invoices, see customer analytics",           color: "#06b6d4", rgb: "6,182,212"   },
-  { icon: LayoutDashboard,label: "Admin",          desc: "Real-time dashboard, user management, order lifecycle, payment reports, exports",    color: "#10b981", rgb: "16,185,129"  },
+  { icon: User,            label: "Customer",     desc: "Browse products, manage cart, checkout with Razorpay, track orders, view history",  color: "#a855f7", rgb: "168,85,247" },
+  { icon: Cpu,             label: "NeuroCart AI", desc: "Co-occurrence recs, personalised suggestions, trending products, OpenAI re-ranking", color: "#3b82f6", rgb: "59,130,246" },
+  { icon: Store,           label: "Vendor",       desc: "Manage products, view own orders, track invoices, see customer analytics",           color: "#06b6d4", rgb: "6,182,212"  },
+  { icon: LayoutDashboard, label: "Admin",        desc: "Real-time dashboard, user management, order lifecycle, payment reports, exports",    color: "#10b981", rgb: "16,185,129" },
 ];
 
 const techStack = [
-  { label: "React 18",        category: "Frontend",   icon: FaReact,       color: "#61DAFB" },
-  { label: "Vite",            category: "Build",      icon: SiVite,        color: "#646CFF" },
-  { label: "Tailwind CSS",    category: "Styling",    icon: SiTailwindcss, color: "#06B6D4" },
-  { label: "Framer Motion",   category: "Animation",  icon: SiFramer,      color: "#EC4899" },
-  { label: "React Router",    category: "Routing",    icon: SiReactrouter, color: "#EF4444" },
-  { label: "Axios",           category: "API",        icon: SiAxios,       color: "#5A29E4" },
-  { label: "Recharts",        category: "Charts",     icon: BarChart2,     color: "#F97316" },
-  { label: "Lucide React",    category: "Icons",      icon: SiLucide,      color: "#e2e8f0" },
-  { label: "Django 6",        category: "Backend",    icon: SiDjango,      color: "#10B981" },
-  { label: "Razorpay",        category: "Payments",   icon: SiRazorpay,    color: "#3B82F6" },
-  { label: "Ethereum",        category: "Blockchain", icon: FaEthereum,    color: "#F59E0B" },
-  { label: "OpenAI",          category: "AI",         icon: FaWallet,      color: "#F97316" },
+  { label: "React 18",      category: "Frontend",   icon: FaReact,       color: "#61DAFB" },
+  { label: "Vite",          category: "Build",      icon: SiVite,        color: "#646CFF" },
+  { label: "Tailwind CSS",  category: "Styling",    icon: SiTailwindcss, color: "#06B6D4" },
+  { label: "Framer Motion", category: "Animation",  icon: SiFramer,      color: "#EC4899" },
+  { label: "React Router",  category: "Routing",    icon: SiReactrouter, color: "#EF4444" },
+  { label: "Axios",         category: "API",        icon: SiAxios,       color: "#5A29E4" },
+  { label: "Recharts",      category: "Charts",     icon: BarChart2,     color: "#F97316" },
+  { label: "Lucide React",  category: "Icons",      icon: SiLucide,      color: "#e2e8f0" },
+  { label: "Django 6",      category: "Backend",    icon: SiDjango,      color: "#10B981" },
+  { label: "Razorpay",      category: "Payments",   icon: SiRazorpay,    color: "#3B82F6" },
+  { label: "Ethereum",      category: "Blockchain", icon: FaEthereum,    color: "#F59E0B" },
+  { label: "OpenAI",        category: "AI",         icon: FaWallet,      color: "#F97316" },
 ];
 
+/* ── Beam node circle ── */
+const BeamCircle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
+  ({ className, children }, ref) => (
+    <div
+      ref={ref}
+      className={`z-10 flex items-center justify-center rounded-2xl border border-white/10 shadow-lg ${className ?? ""}`}
+      style={{ background: "rgba(255,255,255,0.04)", backdropFilter: "blur(12px)" }}
+    >
+      {children}
+    </div>
+  )
+);
+BeamCircle.displayName = "BeamCircle";
+
+/* ── Animated beam diagram ── */
+function SystemBeam() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const frontendRef  = useRef<HTMLDivElement>(null);
+  const backendRef   = useRef<HTMLDivElement>(null);
+  const razorpayRef  = useRef<HTMLDivElement>(null);
+  const infuraRef    = useRef<HTMLDivElement>(null);
+  const openaiRef    = useRef<HTMLDivElement>(null);
+
+  return (
+    <div
+      ref={containerRef}
+      className="relative flex h-52 sm:h-60 w-full items-center justify-between overflow-hidden rounded-2xl border border-white/[0.06] px-8 sm:px-16"
+      style={{ background: "rgba(255,255,255,0.015)" }}
+    >
+      {/* Left — Frontend */}
+      <div className="flex flex-col items-center gap-2 z-10">
+        <BeamCircle ref={frontendRef} className="w-14 h-14 sm:w-16 sm:h-16">
+          <FaReact className="w-6 h-6 sm:w-7 sm:h-7" style={{ color: "#61DAFB" }} />
+        </BeamCircle>
+        <span className="text-white/30 text-[10px] font-medium tracking-wide">Frontend</span>
+      </div>
+
+      {/* Center — DRF */}
+      <div className="flex flex-col items-center gap-2 z-10">
+        <BeamCircle ref={backendRef} className="w-16 h-16 sm:w-20 sm:h-20">
+          <SiDjango className="w-7 h-7 sm:w-9 sm:h-9" style={{ color: "#10B981" }} />
+        </BeamCircle>
+        <span className="text-white/30 text-[10px] font-medium tracking-wide">Django DRF</span>
+      </div>
+
+      {/* Right — 3 services */}
+      <div className="flex flex-col gap-3 z-10">
+        <BeamCircle ref={razorpayRef} className="w-11 h-11 p-2.5">
+          <SiRazorpay className="w-5 h-5" style={{ color: "#3B82F6" }} />
+        </BeamCircle>
+        <BeamCircle ref={infuraRef} className="w-11 h-11 p-2.5">
+          <FaEthereum className="w-5 h-5" style={{ color: "#F59E0B" }} />
+        </BeamCircle>
+        <BeamCircle ref={openaiRef} className="w-11 h-11 p-2.5">
+          <Globe className="w-5 h-5" style={{ color: "#a855f7" }} />
+        </BeamCircle>
+      </div>
+
+      {/* Beams */}
+      <AnimatedBeam containerRef={containerRef} fromRef={frontendRef} toRef={backendRef}
+        gradientStartColor="#61DAFB" gradientStopColor="#10B981" duration={4} />
+      <AnimatedBeam containerRef={containerRef} fromRef={backendRef} toRef={razorpayRef}
+        gradientStartColor="#10B981" gradientStopColor="#3B82F6" curvature={-40} endYOffset={-10} duration={3.5} reverse />
+      <AnimatedBeam containerRef={containerRef} fromRef={backendRef} toRef={infuraRef}
+        gradientStartColor="#10B981" gradientStopColor="#F59E0B" duration={4.5} reverse />
+      <AnimatedBeam containerRef={containerRef} fromRef={backendRef} toRef={openaiRef}
+        gradientStartColor="#10B981" gradientStopColor="#a855f7" curvature={40} endYOffset={10} duration={3} reverse />
+    </div>
+  );
+}
+
+/* ── Node card ── */
 function NodeCard({ node, i, inView }: { node: typeof nodes[0]; i: number; inView: boolean }) {
   return (
     <motion.div
@@ -36,25 +109,17 @@ function NodeCard({ node, i, inView }: { node: typeof nodes[0]; i: number; inVie
       transition={{ duration: 0.55, delay: 0.2 + i * 0.1, ease: [0.16, 1, 0.3, 1] }}
       whileHover={{ y: -6, scale: 1.02 }}
       className="group relative rounded-2xl p-5 border cursor-default overflow-hidden transition-all duration-300"
-      style={{
-        background: `rgba(${node.rgb},0.05)`,
-        borderColor: `rgba(${node.rgb},0.2)`,
-      }}
+      style={{ background: `rgba(${node.rgb},0.05)`, borderColor: `rgba(${node.rgb},0.2)` }}
     >
-      {/* Corner glow on hover */}
       <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{ background: node.color }} />
-
       <div className="relative z-10">
-        {/* Icon */}
         <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 shadow-lg"
           style={{ background: `rgba(${node.rgb},0.15)`, border: `1px solid rgba(${node.rgb},0.3)` }}>
           <node.icon className="w-6 h-6" style={{ color: node.color }} />
         </div>
         <h3 className="font-bold text-white text-sm mb-1.5">{node.label}</h3>
         <p className="text-white/35 text-xs leading-relaxed">{node.desc}</p>
-
-        {/* Bottom accent */}
         <motion.div
           initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }}
           transition={{ duration: 0.3 }}
@@ -100,26 +165,31 @@ export default function Architecture() {
           <motion.p
             initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
-            className="text-white/30 text-sm sm:text-base mt-4 max-w-xl"
+            className="text-white/40 text-sm sm:text-[15px] mt-4 max-w-xl leading-[1.75]"
           >
             Four interconnected layers — customer, AI, vendor, and admin — all communicating through a clean DRF API with JWT auth.
           </motion.p>
         </div>
 
-        {/* Node cards grid */}
+        {/* Node cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 sm:mb-16">
           {nodes.map((node, i) => (
             <NodeCard key={node.label} node={node} i={i} inView={inView} />
           ))}
         </div>
 
-        {/* Connection line between cards — desktop only */}
+        {/* Animated beam diagram */}
         <motion.div
-          initial={{ scaleX: 0 }} animate={inView ? { scaleX: 1 } : {}}
-          transition={{ duration: 1, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden lg:block h-px mb-12 origin-left"
-          style={{ background: "linear-gradient(90deg, rgba(168,85,247,0.4), rgba(59,130,246,0.4), rgba(6,182,212,0.4), rgba(16,185,129,0.4))" }}
-        />
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.5 }}
+          className="mb-12 sm:mb-16"
+        >
+          <p className="text-white/20 text-[10px] uppercase tracking-[0.22em] mb-4 font-medium text-center">
+            System Data Flow
+          </p>
+          <SystemBeam />
+        </motion.div>
 
         {/* Tech stack */}
         <div ref={stackRef}>
@@ -129,7 +199,6 @@ export default function Architecture() {
           >
             Technology Stack
           </motion.p>
-
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-2 sm:gap-3">
             {techStack.map((tech, i) => (
               <motion.div key={tech.label}
