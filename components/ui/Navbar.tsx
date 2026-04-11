@@ -2,7 +2,7 @@
 import React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { HomeIcon, Users, Cpu, Zap, Mail, BookOpen } from "lucide-react";
+import { HomeIcon, Users, Cpu, Zap, BookOpen, UserRound } from "lucide-react";
 import { Dock, DockIcon } from "@/components/ui/dock";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { Separator } from "@/components/ui/separator";
@@ -72,9 +72,9 @@ export default function Navbar() {
               <TooltipTrigger asChild>
                 <Link href="/connect" aria-label="Connect"
                   className={cn(buttonVariants({ variant: "ghost", size: "icon" }), "rounded-full size-11")}>
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center border border-purple-500/30 text-purple-400"
-                    style={{ background: "rgba(168,85,247,0.1)" }}>
-                    <Mail className="w-3.5 h-3.5" />
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center text-white shadow-lg"
+                    style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 14px rgba(168,85,247,0.4)" }}>
+                    <UserRound className="w-3.5 h-3.5" />
                   </div>
                 </Link>
               </TooltipTrigger>

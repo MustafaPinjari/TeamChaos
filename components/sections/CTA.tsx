@@ -1,223 +1,300 @@
 "use client";
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { ExternalLink, GitFork } from "lucide-react";
 
 const stats = [
-  { v: "24h",   l: "Build Time",     color: "#a855f7" },
-  { v: "12k+",  l: "Lines of Code",  color: "#3b82f6" },
-  { v: "99%",   l: "Uptime",         color: "#06b6d4" },
-  { v: "<50ms", l: "API Response",   color: "#10b981" },
+  { v: "24h",   l: "Build Time"    },
+  { v: "12k+",  l: "Lines of Code" },
+  { v: "99%",   l: "Uptime"        },
+  { v: "<50ms", l: "API Response"  },
+];
+
+const features = [
+  { label: "AI Recommendations",         tag: "ML"         },
+  { label: "Blockchain Verification",    tag: "Web3"       },
+  { label: "Razorpay Payments",          tag: "Fintech"    },
+  { label: "Real-time Admin Dashboard",  tag: "Live"       },
+  { label: "Multi-Vendor Panel",         tag: "Platform"   },
+  { label: "PDF / Excel Exports",        tag: "Reports"    },
 ];
 
 export default function CTA() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const sectionRef = useRef(null);
+  const inView = useInView(sectionRef, { once: true, margin: "-60px" });
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "18%"]);
 
   return (
-    <section id="cta" className="py-16 sm:py-24 px-5 sm:px-8 relative overflow-hidden">
+    <section id="cta" ref={sectionRef} className="relative">
 
-      {/* Background */}
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 70% 60% at 50% 100%, rgba(168,85,247,0.08) 0%, transparent 70%)" }} />
-      <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 40% 30% at 50% 100%, rgba(59,130,246,0.05) 0%, transparent 60%)" }} />
+      {/* ── FULL-WIDTH HEADLINE BLOCK ── */}
+      <div className="relative py-20 sm:py-28 px-5 sm:px-10"
+        style={{ background: "linear-gradient(180deg, #050508 0%, #07070d 100%)" }}>
 
-      <div className="max-w-6xl mx-auto relative z-10" ref={ref}>
+        {/* Parallax orb */}
+        <motion.div style={{ y: bgY }}
+          className="absolute inset-0 pointer-events-none"
+          aria-hidden>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full blur-[140px]"
+            style={{ background: "radial-gradient(ellipse, rgba(168,85,247,0.09) 0%, rgba(59,130,246,0.05) 50%, transparent 70%)" }} />
+        </motion.div>
 
-        {/* Top divider */}
-        <motion.div
-          initial={{ scaleX: 0 }} animate={inView ? { scaleX: 1 } : {}}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="h-px origin-left mb-12 sm:mb-16"
-          style={{ background: "linear-gradient(90deg, rgba(168,85,247,0.5), rgba(59,130,246,0.3), rgba(6,182,212,0.15), rgba(0,0,0,0))" }}
-        />
+        {/* Eyebrow */}
+        <motion.p
+          initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="label-eyebrow text-purple-400/40 mb-8 max-w-6xl mx-auto"
+        >
+          Live & Deployed
+        </motion.p>
 
-        {/* Main content — two column */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-16 sm:mb-20">
-
-          {/* Left — text */}
-          <div>
-            <motion.p
-              initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-              className="text-purple-400/60 text-xs uppercase tracking-[0.22em] mb-5 font-medium"
+        {/* Giant headline — full width, left-aligned */}
+        <div className="max-w-6xl mx-auto">
+          <div className="overflow-hidden mb-2">
+            <motion.h2
+              initial={{ y: "110%" }} animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
+              className="font-black text-white leading-[0.85]"
+              style={{
+                fontSize: "clamp(2.4rem, 9vw, 10rem)",
+                fontFamily: "var(--font-syne), sans-serif",
+                letterSpacing: "-0.04em",
+              }}
             >
-              Live & Deployed
-            </motion.p>
-
-            <div style={{ overflow: "hidden" }} className="mb-6">
-              <motion.h2
-                initial={{ y: "100%" }} animate={inView ? { y: "0%" } : {}}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-                className="font-black tracking-tighter text-white leading-[0.88]"
-                style={{ fontSize: "clamp(2.2rem, 5.5vw, 5rem)" }}
-              >
-                Ready to explore{" "}
-                <span style={{
-                  background: "linear-gradient(135deg, #a855f7, #3b82f6, #06b6d4)",
-                  WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-                }}>
-                  TeamChaos?
-                </span>
-              </motion.h2>
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
-              transition={{ delay: 0.3 }}
-              className="text-white/30 text-sm sm:text-base leading-relaxed mb-8 max-w-md"
-            >
-              See the full system in action. Explore the codebase.
-              Understand how we turned 25 failures into one runner-up finish.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.4 }}
-              className="flex flex-col sm:flex-row gap-3"
-            >
-              <motion.a
-                href="https://nauros.netlify.app/" target="_blank" rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                className="btn-shine group inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm text-white"
-                style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 30px rgba(168,85,247,0.2)" }}
-              >
-                <ExternalLink className="w-4 h-4" />
-                Live Demo
-                <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.span>
-              </motion.a>
-              <motion.a
-                href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full font-semibold text-sm text-white/50 border border-white/10 hover:text-white hover:border-white/25 transition-all duration-300"
-              >
-                <GitFork className="w-4 h-4" />
-                View on GitHub
-              </motion.a>
-            </motion.div>
+              Ready to
+            </motion.h2>
           </div>
-
-          {/* Right — stats grid */}
-          <motion.div
-            initial={{ opacity: 0, x: 24 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="grid grid-cols-2 gap-3"
-          >
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.l}
-                initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.45 + i * 0.08 }}
-                whileHover={{ y: -4, scale: 1.02 }}
-                className="group relative rounded-2xl p-5 sm:p-6 border cursor-default overflow-hidden"
-                style={{
-                  background: `rgba(${s.color.replace('#','').match(/.{2}/g)!.map(x=>parseInt(x,16)).join(',')},0.05)`,
-                  borderColor: `${s.color}25`,
-                }}
-              >
-                {/* Corner glow */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 rounded-full blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{ background: s.color }} />
-
-                <div className="relative z-10">
-                  <div className="text-2xl sm:text-3xl font-black mb-1 tabular-nums"
-                    style={{ color: s.color }}>{s.v}</div>
-                  <div className="text-white/30 text-xs uppercase tracking-[0.15em]">{s.l}</div>
-                </div>
-
-                <motion.div
-                  initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 h-[1.5px] origin-left"
-                  style={{ background: `linear-gradient(90deg, ${s.color}, rgba(0,0,0,0))` }}
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+          <div className="overflow-hidden mb-2">
+            <motion.h2
+              initial={{ y: "110%" }} animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.12 }}
+              className="font-black text-white leading-[0.85]"
+              style={{
+                fontSize: "clamp(2.4rem, 9vw, 10rem)",
+                fontFamily: "var(--font-syne), sans-serif",
+                letterSpacing: "-0.04em",
+              }}
+            >
+              explore
+            </motion.h2>
+          </div>
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: "110%" }} animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="font-black leading-[0.85] italic"
+              style={{
+                fontSize: "clamp(2rem, 7.5vw, 10rem)",
+                fontFamily: "var(--font-syne), sans-serif",
+                letterSpacing: "-0.04em",
+                background: "linear-gradient(135deg, #a855f7 0%, #818cf8 45%, #06b6d4 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              NeuroCart?
+            </motion.h2>
+          </div>
         </div>
 
-        {/* Bottom — GitHub-style repo card */}
+        {/* Horizontal rule */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6 }}
-          className="relative rounded-2xl border border-white/[0.08] overflow-hidden"
-          style={{ background: "rgba(13,13,18,0.9)" }}
+          initial={{ scaleX: 0 }} animate={inView ? { scaleX: 1 } : {}}
+          transition={{ duration: 1.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-6xl mx-auto mt-12 mb-10 h-px origin-left"
+          style={{ background: "linear-gradient(90deg, rgba(168,85,247,0.4), rgba(59,130,246,0.2), transparent)" }}
+        />
+
+        {/* Sub-row: description + CTAs */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.45 }}
+          className="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-end justify-between gap-8"
         >
-          {/* Subtle top accent */}
-          <div className="absolute top-0 inset-x-0 h-px"
-            style={{ background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.4), rgba(59,130,246,0.3), transparent)" }} />
-
-          <div className="p-5 sm:p-6">
-            {/* Repo header */}
-            <div className="flex items-center gap-3 mb-3">
-              <GitFork className="w-4 h-4 text-white/40 shrink-0" />
-              <a href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
-                className="font-bold text-purple-400 hover:text-purple-300 transition-colors text-sm sm:text-base">
-                Nick7020 / NeuroCart
-              </a>
-              <span className="text-[10px] font-semibold px-2 py-0.5 rounded-full border border-yellow-500/30 text-yellow-400/70"
-                style={{ background: "rgba(234,179,8,0.06)" }}>
-                🏆 Runner-Up
-              </span>
-            </div>
-
-            {/* Description */}
-            <p className="text-white/50 text-xs sm:text-sm leading-relaxed mb-4 max-w-2xl">
-              🛒 An AI-powered multi-vendor e-commerce platform built in 24 hours. Features JWT auth, smart recommendations, Razorpay payments, blockchain order verification, and a real-time admin dashboard.
-            </p>
-
-            {/* Meta row */}
-            <div className="flex flex-wrap items-center gap-4 sm:gap-5 mb-4 text-white/30 text-xs">
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-blue-400 shrink-0" />
-                TypeScript
-              </span>
-              <span className="flex items-center gap-1.5">
-                <span className="w-2.5 h-2.5 rounded-full bg-green-400 shrink-0" />
-                Python
-              </span>
-              <span className="flex items-center gap-1.5">
-                <svg className="w-3 h-3" fill="currentColor" viewBox="0 0 16 16"><path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/></svg>
-                24
-              </span>
-              <span className="flex items-center gap-1.5">
-                <GitFork className="w-3 h-3" />
-                8
-              </span>
-              <span>Updated 2 days ago</span>
-              <span>MIT License</span>
-            </div>
-
-            {/* Key features */}
-            <div className="mb-5">
-              <p className="text-white/40 text-xs font-semibold mb-2">Key Features:</p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-1">
-                {[
-                  "AI-Powered Recommendations", "Razorpay Payments",    "Real-time Admin Dashboard",
-                  "Blockchain Order Verification", "Vendor Panel",      "Report Exports (PDF/Excel)",
-                ].map((f) => (
-                  <span key={f} className="flex items-center gap-1.5 text-white/35 text-xs">
-                    <span className="w-1.5 h-1.5 rounded-full shrink-0" style={{ background: "#a855f7" }} />
-                    {f}
-                  </span>
-                ))}
-              </div>
-            </div>
-
-            {/* CTA button */}
+          <p className="text-white/30 text-sm sm:text-base leading-relaxed max-w-sm">
+            See the full system in action. Explore the codebase.
+            Understand how we turned 25 failures into one runner-up finish.
+          </p>
+          <div className="flex items-center gap-3 shrink-0">
+            <motion.a
+              href="https://nauros.netlify.app/" target="_blank" rel="noopener noreferrer"
+              whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
+              className="btn-shine inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-white"
+              style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 32px rgba(168,85,247,0.3)" }}
+            >
+              <ExternalLink className="w-4 h-4" />
+              Live Demo
+            </motion.a>
             <motion.a
               href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-              className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white"
-              style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 20px rgba(168,85,247,0.2)" }}
+              whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-white/50 border border-white/10 hover:text-white hover:border-white/20 transition-all duration-300"
             >
               <GitFork className="w-4 h-4" />
-              View Repository
+              GitHub
             </motion.a>
           </div>
         </motion.div>
       </div>
+
+      {/* ── STATS STRIP ── */}
+      <motion.div
+        initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.5 }}
+        className="border-y border-white/[0.06]"
+        style={{ background: "rgba(255,255,255,0.015)" }}
+      >
+        <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-4 divide-x divide-white/[0.06]">
+          {stats.map((s, i) => (
+            <motion.div
+              key={s.l}
+              initial={{ opacity: 0, y: 12 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.55 + i * 0.07 }}
+              className="px-6 sm:px-10 py-8 group cursor-default"
+            >
+              <div
+                className="font-black tabular-nums mb-1 transition-colors duration-300"
+                style={{
+                  fontSize: "clamp(1.8rem, 3.5vw, 3rem)",
+                  fontFamily: "var(--font-syne), sans-serif",
+                  letterSpacing: "-0.03em",
+                  color: i === 0 ? "#a855f7" : i === 1 ? "#3b82f6" : i === 2 ? "#06b6d4" : "#10b981",
+                }}
+              >
+                {s.v}
+              </div>
+              <div className="text-white/25 text-[11px] uppercase tracking-[0.18em]">{s.l}</div>
+            </motion.div>
+          ))}
+        </div>
+      </motion.div>
+
+      {/* ── BENTO GRID ── */}
+      <div className="max-w-6xl mx-auto px-5 sm:px-10 py-16 sm:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_380px] grid-rows-1 gap-4 items-stretch">
+
+          {/* Left — repo card, spans full height */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.6 }}
+            className="relative rounded-3xl overflow-hidden border border-white/[0.07] p-7 sm:p-9 flex flex-col"
+            style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.05) 0%, rgba(6,6,10,0.98) 50%, rgba(59,130,246,0.04) 100%)" }}
+          >
+            <div className="absolute top-0 inset-x-0 h-px"
+              style={{ background: "linear-gradient(90deg, transparent, rgba(168,85,247,0.5), rgba(59,130,246,0.3), transparent)" }} />
+
+            <div className="flex-1">
+              <div className="flex flex-wrap items-center gap-3 mb-5">
+                <a href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+                  className="font-bold text-white hover:text-purple-300 transition-colors"
+                  style={{ fontFamily: "var(--font-syne), sans-serif", fontSize: "1.1rem" }}>
+                  Nick7020 / NeuroCart
+                </a>
+                <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-yellow-500/25 text-yellow-400/70"
+                  style={{ background: "rgba(234,179,8,0.06)" }}>
+                  🏆 Runner-Up
+                </span>
+              </div>
+
+              <p className="text-white/35 text-sm leading-relaxed mb-7 max-w-lg">
+                An AI-powered multi-vendor e-commerce platform built in 24 hours. JWT auth, smart recommendations, Razorpay payments, blockchain order verification, and a real-time admin dashboard.
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-7">
+                {features.map((f) => (
+                  <div key={f.label}
+                    className="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs border"
+                    style={{ background: "rgba(255,255,255,0.03)", borderColor: "rgba(255,255,255,0.07)", color: "rgba(255,255,255,0.45)" }}>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-sm"
+                      style={{ background: "rgba(168,85,247,0.15)", color: "#a855f7" }}>
+                      {f.tag}
+                    </span>
+                    {f.label}
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex items-center justify-between pt-4 border-t border-white/[0.05]">
+              <div className="flex items-center gap-4 text-white/20 text-xs">
+                {[{ dot: "#3b82f6", l: "TypeScript" }, { dot: "#10b981", l: "Python" }, { dot: "#a855f7", l: "Solidity" }].map(lang => (
+                  <span key={lang.l} className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full" style={{ background: lang.dot }} />
+                    {lang.l}
+                  </span>
+                ))}
+              </div>
+              <motion.a
+                href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+                whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
+                className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white shrink-0"
+                style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 20px rgba(168,85,247,0.2)" }}
+              >
+                <GitFork className="w-3.5 h-3.5" />
+                View Repo
+              </motion.a>
+            </div>
+          </motion.div>
+
+          {/* Right column — two cards filling full height */}
+          <div className="grid grid-rows-2 gap-4">
+
+            {/* Live demo card */}
+            <motion.a
+              href="https://nauros.netlify.app/" target="_blank" rel="noopener noreferrer"
+              initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.65 }}
+              whileHover={{ scale: 1.02, y: -3 }}
+              className="relative rounded-3xl overflow-hidden border border-white/[0.07] p-7 flex flex-col justify-between cursor-pointer group"
+              style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.14) 0%, rgba(59,130,246,0.09) 100%)" }}
+            >
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: "linear-gradient(135deg, rgba(168,85,247,0.22) 0%, rgba(59,130,246,0.15) 100%)" }} />
+              <div className="relative z-10">
+                <p className="label-eyebrow text-purple-400/50 mb-4">Live Product</p>
+                <h3 className="font-black text-white leading-[0.9]"
+                  style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.2rem)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.03em" }}>
+                  See it<br />in action →
+                </h3>
+              </div>
+              <div className="relative z-10">
+                <span className="inline-flex items-center gap-1.5 text-xs text-white/40">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  nauros.netlify.app
+                </span>
+              </div>
+            </motion.a>
+
+            {/* Hackathon card */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }} animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ delay: 0.72 }}
+              className="relative rounded-3xl overflow-hidden border border-white/[0.07] p-7 flex flex-col justify-between"
+              style={{ background: "rgba(255,255,255,0.025)" }}
+            >
+              <div className="absolute top-0 inset-x-0 h-px"
+                style={{ background: "linear-gradient(90deg, transparent, rgba(234,179,8,0.4), transparent)" }} />
+              <div>
+                <p className="label-eyebrow text-yellow-400/40 mb-4">TecDrill 2026 · Deep-Hack</p>
+                <h3 className="font-black text-white leading-[0.9] mb-3"
+                  style={{ fontSize: "clamp(1.5rem, 2.8vw, 2.2rem)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.03em" }}>
+                  🥈 Runner-Up
+                </h3>
+                <p className="text-white/25 text-sm leading-relaxed">
+                  Built in 24 hours.<br />Sinhgad Institute, Pune.
+                </p>
+              </div>
+              <span className="text-white/15 text-[10px] font-mono tracking-widest uppercase">
+                25 attempts → 1 win
+              </span>
+            </motion.div>
+
+          </div>
+        </div>
+      </div>
+
     </section>
   );
 }
-

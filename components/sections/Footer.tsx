@@ -3,7 +3,6 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import { ArrowUpRight } from "lucide-react";
-import Text3DFlip from "@/components/ui/text-3d-flip";
 
 const navLinks = [
   { label: "Story",        href: "#story"        },
@@ -111,7 +110,7 @@ export default function Footer() {
 
       {/* ── MIDDLE BLOCK ── */}
       <div className="max-w-[1400px] mx-auto px-5 sm:px-10 lg:px-12 py-8 sm:py-10
-                      grid grid-cols-2 sm:grid-cols-[1fr_auto] gap-8 sm:gap-6">
+                      grid grid-cols-1 sm:grid-cols-[1fr_auto] gap-6 sm:gap-6">
 
         {/* Nav links */}
         <motion.nav
@@ -145,7 +144,7 @@ export default function Footer() {
           initial={{ opacity: 0, y: 12 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="text-right"
+          className="text-left sm:text-right"
         >
           <p className="font-bold text-white/55 text-xs sm:text-sm mb-2"
             style={{ fontFamily: "var(--font-syne), sans-serif" }}>
@@ -169,26 +168,28 @@ export default function Footer() {
       </div>
 
       {/* ── BIG BRAND NAME + underline ── */}
-      <div ref={nameRef} className="w-full overflow-hidden px-2 sm:px-4 lg:px-6 leading-none">
+      <div ref={nameRef} className="w-full overflow-hidden leading-none px-0">
         {nameInView && (
-          <div style={{
-              fontSize: "clamp(3.8rem, 15vw, 18rem)",
+          <motion.h2
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="font-black leading-none cursor-default block w-full text-left px-5 sm:px-10 lg:px-12"
+            style={{
+              fontSize: "clamp(1.8rem, 7.5vw, 10rem)",
               fontFamily: "var(--font-syne), sans-serif",
               letterSpacing: "-0.04em",
               lineHeight: 0.88,
-            }}>
-            <Text3DFlip
-              rotateDirection="top"
-              staggerDuration={0.04}
-              staggerFrom="first"
-              transition={{ type: "spring", damping: 22, stiffness: 140 }}
-              textClassName="text-white"
-              flipTextClassName="text-purple-400"
-              className="font-black leading-none cursor-default"
-            >
-              TeamChaos
-            </Text3DFlip>
-          </div>
+              maxWidth: "100%",
+              wordBreak: "keep-all",
+              background: "linear-gradient(135deg, #ffffff 40%, rgba(255,255,255,0.55) 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            TeamChaos
+          </motion.h2>
         )}
 
         {/* Gradient underline */}
@@ -196,7 +197,7 @@ export default function Footer() {
           initial={{ scaleX: 0 }}
           animate={nameInView ? { scaleX: 1 } : {}}
           transition={{ duration: 1.2, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-          className="h-[2px] sm:h-[3px] lg:h-1 origin-left mt-1 sm:mt-2"
+          className="h-[2px] sm:h-[3px] lg:h-1 origin-left mt-1 sm:mt-2 mx-5 sm:mx-10 lg:mx-12"
           style={{ background: "linear-gradient(90deg, #a855f7, #3b82f6, #06b6d4, transparent)" }}
         />
       </div>
