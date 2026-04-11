@@ -3,6 +3,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 const WORDS = ["From 25+ Hackathons", "to Our First Win."];
+const BADGE = "🏆  Hackathon Winners · Team Chaos";
 
 function TypewriterWord({ text, delay }: { text: string; delay: number }) {
   return (
@@ -107,14 +108,15 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-purple-500/30 text-purple-300 text-sm mb-8"
+          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-purple-500/40 text-purple-300 text-sm font-semibold mb-10 tracking-wide"
+          style={{ background: "rgba(168,85,247,0.08)", backdropFilter: "blur(12px)" }}
         >
           <span className="w-2 h-2 rounded-full bg-purple-400 pulse-glow" />
-          Hackathon Winner · Team Chaos
+          {BADGE}
         </motion.div>
 
         {/* Main title */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6 overflow-hidden">
+        <h1 className="text-5xl md:text-7xl lg:text-[90px] font-black tracking-tighter leading-[0.95] mb-8 overflow-hidden">
           <TypewriterWord text={WORDS[0]} delay={0.4} />
           <span className="block overflow-hidden">
             <motion.span
@@ -133,9 +135,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.1 }}
-          className="text-lg md:text-xl text-white/50 max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-lg md:text-xl text-white/50 max-w-xl mx-auto mb-12 leading-relaxed"
         >
-          The story of how Team Chaos built TeamChaos — an AI-powered smart cart system — 
+          The story of how Team Chaos built NeuroCart — an AI-powered smart cart system —
           through persistence, sleepless nights, and relentless iteration.
         </motion.p>
 
@@ -166,7 +168,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1.8 }}
-          className="mt-20 flex flex-wrap items-center justify-center gap-8"
+          className="mt-16 flex flex-wrap items-center justify-center gap-10 border-t border-white/[0.06] pt-10"
         >
           {[
             { value: "25+", label: "Hackathons" },
@@ -182,7 +184,7 @@ export default function Hero() {
               className="text-center"
             >
               <div className="text-3xl font-black gradient-text">{stat.value}</div>
-              <div className="text-white/40 text-xs mt-1 uppercase tracking-widest">{stat.label}</div>
+              <div className="text-white/30 text-[11px] mt-1.5 uppercase tracking-[0.15em]">{stat.label}</div>
             </motion.div>
           ))}
         </motion.div>
