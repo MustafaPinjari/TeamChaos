@@ -18,23 +18,24 @@ function LearningCard({ item, i }: { item: typeof learnings[0]; i: number }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 28 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.55, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
-      whileHover={{ y: -4, scale: 1.01 }}
-      className="group relative rounded-2xl p-5 sm:p-6 border cursor-default overflow-hidden transition-all duration-300"
+      transition={{ duration: 0.6, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+      whileHover={{ y: -5 }}
+      className="group relative rounded-2xl p-5 sm:p-6 cursor-default overflow-hidden transition-all duration-300"
       style={{
         background: `rgba(${item.rgb},0.04)`,
-        borderColor: `rgba(${item.rgb},0.15)`,
+        border: `1px solid rgba(${item.rgb},0.14)`,
+        boxShadow: "0 1px 0 rgba(255,255,255,0.03) inset",
       }}
     >
-      {/* Hover bg sweep */}
+      {/* Hover radial sweep */}
       <motion.div
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
+        transition={{ duration: 0.35 }}
         className="absolute inset-0 pointer-events-none"
-        style={{ background: `radial-gradient(ellipse at 0% 50%, rgba(${item.rgb},0.08) 0%, transparent 60%)` }}
+        style={{ background: `radial-gradient(ellipse at 0% 50%, rgba(${item.rgb},0.1) 0%, transparent 65%)` }}
       />
 
       <div className="relative z-10 flex items-start gap-4 sm:gap-5">
@@ -44,8 +45,8 @@ function LearningCard({ item, i }: { item: typeof learnings[0]; i: number }) {
           style={{
             background: `rgba(${item.rgb},0.12)`,
             color: item.color,
-            borderColor: `rgba(${item.rgb},0.25)`,
-            boxShadow: `0 0 16px rgba(${item.rgb},0)`,
+            borderColor: `rgba(${item.rgb},0.28)`,
+            boxShadow: `0 0 0 rgba(${item.rgb},0)`,
           }}
         >
           {item.n}
@@ -53,10 +54,12 @@ function LearningCard({ item, i }: { item: typeof learnings[0]; i: number }) {
 
         {/* Text */}
         <div className="flex-1 min-w-0 pt-0.5">
-          <h3 className="font-bold text-white/85 text-sm sm:text-base mb-1 group-hover:text-white transition-colors duration-300">
+          <h3 className="font-bold text-white/80 text-sm sm:text-base mb-1.5 group-hover:text-white transition-colors duration-300"
+            style={{ fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.015em" }}>
             {item.title}
           </h3>
-          <p className="text-white/30 text-xs sm:text-sm leading-relaxed group-hover:text-white/50 transition-colors duration-300">
+          <p className="text-white/28 text-xs sm:text-sm leading-relaxed group-hover:text-white/48 transition-colors duration-300"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}>
             {item.desc}
           </p>
         </div>
@@ -87,25 +90,31 @@ export default function Learnings() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="py-16 sm:py-24 px-5 sm:px-8 relative overflow-hidden">
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-64 sm:w-[500px] h-64 sm:h-[500px] rounded-full pointer-events-none"
+    <section className="py-16 sm:py-28 px-5 sm:px-8 relative overflow-hidden">
+      {/* Ambient */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
         style={{ background: "radial-gradient(circle, rgba(168,85,247,0.04) 0%, transparent 70%)" }} />
 
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div ref={ref} className="mb-10 sm:mb-12">
+        <div ref={ref} className="mb-12 sm:mb-14">
           <motion.p
             initial={{ opacity: 0, x: -16 }} animate={inView ? { opacity: 1, x: 0 } : {}}
-            className="text-purple-400/60 text-xs uppercase tracking-[0.22em] mb-4 font-medium"
+            className="text-purple-400/50 text-xs uppercase tracking-[0.25em] mb-5 font-medium"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             What We Learned
           </motion.p>
           <div style={{ overflow: "hidden" }}>
             <motion.h2
               initial={{ y: "100%" }} animate={inView ? { y: "0%" } : {}}
-              transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-              className="font-black text-white leading-[0.9]"
-              style={{ fontSize: "clamp(2rem, 5.5vw, 5rem)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.04em" }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+              className="font-black text-white leading-[0.88]"
+              style={{
+                fontSize: "clamp(2rem, 5.5vw, 5.2rem)",
+                fontFamily: "var(--font-syne), sans-serif",
+                letterSpacing: "-0.045em",
+              }}
             >
               25 losses.{" "}
               <span className="gradient-text italic">6 lessons.</span>
@@ -114,13 +123,14 @@ export default function Learnings() {
           <motion.p
             initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.35 }}
-            className="text-white/25 text-sm mt-4 max-w-md"
+            className="text-white/22 text-sm mt-5 max-w-md leading-relaxed"
+            style={{ fontFamily: "var(--font-inter), sans-serif" }}
           >
             Every failure sharpened us. Here's what 25 hackathons taught us — distilled into the decisions that built NeuroCart.
           </motion.p>
         </div>
 
-        {/* Two-column grid on larger screens */}
+        {/* Two-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {learnings.map((item, i) => (
             <LearningCard key={item.n} item={item} i={i} />
@@ -130,4 +140,3 @@ export default function Learnings() {
     </section>
   );
 }
-

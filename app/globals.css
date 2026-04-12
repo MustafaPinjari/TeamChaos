@@ -149,6 +149,55 @@ h1, h2, h3, h4, h5, h6,
 .glow-blue   { box-shadow: 0 0 40px rgba(59,130,246,0.35), 0 0 80px rgba(59,130,246,0.12); }
 .text-glow   { text-shadow: 0 0 60px rgba(168,85,247,0.7), 0 0 120px rgba(168,85,247,0.3); }
 
+/* ── Luxury glass card ── */
+.luxury-card {
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.015) 100%);
+  backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset, 0 32px 64px rgba(0,0,0,0.5);
+}
+.luxury-card:hover {
+  border-color: rgba(168,85,247,0.25);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(168,85,247,0.12);
+}
+
+/* ── Gold accent ── */
+.gold-text {
+  background: linear-gradient(135deg, #f5d060 0%, #e8a020 40%, #f5d060 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.gold-border { border-color: rgba(245,208,96,0.25); }
+.gold-glow   { box-shadow: 0 0 24px rgba(245,208,96,0.2), 0 0 48px rgba(245,208,96,0.08); }
+
+/* ── Frosted pill ── */
+.frosted-pill {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ── Premium section divider ── */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(168,85,247,0.3) 30%, rgba(59,130,246,0.2) 70%, transparent 100%);
+}
+
+/* ── Shimmer text animation ── */
+@keyframes text-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.9) 40%, rgba(255,255,255,0.4) 80%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: text-shimmer 4s linear infinite;
+}
+
 /* ── Scrollbar ── */
 ::-webkit-scrollbar { width: 3px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -175,6 +224,27 @@ h1, h2, h3, h4, h5, h6,
 @keyframes marquee {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+/* ── Vertical marquee (bento background) ── */
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
+}
+
+/* ── MagicUI BentoGrid dark overrides ── */
+.dark [class*="bento-card"],
+.dark .group.relative.col-span-3 {
+  background: rgba(255,255,255,0.03) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* Force BentoCard dark glass style on this site */
+[data-bento] {
+  background: rgba(10,10,14,0.85) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  box-shadow: 0 -20px 80px -20px rgba(255,255,255,0.06) inset !important;
 }
 
 /* ── Animations ── */

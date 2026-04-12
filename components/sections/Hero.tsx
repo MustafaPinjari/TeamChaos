@@ -2,8 +2,8 @@
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { GitFork, ExternalLink, ArrowDown } from "lucide-react";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
 
-/* ── Animated counter ── */
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -25,18 +25,12 @@ function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   return <span ref={ref}>{count}{suffix}</span>;
 }
 
-/* ── Soft noise / grain overlay ── */
-function GrainOverlay() {
-  return (
-    <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.025]"
-      style={{
-        backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
-        backgroundRepeat: "repeat",
-        backgroundSize: "200px 200px",
-      }}
-    />
-  );
-}
+const teamAvatars = [
+  { imageUrl: "https://avatars.githubusercontent.com/MustafaPinjari?v=4", profileUrl: "https://github.com/MustafaPinjari" },
+  { imageUrl: "https://avatars.githubusercontent.com/Nick7020?v=4",        profileUrl: "https://github.com/Nick7020"        },
+  { imageUrl: "https://avatars.githubusercontent.com/skyisme33?v=4",       profileUrl: "https://github.com/skyisme33"       },
+  { imageUrl: "https://avatars.githubusercontent.com/buildsbytanmay?v=4",  profileUrl: "https://github.com/buildsbytanmay"  },
+];
 
 const stats = [
   { value: 25, suffix: "+", label: "Hackathons entered" },
@@ -57,88 +51,108 @@ export default function Hero() {
   return (
     <section ref={ref} id="story"
       className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-24 pb-20"
-      style={{ background: "radial-gradient(ellipse 120% 80% at 50% -10%, rgba(168,85,247,0.07) 0%, transparent 60%), #050508" }}
     >
-      <GrainOverlay />
+      {/* Deep layered background */}
+      <div className="absolute inset-0"
+        style={{ background: "radial-gradient(ellipse 140% 90% at 50% -20%, rgba(168,85,247,0.09) 0%, rgba(59,130,246,0.04) 40%, transparent 65%), #050508" }} />
 
-      {/* Subtle grid */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.018]"
+      {/* Grain texture */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-[0.022]"
         style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`,
+          backgroundRepeat: "repeat",
+          backgroundSize: "200px 200px",
         }}
       />
 
-      {/* Large blurred orb */}
+      {/* Refined grid — very subtle */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.014]"
+        style={{
+          backgroundImage: "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
+          backgroundSize: "100px 100px",
+        }}
+      />
+
+      {/* Primary orb */}
       <motion.div
-        animate={{ scale: [1, 1.12, 1], opacity: [0.18, 0.32, 0.18] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[900px] h-[900px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(168,85,247,0.09) 0%, rgba(59,130,246,0.04) 45%, transparent 70%)" }}
+        animate={{ scale: [1, 1.1, 1], opacity: [0.15, 0.28, 0.15] }}
+        transition={{ duration: 11, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%] w-[1100px] h-[1100px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(168,85,247,0.07) 0%, rgba(59,130,246,0.03) 45%, transparent 70%)" }}
+      />
+
+      {/* Secondary accent orb */}
+      <motion.div
+        animate={{ scale: [1, 1.15, 1], opacity: [0.08, 0.18, 0.08] }}
+        transition={{ duration: 14, repeat: Infinity, ease: "easeInOut", delay: 3 }}
+        className="absolute top-1/3 right-1/4 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{ background: "radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)" }}
       />
 
       <motion.div style={{ y, opacity: fade }}
         className="relative z-10 w-full max-w-5xl mx-auto px-6 sm:px-10 flex flex-col items-center text-center"
       >
-
-        {/* ── Eyebrow ── */}
+        {/* Eyebrow — refined pill */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-3 mb-10"
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          className="flex items-center gap-3 mb-12"
         >
-          <div className="h-px w-10 bg-white/15" />
-          <span className="text-white/35 text-[11px] uppercase tracking-[0.22em] font-medium label-eyebrow">
-            TecDrill 2026 · Deep-Hack · Runner-Up
-          </span>
-          <div className="h-px w-10 bg-white/15" />
+          <div className="h-px w-12 bg-gradient-to-r from-transparent to-white/15" />
+          <div className="frosted-pill flex items-center gap-2 px-4 py-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-yellow-400/70 animate-pulse" />
+            <span className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-medium">
+              TecDrill 2026 · Deep-Hack · Runner-Up
+            </span>
+          </div>
+          <div className="h-px w-12 bg-gradient-to-l from-transparent to-white/15" />
         </motion.div>
 
-        {/* ── Main headline ── */}
-        <div className="mb-8 w-full">
-          {/* Line 1 */}
+        {/* Main headline */}
+        <div className="mb-9 w-full">
           <div className="overflow-hidden mb-1">
             <motion.h1
               initial={{ y: "105%" }}
               animate={{ y: "0%" }}
-              transition={{ duration: 0.85, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="font-black text-white leading-[0.9] tracking-[-0.04em]"
-              style={{ fontSize: "clamp(3rem, 8.5vw, 9rem)", fontFamily: "var(--font-syne), sans-serif" }}
+              transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+              className="font-black text-white leading-[0.88] tracking-[-0.045em]"
+              style={{ fontSize: "clamp(3rem, 8.5vw, 9.5rem)", fontFamily: "var(--font-syne), sans-serif" }}
             >
               25 Failures.
             </motion.h1>
           </div>
 
-          {/* Line 2 — italic accent */}
           <div className="overflow-hidden mb-1">
             <motion.h1
               initial={{ y: "105%" }}
               animate={{ y: "0%" }}
-              transition={{ duration: 0.85, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
-              className="font-black leading-[0.9] tracking-[-0.04em] italic"
+              transition={{ duration: 0.9, delay: 0.36, ease: [0.16, 1, 0.3, 1] }}
+              className="font-black leading-[0.88] tracking-[-0.045em] italic"
               style={{
-                fontSize: "clamp(3rem, 8.5vw, 9rem)",
-                background: "linear-gradient(135deg, #a855f7 0%, #818cf8 40%, #06b6d4 100%)",
+                fontSize: "clamp(3rem, 8.5vw, 9.5rem)",
+                fontFamily: "var(--font-syne), sans-serif",
+                background: "linear-gradient(135deg, #c084fc 0%, #818cf8 45%, #22d3ee 100%)",
                 WebkitBackgroundClip: "text",
                 WebkitTextFillColor: "transparent",
                 backgroundClip: "text",
+                filter: "drop-shadow(0 0 40px rgba(168,85,247,0.35))",
               }}
             >
               One Win.
             </motion.h1>
           </div>
 
-          {/* Line 3 — outlined / ghost */}
           <div className="overflow-hidden">
             <motion.h1
               initial={{ y: "105%" }}
               animate={{ y: "0%" }}
-              transition={{ duration: 0.85, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="font-black leading-[0.9] tracking-[-0.04em]"
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="font-black leading-[0.88] tracking-[-0.045em]"
               style={{
-                fontSize: "clamp(3rem, 8.5vw, 9rem)",
-                WebkitTextStroke: "1px rgba(255,255,255,0.18)",
+                fontSize: "clamp(3rem, 8.5vw, 9.5rem)",
+                fontFamily: "var(--font-syne), sans-serif",
+                WebkitTextStroke: "1px rgba(255,255,255,0.14)",
                 color: "transparent",
               }}
             >
@@ -147,18 +161,19 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── Subtitle ── */}
+        {/* Subtitle */}
         <motion.p
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, delay: 0.7 }}
-          className="text-white/40 text-sm sm:text-base leading-[1.75] max-w-lg mb-10"
+          className="text-white/35 text-sm sm:text-[15px] leading-[1.8] max-w-md mb-10"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}
         >
           An AI-powered multi-vendor e-commerce platform with blockchain order verification,
           smart recommendations, and a real-time admin dashboard — built in 24 hours.
         </motion.p>
 
-        {/* ── CTAs ── */}
+        {/* CTAs */}
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -167,25 +182,25 @@ export default function Hero() {
         >
           <motion.a
             href="https://nauros.netlify.app/" target="_blank" rel="noopener noreferrer"
-            whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}
-            className="btn-shine inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-semibold text-white"
+            whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
+            className="btn-shine inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm font-semibold text-white"
             style={{
-              background: "linear-gradient(135deg, #a855f7, #3b82f6)",
-              boxShadow: "0 0 36px rgba(168,85,247,0.3), 0 1px 0 rgba(255,255,255,0.1) inset",
+              background: "linear-gradient(135deg, #a855f7 0%, #6366f1 50%, #3b82f6 100%)",
+              boxShadow: "0 0 40px rgba(168,85,247,0.35), 0 1px 0 rgba(255,255,255,0.12) inset, 0 -1px 0 rgba(0,0,0,0.2) inset",
               letterSpacing: "-0.01em",
             }}
           >
             <ExternalLink className="w-3.5 h-3.5" />
             Live Demo
-            <motion.span animate={{ x: [0, 5, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>→</motion.span>
+            <motion.span animate={{ x: [0, 4, 0] }} transition={{ duration: 1.8, repeat: Infinity }}>→</motion.span>
           </motion.a>
 
           <motion.a
             href="https://github.com/MustafaPinjari/NeuroCart" target="_blank" rel="noopener noreferrer"
-            whileHover={{ scale: 1.04, backgroundColor: "rgba(255,255,255,0.06)" }}
+            whileHover={{ scale: 1.04, borderColor: "rgba(255,255,255,0.18)", color: "rgba(255,255,255,0.8)" }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-semibold text-white/50 border border-white/10 hover:text-white/80 transition-all duration-300"
-            style={{ letterSpacing: "-0.01em" }}
+            className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full text-sm font-semibold text-white/45 border border-white/[0.09] transition-all duration-300"
+            style={{ letterSpacing: "-0.01em", backdropFilter: "blur(8px)" }}
           >
             <GitFork className="w-3.5 h-3.5" />
             GitHub
@@ -193,21 +208,42 @@ export default function Hero() {
 
           <motion.a
             href="#team"
-            whileHover={{ scale: 1.04, backgroundColor: "rgba(255,255,255,0.04)" }}
+            whileHover={{ scale: 1.04, color: "rgba(255,255,255,0.55)" }}
             whileTap={{ scale: 0.97 }}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white/35 border border-white/[0.07] hover:text-white/60 transition-all duration-300"
+            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white/28 transition-all duration-300"
             style={{ letterSpacing: "-0.01em" }}
           >
             Meet the Team
           </motion.a>
         </motion.div>
 
-        {/* ── Tags strip ── */}
+        {/* Team social proof */}
+        <motion.div
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.95 }}
+          className="flex items-center gap-3 mb-12"
+        >
+          <AvatarCircles
+            avatarUrls={teamAvatars}
+            className="[&_img]:w-8 [&_img]:h-8 [&_img]:border-[1.5px] [&_img]:border-white/15 -space-x-2.5"
+          />
+          <div className="text-left">
+            <p className="text-white/45 text-xs font-semibold" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+              4 engineers · 24 hours
+            </p>
+            <p className="text-white/20 text-[10px]" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+              TecDrill 2026 Runner-Up
+            </p>
+          </div>
+        </motion.div>
+
+        {/* Tags strip */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.0 }}
-          className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 mb-14"
+          className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-14"
         >
           {tags.map((tag, i) => (
             <motion.span
@@ -215,68 +251,75 @@ export default function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.05 + i * 0.06 }}
-              className="text-white/22 text-[10px] uppercase tracking-[0.2em]"
+              className="text-white/18 text-[10px] uppercase tracking-[0.22em]"
               style={{ fontFamily: "var(--font-inter), sans-serif" }}
             >
-              {i > 0 && <span className="mr-5 text-white/10">·</span>}
+              {i > 0 && <span className="mr-6 text-white/08">·</span>}
               {tag}
             </motion.span>
           ))}
         </motion.div>
 
-        {/* ── Stats row ── */}
+        {/* Stats row — luxury glass */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 1.1 }}
-          className="w-full grid grid-cols-2 sm:grid-cols-4 gap-px rounded-2xl overflow-hidden border border-white/[0.06]"
-          style={{ background: "rgba(255,255,255,0.03)" }}
+          className="w-full rounded-2xl overflow-hidden"
+          style={{
+            background: "rgba(255,255,255,0.025)",
+            border: "1px solid rgba(255,255,255,0.07)",
+            boxShadow: "0 1px 0 rgba(255,255,255,0.05) inset",
+          }}
         >
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.15 + i * 0.08 }}
-              whileHover={{ backgroundColor: "rgba(168,85,247,0.04)" }}
-              className="flex flex-col items-center justify-center py-6 px-4 cursor-default transition-colors duration-300"
-              style={{ background: "#050508" }}
-            >
-              <div className="font-black tabular-nums mb-1"
-                style={{
-                  fontSize: "clamp(1.6rem, 3.5vw, 2.8rem)",
-                  background: "linear-gradient(135deg, #a855f7, #3b82f6)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                  letterSpacing: "-0.04em",
-                }}>
-                <Counter to={s.value} suffix={s.suffix} />
-              </div>
-              <div className="text-white/25 text-[9px] sm:text-[10px] uppercase tracking-[0.18em] text-center leading-tight"
-                style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-                {s.label}
-              </div>
-            </motion.div>
-          ))}
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-white/[0.05]">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.15 + i * 0.08 }}
+                whileHover={{ backgroundColor: "rgba(168,85,247,0.04)" }}
+                className="flex flex-col items-center justify-center py-7 px-4 cursor-default transition-colors duration-400"
+              >
+                <div className="font-black tabular-nums mb-1.5"
+                  style={{
+                    fontSize: "clamp(1.7rem, 3.5vw, 2.9rem)",
+                    fontFamily: "var(--font-syne), sans-serif",
+                    background: i === 0 ? "linear-gradient(135deg, #c084fc, #a855f7)" :
+                                i === 1 ? "linear-gradient(135deg, #818cf8, #3b82f6)" :
+                                i === 2 ? "linear-gradient(135deg, #22d3ee, #06b6d4)" :
+                                          "linear-gradient(135deg, #f5d060, #e8a020)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    letterSpacing: "-0.04em",
+                  }}>
+                  <Counter to={s.value} suffix={s.suffix} />
+                </div>
+                <div className="text-white/22 text-[9px] sm:text-[10px] uppercase tracking-[0.2em] text-center leading-tight"
+                  style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+                  {s.label}
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
 
       </motion.div>
 
-      {/* ── Scroll cue ── */}
+      {/* Scroll cue */}
       <motion.div
-        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.2 }}
+        initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.4 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
       >
         <motion.div
-          animate={{ y: [0, 6, 0], opacity: [0.3, 0.7, 0.3] }}
-          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ y: [0, 7, 0], opacity: [0.2, 0.5, 0.2] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <ArrowDown className="w-4 h-4 text-white/25" />
+          <ArrowDown className="w-4 h-4 text-white/20" />
         </motion.div>
       </motion.div>
     </section>
   );
 }
-
-

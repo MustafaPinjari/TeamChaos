@@ -60,13 +60,16 @@ export default function ProblemStatement() {
         {/* Grid */}
         <motion.div
           variants={container} initial="hidden" animate={inView ? "show" : "hidden"}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px rounded-2xl overflow-hidden"
-          style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.05)" }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 rounded-2xl overflow-hidden"
+          style={{
+            border: "1px solid rgba(255,255,255,0.06)",
+            boxShadow: "0 1px 0 rgba(255,255,255,0.04) inset",
+          }}
         >
           {problems.map((p) => (
             <motion.div key={p.title} variants={item}
-              whileHover={{ backgroundColor: "rgba(255,255,255,0.03)" }}
-              className="group p-6 sm:p-8 cursor-default transition-colors duration-300"
+              whileHover={{ backgroundColor: "rgba(255,255,255,0.025)" }}
+              className="group p-6 sm:p-8 cursor-default transition-colors duration-300 border-b border-r border-white/[0.05]"
               style={{ background: "#050508" }}
             >
               <div className="flex items-start justify-between mb-5">

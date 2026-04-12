@@ -2,6 +2,19 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { Scan, Brain, Zap, BarChart3, Bell, Shield, Smartphone, Globe } from "lucide-react";
+import { SiTypescript, SiPython, SiSolidity, SiReact, SiDjango, SiEthereum, SiRazorpay, SiRedis, SiPostgresql } from "react-icons/si";
+
+const techBadges = [
+  { Icon: SiReact,      label: "React",       color: "#06b6d4" },
+  { Icon: SiTypescript, label: "TypeScript",  color: "#3b82f6" },
+  { Icon: SiDjango,     label: "Django",      color: "#10b981" },
+  { Icon: SiPython,     label: "Python",      color: "#10b981" },
+  { Icon: SiEthereum,   label: "Ethereum",    color: "#818cf8" },
+  { Icon: SiSolidity,   label: "Solidity",    color: "#a855f7" },
+  { Icon: SiRazorpay,   label: "Razorpay",    color: "#06b6d4" },
+  { Icon: SiPostgresql, label: "PostgreSQL",  color: "#3b82f6" },
+  { Icon: SiRedis,      label: "Redis",       color: "#ef4444" },
+];
 
 const features = [
   { icon: Scan,       title: "JWT Auth & Roles",           desc: "Single login routes customers, vendors, and admins. Token blacklisting on logout.", tag: "Auth",       accent: "#a855f7" },
@@ -25,10 +38,11 @@ function FeatureCard({ f, i }: { f: typeof features[0]; i: number }) {
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       whileHover={{ y: -6 }}
-      className="relative rounded-2xl p-5 sm:p-6 cursor-default overflow-hidden border transition-colors duration-400"
+      className="relative rounded-2xl p-5 sm:p-6 cursor-default overflow-hidden border transition-all duration-400"
       style={{
-        background: hovered ? `rgba(${f.accent.replace('#','').match(/.{2}/g)!.map(x=>parseInt(x,16)).join(',')},0.06)` : "rgba(255,255,255,0.025)",
-        borderColor: hovered ? `${f.accent}35` : "rgba(255,255,255,0.07)",
+        background: hovered ? `rgba(${f.accent.replace('#','').match(/.{2}/g)!.map(x=>parseInt(x,16)).join(',')},0.06)` : "rgba(255,255,255,0.02)",
+        borderColor: hovered ? `${f.accent}40` : "rgba(255,255,255,0.06)",
+        boxShadow: hovered ? `0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px ${f.accent}20` : "0 1px 0 rgba(255,255,255,0.03) inset",
       }}
     >
       {/* Glow spot */}
@@ -95,10 +109,37 @@ export default function Features() {
           <motion.p
             initial={{ opacity: 0 }} animate={inView ? { opacity: 1 } : {}}
             transition={{ delay: 0.3 }}
-            className="text-white/35 text-sm sm:text-base max-w-lg"
+            className="text-white/35 text-sm sm:text-base max-w-lg mb-8"
           >
             Eight production-grade features built in 24 hours. Each one solving a real requirement.
           </motion.p>
+
+          {/* Tech stack badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }} animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4 }}
+            className="flex flex-wrap gap-2"
+          >
+            {techBadges.map(({ Icon, label, color }, i) => (
+              <motion.div key={label}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={inView ? { opacity: 1, scale: 1 } : {}}
+                transition={{ delay: 0.42 + i * 0.04 }}
+                whileHover={{ y: -3, scale: 1.08 }}
+                title={label}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-[11px] font-medium cursor-default transition-all duration-200"
+                style={{
+                  background: `${color}12`,
+                  border: `1px solid ${color}22`,
+                  color,
+                  fontFamily: "var(--font-inter), sans-serif",
+                }}
+              >
+                <Icon className="w-3.5 h-3.5 shrink-0" />
+                {label}
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">

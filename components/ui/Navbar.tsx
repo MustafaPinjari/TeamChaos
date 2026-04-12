@@ -31,6 +31,12 @@ export default function Navbar() {
           iconMagnification={64}
           iconDistance={130}
           className="h-14 gap-0.5 px-3 rounded-2xl"
+          style={{
+            background: "rgba(5,5,9,0.85)",
+            backdropFilter: "blur(24px) saturate(180%)",
+            border: "1px solid rgba(255,255,255,0.08)",
+            boxShadow: "0 1px 0 rgba(255,255,255,0.06) inset, 0 20px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(168,85,247,0.06)",
+          }}
         >
           {/* Logo */}
           <DockIcon size={44} magnification={64} distance={130}>

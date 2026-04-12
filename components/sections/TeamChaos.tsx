@@ -2,6 +2,24 @@
 import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useRef, useState } from "react";
 import Image from "next/image";
+import { AvatarCircles } from "@/components/ui/avatar-circles";
+import { SiTypescript, SiPython, SiSolidity, SiReact, SiDjango, SiEthereum } from "react-icons/si";
+
+const teamAvatars = [
+  { imageUrl: "https://avatars.githubusercontent.com/MustafaPinjari?v=4", profileUrl: "https://github.com/MustafaPinjari" },
+  { imageUrl: "https://avatars.githubusercontent.com/Nick7020?v=4",        profileUrl: "https://github.com/Nick7020"        },
+  { imageUrl: "https://avatars.githubusercontent.com/skyisme33?v=4",       profileUrl: "https://github.com/skyisme33"       },
+  { imageUrl: "https://avatars.githubusercontent.com/buildsbytanmay?v=4",  profileUrl: "https://github.com/buildsbytanmay"  },
+];
+
+const stackIcons = [
+  { Icon: SiTypescript, label: "TypeScript", color: "#3b82f6" },
+  { Icon: SiPython,     label: "Python",     color: "#10b981" },
+  { Icon: SiSolidity,   label: "Solidity",   color: "#a855f7" },
+  { Icon: SiReact,      label: "React",      color: "#06b6d4" },
+  { Icon: SiDjango,     label: "Django",     color: "#10b981" },
+  { Icon: SiEthereum,   label: "Ethereum",   color: "#818cf8" },
+];
 
 const team = [
   {
@@ -95,15 +113,15 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
 
         {/* Main card */}
         <motion.div
-          animate={{ y: hovered ? -12 : 0 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          animate={{ y: hovered ? -14 : 0 }}
+          transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
           className="relative z-10 rounded-[26px] overflow-hidden"
           style={{
-            background: "rgba(6,6,10,0.95)",
+            background: "rgba(5,5,9,0.97)",
             boxShadow: hovered
-              ? `0 32px 80px rgba(${member.rgb},0.25), 0 0 0 1px rgba(${member.rgb},0.2), inset 0 1px 0 rgba(255,255,255,0.06)`
-              : "0 8px 32px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04)",
-            transition: "box-shadow 0.4s ease",
+              ? `0 40px 100px rgba(${member.rgb},0.28), 0 0 0 1px rgba(${member.rgb},0.22), inset 0 1px 0 rgba(255,255,255,0.07)`
+              : "0 8px 40px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.04)",
+            transition: "box-shadow 0.45s ease",
           }}
         >
           {/* Full-bleed image */}
@@ -173,31 +191,40 @@ function TeamCard({ member, index }: { member: typeof team[0]; index: number }) 
           </div>
 
           {/* Info panel */}
-          <div className="px-5 pb-5 pt-4 relative">
+          <div className="px-5 pb-6 pt-4 relative">
             {/* Subtle inner glow at top of panel */}
             <div className="absolute top-0 inset-x-0 h-px"
-              style={{ background: `linear-gradient(90deg, transparent, rgba(${member.rgb},0.3), transparent)` }} />
+              style={{ background: `linear-gradient(90deg, transparent, rgba(${member.rgb},0.38), transparent)` }} />
 
             <div className="flex items-start justify-between gap-2 mb-2">
-              <h3 className="text-base sm:text-lg font-black text-white tracking-tight leading-tight">{member.name}</h3>
+              <h3 className="text-base sm:text-lg font-black text-white tracking-tight leading-tight"
+                style={{ fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.02em" }}>
+                {member.name}
+              </h3>
               {/* Dot indicator */}
               <motion.div
-                animate={{ scale: hovered ? [1, 1.4, 1] : 1, opacity: hovered ? 1 : 0.4 }}
+                animate={{ scale: hovered ? [1, 1.5, 1] : 1, opacity: hovered ? 1 : 0.3 }}
                 transition={{ duration: 1, repeat: hovered ? Infinity : 0 }}
                 className="w-2 h-2 rounded-full shrink-0 mt-1.5"
-                style={{ background: member.accent, boxShadow: `0 0 8px ${member.accent}` }}
+                style={{ background: member.accent, boxShadow: `0 0 10px ${member.accent}` }}
               />
             </div>
 
-            <p className="text-xs font-semibold mb-2" style={{ color: member.accent }}>{member.role}</p>
-            <p className="text-white/25 text-xs leading-relaxed">{member.tag}</p>
+            <p className="text-xs font-semibold mb-2"
+              style={{ color: member.accent, fontFamily: "var(--font-inter), sans-serif" }}>
+              {member.role}
+            </p>
+            <p className="text-white/22 text-xs leading-relaxed"
+              style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+              {member.tag}
+            </p>
 
             {/* Animated bottom bar */}
             <motion.div
               animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
               className="mt-4 h-[1.5px] origin-left rounded-full"
-              style={{ background: `linear-gradient(90deg, ${member.accent}, rgba(${member.rgb},0.2), transparent)` }}
+              style={{ background: `linear-gradient(90deg, ${member.accent}, rgba(${member.rgb},0.15), transparent)` }}
             />
           </div>
         </motion.div>
@@ -282,19 +309,46 @@ export default function TeamChaos() {
           ))}
         </div>
 
-        {/* Footer */}
+        {/* Footer — avatars + stack */}
         <motion.div
           initial={{ opacity: 0 }} whileInView={{ opacity: 1 }}
           viewport={{ once: true }} transition={{ delay: 0.5 }}
-          className="mt-14 flex items-center justify-center gap-4"
+          className="mt-14 flex flex-col sm:flex-row items-center justify-between gap-6"
         >
-          <div className="h-px flex-1 max-w-24"
-            style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.07))" }} />
-          <p className="text-white/12 text-[10px] font-mono tracking-[0.2em] uppercase">
-            Hackathon Runner-Up · 2026
-          </p>
-          <div className="h-px flex-1 max-w-24"
-            style={{ background: "linear-gradient(to left, transparent, rgba(255,255,255,0.07))" }} />
+          {/* Left: avatars */}
+          <div className="flex items-center gap-4">
+            <AvatarCircles
+              avatarUrls={teamAvatars}
+              className="[&_img]:w-9 [&_img]:h-9 [&_img]:border-2 [&_img]:border-white/15 -space-x-3"
+            />
+            <div>
+              <p className="text-white/55 text-sm font-semibold"
+                style={{ fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.01em" }}>
+                Team Chaos
+              </p>
+              <p className="text-white/20 text-[11px]" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+                Hackathon Runner-Up · 2026
+              </p>
+            </div>
+          </div>
+
+          {/* Center divider */}
+          <div className="hidden sm:block h-px flex-1 max-w-24"
+            style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.07), transparent)" }} />
+
+          {/* Right: tech stack icons */}
+          <div className="flex items-center gap-2 flex-wrap justify-center sm:justify-end">
+            {stackIcons.map(({ Icon, label, color }) => (
+              <motion.div key={label}
+                whileHover={{ y: -3, scale: 1.15 }}
+                title={label}
+                className="w-8 h-8 rounded-lg flex items-center justify-center cursor-default transition-all duration-200"
+                style={{ background: `${color}15`, border: `1px solid ${color}25` }}
+              >
+                <Icon className="w-4 h-4" style={{ color }} />
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>

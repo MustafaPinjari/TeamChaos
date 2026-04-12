@@ -1,14 +1,199 @@
 "use client";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Trophy } from "lucide-react";
+import { useRef, forwardRef } from "react";
+import { Trophy, Brain, Shield, BarChart3, Cpu, Zap, Layers, Share2 } from "lucide-react";
+import { FileTextIcon, CalendarIcon } from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
+import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
+import { AnimatedList, AnimatedListItem } from "@/components/ui/animated-list";
+import { AnimatedBeam } from "@/components/ui/animated-beam";
+import {
+  SiTypescript, SiPython, SiSolidity, SiReact, SiDjango,
+  SiEthereum, SiRazorpay, SiRedis, SiPostgresql, SiOpenai,
+} from "react-icons/si";
 
+/* ─────────────────────────────────────────────
+   BACKGROUND 1 — scrolling tech file marquee
+───────────────────────────────────────────── */
+const techFiles = [
+  { name: "recommendations.py",  body: "Co-occurrence matrix + OpenAI GPT-4o-mini re-ranking with 1-hour Redis cache and graceful fallback chain." },
+  { name: "blockchain.sol",      body: "SHA-256 order fingerprint stored on Ethereum Sepolia — tamper-proof proof of purchase for every order." },
+  { name: "jwt_auth.py",         body: "Token blacklisting on logout, role-based routing for customer, vendor, and admin with refresh rotation." },
+  { name: "dashboard.tsx",       body: "Real-time revenue charts, trending products, low-stock alerts, and top customer of the day via Recharts." },
+  { name: "razorpay.py",         body: "Full checkout flow with webhook verification, payment status tracking, and idempotent order creation." },
+  { name: "vendor_panel.tsx",    body: "Dedicated /vendor route with product CRUD, order management, invoice auto-generation, and analytics." },
+];
+
+function FilesBackground() {
+  return (
+    <div className="absolute inset-x-0 top-0 overflow-hidden px-3 pt-3"
+      style={{
+        height: "68%",
+        maskImage: "linear-gradient(to bottom, #000 40%, transparent 100%)",
+      }}>
+      <div className="flex flex-col gap-2 animate-[marquee-vertical_20s_linear_infinite]">
+        {[...techFiles, ...techFiles].map((f, i) => (
+          <figure key={i}
+            className={cn(
+              "relative cursor-pointer overflow-hidden rounded-xl border p-3",
+              "border-white/[0.08] bg-white/[0.04] hover:bg-white/[0.07]",
+              "transform-gpu blur-[0.5px] transition-all duration-300 ease-out hover:blur-none"
+            )}
+          >
+            <div className="flex items-center gap-2 mb-1">
+              <FileTextIcon className="w-3 h-3 text-white/40 shrink-0" />
+              <figcaption className="text-xs font-medium text-white/70">{f.name}</figcaption>
+            </div>
+            <blockquote className="text-[10px] text-white/30 leading-relaxed line-clamp-2">{f.body}</blockquote>
+          </figure>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   BACKGROUND 2 — animated notification list
+───────────────────────────────────────────── */
+const notifications = [
+  { icon: "🏆", title: "Runner-Up awarded",    time: "24h ago",  sub: "TecDrill Deep-Hack 2026" },
+  { icon: "⛓️", title: "Blockchain tx confirmed", time: "23h ago", sub: "Sepolia · 0x4f2a...c8b1" },
+  { icon: "🤖", title: "AI recs live",          time: "20h ago",  sub: "OpenAI GPT-4o-mini active" },
+  { icon: "💳", title: "Payment received",      time: "18h ago",  sub: "Razorpay · ₹2,499" },
+  { icon: "📊", title: "Dashboard deployed",    time: "15h ago",  sub: "Real-time analytics live" },
+  { icon: "🚀", title: "NeuroCart shipped",      time: "0h ago",   sub: "All systems operational" },
+];
+
+function NotificationsBackground() {
+  return (
+    <div className="absolute inset-x-0 top-0 overflow-hidden px-4 pt-4"
+      style={{ height: "65%", maskImage: "linear-gradient(to bottom, #000 50%, transparent 100%)" }}>
+      <AnimatedList delay={1200}>
+        {notifications.map((n, i) => (
+          <div key={i}
+            className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.05] px-3 py-2.5 w-full backdrop-blur-sm">
+            <span className="text-base shrink-0">{n.icon}</span>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-white/80 truncate">{n.title}
+                <span className="ml-2 text-[10px] font-normal text-white/30">· {n.time}</span>
+              </p>
+              <p className="text-[10px] text-white/35 truncate">{n.sub}</p>
+            </div>
+          </div>
+        ))}
+      </AnimatedList>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   BACKGROUND 3 — animated beam integrations
+───────────────────────────────────────────── */
+const Circle = forwardRef<HTMLDivElement, { className?: string; children?: React.ReactNode }>(
+  ({ className, children }, ref) => (
+    <div ref={ref}
+      className={cn(
+        "z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] shadow-lg backdrop-blur-sm",
+        className
+      )}>
+      {children}
+    </div>
+  )
+);
+Circle.displayName = "Circle";
+
+function BeamBackground() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const userRef      = useRef<HTMLDivElement>(null);
+  const aiRef        = useRef<HTMLDivElement>(null);
+  const ethRef       = useRef<HTMLDivElement>(null);
+  const razorRef     = useRef<HTMLDivElement>(null);
+  const dbRef        = useRef<HTMLDivElement>(null);
+  const redisRef     = useRef<HTMLDivElement>(null);
+
+  return (
+    <div ref={containerRef}
+      className="absolute inset-x-0 top-0 flex items-center justify-between px-8 overflow-hidden"
+      style={{
+        height: "70%",
+        maskImage: "linear-gradient(to bottom, transparent 0%, #000 15%, #000 75%, transparent 100%)",
+      }}
+    >
+      {/* Left — React frontend */}
+      <Circle ref={userRef}>
+        <SiReact className="w-4 h-4 text-white/60" />
+      </Circle>
+
+      {/* Center — AI core */}
+      <Circle ref={aiRef} className="h-14 w-14">
+        <SiOpenai className="w-6 h-6 text-white/70" />
+      </Circle>
+
+      {/* Right — services */}
+      <div className="flex flex-col gap-3">
+        <Circle ref={ethRef}><SiEthereum className="w-4 h-4 text-white/60" /></Circle>
+        <Circle ref={razorRef}><SiRazorpay className="w-4 h-4 text-white/60" /></Circle>
+        <Circle ref={dbRef}><SiPostgresql className="w-4 h-4 text-white/60" /></Circle>
+        <Circle ref={redisRef}><SiRedis className="w-4 h-4 text-white/60" /></Circle>
+      </div>
+
+      <AnimatedBeam containerRef={containerRef} fromRef={userRef} toRef={aiRef}
+        pathColor="rgba(255,255,255,0.1)" gradientStartColor="rgba(255,255,255,0.8)" gradientStopColor="rgba(255,255,255,0.3)" duration={3} />
+      <AnimatedBeam containerRef={containerRef} fromRef={aiRef} toRef={ethRef}
+        pathColor="rgba(255,255,255,0.1)" gradientStartColor="rgba(255,255,255,0.8)" gradientStopColor="rgba(255,255,255,0.3)" duration={3.5} reverse curvature={-30} endYOffset={-20} />
+      <AnimatedBeam containerRef={containerRef} fromRef={aiRef} toRef={razorRef}
+        pathColor="rgba(255,255,255,0.1)" gradientStartColor="rgba(255,255,255,0.8)" gradientStopColor="rgba(255,255,255,0.3)" duration={4} reverse />
+      <AnimatedBeam containerRef={containerRef} fromRef={aiRef} toRef={dbRef}
+        pathColor="rgba(255,255,255,0.1)" gradientStartColor="rgba(255,255,255,0.8)" gradientStopColor="rgba(255,255,255,0.3)" duration={3.2} reverse curvature={30} endYOffset={20} />
+      <AnimatedBeam containerRef={containerRef} fromRef={aiRef} toRef={redisRef}
+        pathColor="rgba(255,255,255,0.1)" gradientStartColor="rgba(255,255,255,0.8)" gradientStopColor="rgba(255,255,255,0.3)" duration={4.5} reverse curvature={50} endYOffset={36} />
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   BACKGROUND 4 — stats / build timeline
+───────────────────────────────────────────── */
+function StatsBackground() {
+  const stats = [
+    { v: "24h",   l: "Build time"    },
+    { v: "12k+",  l: "Lines of code" },
+    { v: "8",     l: "Features"      },
+    { v: "99%",   l: "Uptime"        },
+  ];
+  return (
+    <div className="absolute inset-x-0 top-0 flex items-center justify-center p-5"
+      style={{
+        height: "65%",
+        maskImage: "linear-gradient(to bottom, transparent 0%, #000 20%, #000 75%, transparent 100%)",
+      }}>
+      <div className="grid grid-cols-2 gap-2.5 w-full">
+        {stats.map((s) => (
+          <div key={s.l} className="rounded-xl border border-white/[0.09] bg-white/[0.05] p-3.5 text-center backdrop-blur-sm">
+            <div className="text-2xl font-black text-white/90 tracking-tight leading-none mb-1"
+              style={{ fontFamily: "var(--font-syne), sans-serif" }}>
+              {s.v}
+            </div>
+            <div className="text-[9px] text-white/35 uppercase tracking-[0.18em]"
+              style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+              {s.l}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   STORY LINES
+───────────────────────────────────────────── */
 const storyLines = [
-  { text: "The judges reviewed",           delay: 0    },
-  { text: "over 30 projects.",             delay: 0.12 },
-  { text: "Most built a CRUD app.",        delay: 0.24 },
-  { text: "We built a SaaS product.",      delay: 0.36 },
-  { text: "Then they called a name.",      delay: 0.48 },
+  { text: "The judges reviewed",        delay: 0    },
+  { text: "over 30 projects.",          delay: 0.12 },
+  { text: "Most built a CRUD app.",     delay: 0.24 },
+  { text: "We built a SaaS product.",   delay: 0.36 },
+  { text: "Then they called a name.",   delay: 0.48 },
 ];
 
 function StoryLine({ text, delay }: { text: string; delay: number }) {
@@ -20,8 +205,8 @@ function StoryLine({ text, delay }: { text: string; delay: number }) {
         initial={{ y: "110%", opacity: 0 }}
         animate={inView ? { y: "0%", opacity: 1 } : {}}
         transition={{ duration: 0.75, delay, ease: [0.16, 1, 0.3, 1] }}
-        className="text-white/40 font-semibold leading-tight"
-        style={{ fontSize: "clamp(1.1rem, 3vw, 2.2rem)" }}
+        className="text-white/35 font-semibold leading-tight"
+        style={{ fontSize: "clamp(1.1rem, 3vw, 2.2rem)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.02em" }}
       >
         {text}
       </motion.p>
@@ -29,139 +214,158 @@ function StoryLine({ text, delay }: { text: string; delay: number }) {
   );
 }
 
+/* ─────────────────────────────────────────────
+   BENTO FEATURES CONFIG
+───────────────────────────────────────────── */
+const bentoFeatures = [
+  {
+    Icon: FileTextIcon,
+    name: "Production-grade code",
+    description: "Every feature ships with tests, fallbacks, and real engineering decisions — not just a demo.",
+    href: "https://github.com/MustafaPinjari/NeuroCart",
+    cta: "View repo",
+    className: "col-span-3 lg:col-span-1",
+    background: <FilesBackground />,
+  },
+  {
+    Icon: Zap,
+    name: "Built in 24 hours",
+    description: "From architecture to deployment — JWT auth, AI recs, blockchain, payments, and real-time dashboard.",
+    href: "https://nauros.netlify.app/",
+    cta: "See live",
+    className: "col-span-3 lg:col-span-2",
+    background: <NotificationsBackground />,
+  },
+  {
+    Icon: Share2,
+    name: "Full-stack integrations",
+    description: "React frontend talks to Django DRF, which connects to OpenAI, Ethereum Sepolia, Razorpay, PostgreSQL, and Redis.",
+    href: "https://github.com/MustafaPinjari/NeuroCart",
+    cta: "Explore architecture",
+    className: "col-span-3 lg:col-span-2",
+    background: <BeamBackground />,
+  },
+  {
+    Icon: CalendarIcon,
+    name: "Runner-Up · TecDrill 2026",
+    description: "25 hackathons. 1 win. Built at Sinhgad Institute, Pune in the Deep-Hack 24h sprint.",
+    href: "#",
+    cta: "Our story",
+    className: "col-span-3 lg:col-span-1",
+    background: <StatsBackground />,
+  },
+];
+
+/* ─────────────────────────────────────────────
+   MAIN EXPORT
+───────────────────────────────────────────── */
 export default function WinMoment() {
-  const badgeRef = useRef(null);
+  const badgeRef   = useRef(null);
   const badgeInView = useInView(badgeRef, { once: true, margin: "-60px" });
-
-  const nameRef = useRef(null);
-  const nameInView = useInView(nameRef, { once: true, margin: "-60px" });
-
-  const awardsRef = useRef(null);
+  const nameRef    = useRef(null);
+  const nameInView  = useInView(nameRef, { once: true, margin: "-60px" });
+  const awardsRef  = useRef(null);
   const awardsInView = useInView(awardsRef, { once: true, margin: "-40px" });
 
   return (
-    <section className="py-16 sm:py-24 px-5 sm:px-8 relative">
-      {/* Glow */}
+    <section className="py-16 sm:py-28 px-5 sm:px-8 relative overflow-hidden dark">
       <div className="absolute inset-0 pointer-events-none"
-        style={{ background: "radial-gradient(ellipse 60% 50% at 50% 50%, rgba(168,85,247,0.06) 0%, transparent 70%)" }} />
+        style={{ background: "radial-gradient(ellipse 70% 60% at 50% 40%, rgba(255,255,255,0.02) 0%, transparent 70%)" }} />
 
       <div className="max-w-5xl mx-auto relative z-10">
 
-        {/* Badge */}
+        {/* Trophy badge */}
         <motion.div ref={badgeRef}
-          initial={{ opacity: 0, scale: 0.8, y: 10 }}
+          initial={{ opacity: 0, scale: 0.75, y: 12 }}
           animate={badgeInView ? { opacity: 1, scale: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, type: "spring", bounce: 0.35 }}
-          className="mb-10 sm:mb-12"
+          transition={{ duration: 0.55, type: "spring", bounce: 0.4 }}
+          className="mb-12 sm:mb-14"
         >
-          <div className="inline-flex items-center gap-2.5 px-4 py-2.5 rounded-full border border-yellow-500/20 text-yellow-300/70 text-sm"
-            style={{ background: "rgba(234,179,8,0.05)" }}>
+          <div className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full"
+            style={{
+              background: "linear-gradient(135deg, rgba(245,208,96,0.1) 0%, rgba(232,160,32,0.06) 100%)",
+              border: "1px solid rgba(245,208,96,0.25)",
+              boxShadow: "0 0 24px rgba(245,208,96,0.12), 0 1px 0 rgba(255,255,255,0.06) inset",
+            }}>
             <motion.div
-              animate={{ rotate: [0, -12, 12, -12, 0] }}
-              transition={{ duration: 0.7, delay: 1, repeat: Infinity, repeatDelay: 5 }}
+              animate={{ rotate: [0, -14, 14, -14, 0] }}
+              transition={{ duration: 0.8, delay: 1.2, repeat: Infinity, repeatDelay: 6 }}
             >
-              <Trophy className="w-4 h-4" />
+              <Trophy className="w-4 h-4" style={{ color: "#f5d060" }} />
             </motion.div>
-            🥈 Runner-Up
+            <span className="text-sm font-semibold" style={{ color: "#f5d060", fontFamily: "var(--font-inter), sans-serif" }}>
+              🥈 Runner-Up
+            </span>
           </div>
         </motion.div>
 
         {/* Story lines */}
-        <div className="space-y-1 sm:space-y-2 mb-10 sm:mb-12">
+        <div className="space-y-1.5 sm:space-y-2 mb-12 sm:mb-14">
           {storyLines.map((l) => (
             <StoryLine key={l.text} text={l.text} delay={l.delay} />
           ))}
         </div>
 
         {/* Big name reveal */}
-        <div ref={nameRef} className="mb-10 sm:mb-14">
+        <div ref={nameRef} className="mb-12 sm:mb-16">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={nameInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="font-black tracking-tighter leading-[0.88] gradient-text"
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="font-black tracking-tighter leading-[0.86] gradient-text"
             style={{
-              fontSize: "clamp(2.8rem, 9vw, 9rem)",
+              fontSize: "clamp(2.8rem, 9vw, 9.5rem)",
+              fontFamily: "var(--font-syne), sans-serif",
               filter: nameInView
-                ? "drop-shadow(0 0 18px rgba(168,85,247,1)) drop-shadow(0 0 50px rgba(168,85,247,0.6)) drop-shadow(0 0 90px rgba(59,130,246,0.35))"
+                ? "drop-shadow(0 0 20px rgba(168,85,247,0.9)) drop-shadow(0 0 60px rgba(168,85,247,0.5)) drop-shadow(0 0 100px rgba(59,130,246,0.3))"
                 : "drop-shadow(0 0 0px transparent)",
-              transition: "filter 1.6s ease 0.2s",
+              transition: "filter 1.8s ease 0.2s",
             }}
           >
             Team Chaos.
           </motion.h2>
         </div>
 
-        {/* Awards */}
+        {/* Award pills */}
         <motion.div ref={awardsRef}
           initial={{ opacity: 0, y: 16 }}
           animate={awardsInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="flex flex-wrap gap-2 sm:gap-3 mb-14 sm:mb-16"
+          className="flex flex-wrap gap-2 sm:gap-3 mb-16 sm:mb-20"
         >
           {["🥈 Runner-Up", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((a, i) => (
             <motion.span key={a}
-              initial={{ opacity: 0, scale: 0.85 }}
+              initial={{ opacity: 0, scale: 0.8 }}
               animate={awardsInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.1 + i * 0.07, type: "spring", bounce: 0.3 }}
+              transition={{ delay: 0.1 + i * 0.08, type: "spring", bounce: 0.35 }}
               whileHover={{ scale: 1.06, y: -2 }}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-yellow-300/55 text-xs sm:text-sm border border-yellow-500/15 cursor-default"
-              style={{ background: "rgba(234,179,8,0.04)" }}
+              className="px-4 py-2 rounded-full text-xs sm:text-sm cursor-default"
+              style={{
+                background: "linear-gradient(135deg, rgba(245,208,96,0.07) 0%, rgba(232,160,32,0.04) 100%)",
+                border: "1px solid rgba(245,208,96,0.18)",
+                color: "rgba(245,208,96,0.6)",
+                fontFamily: "var(--font-inter), sans-serif",
+              }}
             >
               {a}
             </motion.span>
           ))}
         </motion.div>
 
-        {/* What made us win */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-40px" }}
-          transition={{ duration: 0.6 }}
-        >
-          <p className="text-white/20 text-[10px] uppercase tracking-[0.22em] mb-6 font-medium">What Made the Difference</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {[
-              { n: "01", title: "Treated extras as the main brief",  desc: "\"Additional features carry added weightage\" — we read that as the real brief. Blockchain, AI recs, real-time dashboard. All production-quality.", color: "#a855f7", rgb: "168,85,247" },
-              { n: "02", title: "Architecture that looks real",       desc: "Service layer, JWT blacklisting, role-based routing, caching, DB indexes, graceful fallbacks — decisions real engineering teams make.", color: "#3b82f6", rgb: "59,130,246" },
-              { n: "03", title: "Blockchain was unexpected",          desc: "Nobody else ships Ethereum integration in a 24h e-commerce hackathon. A real Sepolia tx hash on the order page was a moment that stood out.", color: "#06b6d4", rgb: "6,182,212" },
-              { n: "04", title: "Recommendation system had depth",    desc: "Co-occurrence analysis, personalisation, trending with configurable windows, OpenAI re-ranking, full fallback chain, 1-hour caching.", color: "#10b981", rgb: "16,185,129" },
-              { n: "05", title: "Correctness, not just demos",        desc: "Property-based tests, composite DB indexes, select_related to kill N+1s, race-safe invoice numbering — details that signal production thinking.", color: "#f59e0b", rgb: "245,158,11" },
-              { n: "06", title: "UI felt like a SaaS product",        desc: "Loading skeletons, Recharts charts, blockchain badge, recommendation carousels — the frontend looked polished. Presentation matters.", color: "#ec4899", rgb: "236,72,153" },
-            ].map((item, i) => (
-              <motion.div
-                key={item.n}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-20px" }}
-                transition={{ duration: 0.5, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4 }}
-                className="group relative rounded-2xl p-4 sm:p-5 border cursor-default overflow-hidden transition-all duration-300"
-                style={{ background: `rgba(${item.rgb},0.04)`, borderColor: `rgba(${item.rgb},0.15)` }}
-              >
-                <div className="flex items-start gap-3">
-                  <div className="shrink-0 w-8 h-8 rounded-lg flex items-center justify-center text-[10px] font-black font-mono border"
-                    style={{ background: `rgba(${item.rgb},0.12)`, color: item.color, borderColor: `rgba(${item.rgb},0.25)` }}>
-                    {item.n}
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-white/80 text-xs sm:text-sm mb-1 group-hover:text-white transition-colors">{item.title}</h3>
-                    <p className="text-white/25 text-xs leading-relaxed group-hover:text-white/40 transition-colors">{item.desc}</p>
-                  </div>
-                </div>
-                <motion.div
-                  initial={{ scaleX: 0 }} whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 h-[1.5px] origin-left"
-                  style={{ background: `linear-gradient(90deg, ${item.color}, transparent)` }}
-                />
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        {/* Section label */}
+        <p className="text-white/18 text-[10px] uppercase tracking-[0.25em] mb-6 font-medium"
+          style={{ fontFamily: "var(--font-inter), sans-serif" }}>
+          What Made the Difference
+        </p>
+
+        {/* MagicUI BentoGrid — dark theme */}
+        <BentoGrid>
+          {bentoFeatures.map((f, i) => (
+            <BentoCard key={i} {...f} />
+          ))}
+        </BentoGrid>
+
       </div>
     </section>
   );
 }
-
