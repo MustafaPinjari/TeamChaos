@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Syne, Geist_Mono } from "next/font/google";
+import { Inter, Syne, Geist_Mono, Space_Grotesk, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -20,6 +20,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space",
+  subsets: ["latin"],
+  weight: ["700"],
+});
+
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+  weight: ["900"],
+  style: ["italic"],
+});
+
 export const metadata: Metadata = {
   title: "TeamChaos — From 25+ Hackathons to Runner-Up",
   description:
@@ -34,7 +47,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn("scroll-smooth", syne.variable, inter.variable)}>
+    <html lang="en" className={cn("scroll-smooth", syne.variable, inter.variable, spaceGrotesk.variable, playfair.variable)}>
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
       </head>

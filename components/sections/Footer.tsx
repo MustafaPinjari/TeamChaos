@@ -13,7 +13,7 @@ const navLinks = [
 ];
 
 const socials = [
-  { icon: FaGithub,   href: "https://github.com/Nick7020/NeuroCart", label: "GitHub"   },
+  { icon: FaGithub,   href: "https://github.com/MustafaPinjari/NeuroCart", label: "GitHub"   },
   { icon: FaLinkedin, href: "#",                                      label: "LinkedIn" },
   { icon: FaTwitter,  href: "#",                                      label: "Twitter"  },
 ];
@@ -177,7 +177,7 @@ export default function Footer() {
             className="font-black leading-none cursor-default block w-full text-left px-5 sm:px-10 lg:px-12"
             style={{
               fontSize: "clamp(1.8rem, 7.5vw, 10rem)",
-              fontFamily: "var(--font-syne), sans-serif",
+              fontFamily: "var(--font-playfair), serif",
               letterSpacing: "-0.04em",
               lineHeight: 0.88,
               maxWidth: "100%",

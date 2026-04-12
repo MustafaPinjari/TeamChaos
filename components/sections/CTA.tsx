@@ -128,7 +128,7 @@ export default function CTA() {
               Live Demo
             </motion.a>
             <motion.a
-              href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/MustafaPinjari/NeuroCart" target="_blank" rel="noopener noreferrer"
               whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm text-white/50 border border-white/10 hover:text-white hover:border-white/20 transition-all duration-300"
             >
@@ -187,10 +187,10 @@ export default function CTA() {
 
             <div className="flex-1">
               <div className="flex flex-wrap items-center gap-3 mb-5">
-                <a href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+                <a href="https://github.com/MustafaPinjari/NeuroCart" target="_blank" rel="noopener noreferrer"
                   className="font-bold text-white hover:text-purple-300 transition-colors"
                   style={{ fontFamily: "var(--font-syne), sans-serif", fontSize: "1.1rem" }}>
-                  Nick7020 / NeuroCart
+                  MustafaPinjari / NeuroCart
                 </a>
                 <span className="text-[10px] font-semibold px-2.5 py-1 rounded-full border border-yellow-500/25 text-yellow-400/70"
                   style={{ background: "rgba(234,179,8,0.06)" }}>
@@ -227,7 +227,7 @@ export default function CTA() {
                 ))}
               </div>
               <motion.a
-                href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+                href="https://github.com/MustafaPinjari/NeuroCart" target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.97 }}
                 className="btn-shine inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm text-white shrink-0"
                 style={{ background: "linear-gradient(135deg, #a855f7, #3b82f6)", boxShadow: "0 0 20px rgba(168,85,247,0.2)" }}

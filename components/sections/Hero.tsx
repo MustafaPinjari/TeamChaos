@@ -181,7 +181,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="https://github.com/Nick7020/NeuroCart" target="_blank" rel="noopener noreferrer"
+            href="https://github.com/MustafaPinjari/NeuroCart" target="_blank" rel="noopener noreferrer"
             whileHover={{ scale: 1.04, backgroundColor: "rgba(255,255,255,0.06)" }}
             whileTap={{ scale: 0.97 }}
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-sm font-semibold text-white/50 border border-white/10 hover:text-white/80 transition-all duration-300"
