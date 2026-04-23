@@ -310,7 +310,7 @@ export default function ConnectPage() {
               style={{ background: "rgba(168,85,247,0.06)" }}
             >
               <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse" />
-              Team Chaos · 4 Members
+              Team Chaos · 4 Members · 2× Runner-Up
             </motion.div>
 
             <h1
@@ -355,7 +355,7 @@ export default function ConnectPage() {
           >
             <div className="h-px w-12" style={{ background: "linear-gradient(to right, transparent, rgba(255,255,255,0.08))" }} />
             <p className="text-white/15 text-[10px] font-mono tracking-widest uppercase">
-              TecDrill 2026 · Runner-Up
+              TecDrill 2026 · Game-O-Thon 2K26 · 2× Runner-Up
             </p>
             <div className="h-px w-12" style={{ background: "linear-gradient(to left, transparent, rgba(255,255,255,0.08))" }} />
           </motion.div>

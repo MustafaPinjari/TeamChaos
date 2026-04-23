@@ -34,12 +34,12 @@ const teamAvatars = [
 
 const stats = [
   { value: 25, suffix: "+", label: "Hackathons entered" },
-  { value: 24, suffix: "h", label: "Hours to build"    },
-  { value: 4,  suffix: "",  label: "Engineers"         },
-  { value: 2,  suffix: "nd",label: "Place finish"      },
+  { value: 2,  suffix: "",  label: "Podium finishes"    },
+  { value: 4,  suffix: "",  label: "Engineers"          },
+  { value: 2,  suffix: "nd",label: "Back-to-back"       },
 ];
 
-const tags = ["AI Recommendations", "Blockchain Verified", "Razorpay Payments", "Real-time Dashboard", "Multi-vendor", "JWT Auth"];
+const tags = ["AI Recommendations", "Blockchain Verified", "Razorpay Payments", "Real-time Dashboard", "AI Ethics Game", "Last Signal"];
 
 export default function Hero() {
   const ref = useRef(null);
@@ -103,7 +103,7 @@ export default function Hero() {
           <div className="frosted-pill flex items-center gap-2 px-4 py-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-yellow-400/70 animate-pulse" />
             <span className="text-white/40 text-[10px] uppercase tracking-[0.25em] font-medium">
-              TecDrill 2026 · Deep-Hack · Runner-Up
+              Back-to-Back Podium · 2× Runner-Up
             </span>
           </div>
           <div className="h-px w-12 bg-gradient-to-l from-transparent to-white/15" />
@@ -169,8 +169,8 @@ export default function Hero() {
           className="text-white/35 text-sm sm:text-[15px] leading-[1.8] max-w-md mb-10"
           style={{ fontFamily: "var(--font-inter), sans-serif" }}
         >
-          An AI-powered multi-vendor e-commerce platform with blockchain order verification,
-          smart recommendations, and a real-time admin dashboard — built in 24 hours.
+          From 25 failures to back-to-back podium finishes — NeuroCart (AI e-commerce) and
+          Last Signal (AI ethics game). Two wins. One team. Zero compromises.
         </motion.p>
 
         {/* CTAs */}
@@ -230,10 +230,10 @@ export default function Hero() {
           />
           <div className="text-left">
             <p className="text-white/45 text-xs font-semibold" style={{ fontFamily: "var(--font-syne), sans-serif" }}>
-              4 engineers · 24 hours
+              4 engineers · 2 podiums
             </p>
             <p className="text-white/20 text-[10px]" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-              TecDrill 2026 Runner-Up
+              TecDrill 2026 · Game-O-Thon 2K26
             </p>
           </div>
         </motion.div>

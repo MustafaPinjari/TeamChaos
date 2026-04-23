@@ -13,6 +13,7 @@ import TurningPoint from "@/components/sections/TurningPoint";
 import Architecture from "@/components/sections/Architecture";
 import Features from "@/components/sections/Features";
 import WinMoment from "@/components/sections/WinMoment";
+import LastSignal from "@/components/sections/LastSignal";
 import Learnings from "@/components/sections/Learnings";
 import CTA from "@/components/sections/CTA";
 import Footer from "@/components/sections/Footer";
@@ -34,6 +35,7 @@ export default function Home() {
           <Architecture />
           <Features />
           <WinMoment />
+          <LastSignal />
           <Learnings />
           <CTA />
         </main>

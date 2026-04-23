@@ -121,7 +121,7 @@ export default function CTA() {
           <p className="text-white/28 text-sm sm:text-[15px] leading-[1.8] max-w-sm"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}>
             See the full system in action. Explore the codebase.
-            Understand how we turned 25 failures into one runner-up finish.
+            Understand how we turned 25 failures into back-to-back runner-up finishes.
           </p>
           <div className="flex items-center gap-3 shrink-0">
             <motion.a
@@ -238,7 +238,7 @@ export default function CTA() {
                     boxShadow: "0 0 16px rgba(245,208,96,0.12)",
                     letterSpacing: "0.04em",
                   }}>
-                  🏆 Runner-Up
+                  🏆 2× Runner-Up
                 </motion.span>
               </div>
 
@@ -379,18 +379,19 @@ export default function CTA() {
             </div>
 
             <div>
-              <p className="label-eyebrow mb-3" style={{ color: "rgba(245,208,96,0.4)" }}>TecDrill 2026 · Deep-Hack</p>
+              <p className="label-eyebrow mb-3" style={{ color: "rgba(245,208,96,0.4)" }}>TecDrill 2026 + Game-O-Thon 2K26</p>
               <h3 className="font-black text-white leading-[0.88] mb-3"
                 style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.2rem)", fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.035em" }}>
-                <span style={{ color: "#f5d060", textShadow: "0 0 20px rgba(245,208,96,0.3)" }}>🥈</span> Runner-Up
+                <span style={{ color: "#f5d060", textShadow: "0 0 20px rgba(245,208,96,0.3)" }}>🥈</span> 2× Runner-Up
               </h3>
               <p className="text-white/25 text-sm leading-relaxed"
                 style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-                Built in 24 hours.<br />Sinhgad Institute, Pune.
+                NeuroCart · 24h build<br />
+                Last Signal · AI ethics game
               </p>
             </div>
             <span className="text-white/12 text-[10px] font-mono tracking-widest uppercase mt-4">
-              25 attempts → 1 win
+              25 attempts → 2 podiums
             </span>
           </motion.div>
 

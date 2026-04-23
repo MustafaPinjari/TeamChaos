@@ -290,7 +290,7 @@ export default function TeamChaos() {
               transition={{ delay: 0.4 }}
               className="text-white/25 text-sm max-w-xs leading-relaxed sm:text-right shrink-0"
             >
-              Four engineers. One vision.<br />Zero compromises. 24 hours.
+              Four engineers. One vision.<br />Two podiums. Zero compromises.
             </motion.p>
           </div>
 
@@ -327,7 +327,7 @@ export default function TeamChaos() {
                 Team Chaos
               </p>
               <p className="text-white/20 text-[11px]" style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-                Hackathon Runner-Up · 2026
+                2× Runner-Up · TecDrill + Game-O-Thon 2026
               </p>
             </div>
           </div>

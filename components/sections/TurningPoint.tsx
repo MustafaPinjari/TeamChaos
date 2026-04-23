@@ -9,8 +9,8 @@ const lines = [
   { text: "Read the problem statement.", big: false, gradient: false },
   { text: "Saw what others missed.",  big: false, gradient: false },
   { text: "Built it production-grade.", big: false, gradient: false },
-  { text: "Then came our win.",       big: true,  gradient: true  },
-  { text: "Everything changed.",      big: true,  gradient: false },
+  { text: "Then came our wins.",      big: true,  gradient: true  },
+  { text: "Back-to-back.",            big: true,  gradient: false },
 ];
 
 function Line({ line, i }: { line: typeof lines[0]; i: number }) {

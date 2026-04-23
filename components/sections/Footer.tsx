@@ -157,13 +157,15 @@ export default function Footer() {
         >
           <p className="font-bold text-white/40 text-xs sm:text-sm mb-2.5"
             style={{ fontFamily: "var(--font-syne), sans-serif", letterSpacing: "-0.01em" }}>
-            Event
+            Events
           </p>
           <p className="text-white/18 text-xs sm:text-sm leading-relaxed"
             style={{ fontFamily: "var(--font-inter), sans-serif" }}>
-            TecDrill 2026<br />
-            Deep-Hack 24h<br />
-            Sinhgad Institute, Pune
+            TecDrill 2026 · Deep-Hack<br />
+            Sinhgad Institute, Pune<br />
+            <br />
+            Game-O-Thon 2K26<br />
+            Zeal Institute, Pune
           </p>
           <motion.div
             whileHover={{ scale: 1.04 }}
@@ -177,7 +179,7 @@ export default function Footer() {
             <span className="text-xs">🥈</span>
             <span className="text-[11px] font-semibold"
               style={{ color: "#f5d060", fontFamily: "var(--font-inter), sans-serif" }}>
-              Runner-Up
+              2× Runner-Up
             </span>
           </motion.div>
         </motion.div>
@@ -226,7 +228,7 @@ export default function Footer() {
       >
         <span className="text-white/12 text-[9px] sm:text-[10px] tracking-widest uppercase text-center sm:text-left"
           style={{ fontFamily: "var(--font-mono), monospace" }}>
-          © 2026 Team Chaos · TecDrill Deep-Hack · Built in 24 hours
+          © 2026 Team Chaos · TecDrill + Game-O-Thon · Back-to-Back Runner-Up
         </span>
         <div className="flex items-center gap-5">
           {socials.map(({ icon: Icon, href, label }) => (

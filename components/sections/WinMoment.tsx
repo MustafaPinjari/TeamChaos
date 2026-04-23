@@ -56,12 +56,12 @@ function FilesBackground() {
    BACKGROUND 2 — animated notification list
 ───────────────────────────────────────────── */
 const notifications = [
-  { icon: "🏆", title: "Runner-Up awarded",    time: "24h ago",  sub: "TecDrill Deep-Hack 2026" },
-  { icon: "⛓️", title: "Blockchain tx confirmed", time: "23h ago", sub: "Sepolia · 0x4f2a...c8b1" },
-  { icon: "🤖", title: "AI recs live",          time: "20h ago",  sub: "OpenAI GPT-4o-mini active" },
-  { icon: "💳", title: "Payment received",      time: "18h ago",  sub: "Razorpay · ₹2,499" },
-  { icon: "📊", title: "Dashboard deployed",    time: "15h ago",  sub: "Real-time analytics live" },
-  { icon: "🚀", title: "NeuroCart shipped",      time: "0h ago",   sub: "All systems operational" },
+  { icon: "🏆", title: "2nd Runner-Up awarded",    time: "just now",  sub: "Game-O-Thon 2K26 · Zeal Institute" },
+  { icon: "🥈", title: "Runner-Up awarded",         time: "1 month ago", sub: "TecDrill Deep-Hack 2026" },
+  { icon: "🎮", title: "Last Signal shipped",       time: "just now",  sub: "AI ethics narrative game · React + Vite" },
+  { icon: "⛓️", title: "Blockchain tx confirmed",  time: "1 month ago", sub: "Sepolia · 0x4f2a...c8b1" },
+  { icon: "🤖", title: "AI personality engine live", time: "just now", sub: "Empathy · Logic · Control traits" },
+  { icon: "🚀", title: "Back-to-back podiums",      time: "now",       sub: "Consistency beats everything" },
 ];
 
 function NotificationsBackground() {
@@ -189,11 +189,12 @@ function StatsBackground() {
    STORY LINES
 ───────────────────────────────────────────── */
 const storyLines = [
-  { text: "The judges reviewed",        delay: 0    },
-  { text: "over 30 projects.",          delay: 0.12 },
-  { text: "Most built a CRUD app.",     delay: 0.24 },
-  { text: "We built a SaaS product.",   delay: 0.36 },
-  { text: "Then they called a name.",   delay: 0.48 },
+  { text: "The judges reviewed",          delay: 0    },
+  { text: "over 30 projects.",            delay: 0.12 },
+  { text: "Most built a CRUD app.",       delay: 0.24 },
+  { text: "We built a moral battlefield.", delay: 0.36 },
+  { text: "Then they called a name.",     delay: 0.48 },
+  { text: "Again.",                       delay: 0.60 },
 ];
 
 function StoryLine({ text, delay }: { text: string; delay: number }) {
@@ -229,10 +230,10 @@ const bentoFeatures = [
   },
   {
     Icon: Zap,
-    name: "Built in 24 hours",
-    description: "From architecture to deployment — JWT auth, AI recs, blockchain, payments, and real-time dashboard.",
+    name: "Back-to-back podiums",
+    description: "NeuroCart (TecDrill 2026) + Last Signal (Game-O-Thon 2K26). Two runner-up finishes in the same month.",
     href: "https://nauros.netlify.app/",
-    cta: "See live",
+    cta: "See NeuroCart",
     className: "col-span-3 lg:col-span-2",
     background: <NotificationsBackground />,
   },
@@ -247,8 +248,8 @@ const bentoFeatures = [
   },
   {
     Icon: CalendarIcon,
-    name: "Runner-Up · TecDrill 2026",
-    description: "25 hackathons. 1 win. Built at Sinhgad Institute, Pune in the Deep-Hack 24h sprint.",
+    name: "2× Runner-Up · 2026",
+    description: "TecDrill Deep-Hack + Game-O-Thon 2K26. Built at Sinhgad & Zeal Institute. 25 hackathons → 2 podiums.",
     href: "#",
     cta: "Our story",
     className: "col-span-3 lg:col-span-1",
@@ -294,7 +295,7 @@ export default function WinMoment() {
               <Trophy className="w-4 h-4" style={{ color: "#f5d060" }} />
             </motion.div>
             <span className="text-sm font-semibold" style={{ color: "#f5d060", fontFamily: "var(--font-inter), sans-serif" }}>
-              🥈 Runner-Up
+              🥈 Back-to-Back Runner-Up
             </span>
           </div>
         </motion.div>
@@ -333,7 +334,7 @@ export default function WinMoment() {
           transition={{ duration: 0.6 }}
           className="flex flex-wrap gap-2 sm:gap-3 mb-16 sm:mb-20"
         >
-          {["🥈 Runner-Up", "🎯 Best Innovation", "⚡ Best Tech Stack", "🌟 Judges' Choice"].map((a, i) => (
+          {["🥈 Runner-Up · TecDrill 2026", "🥈 2nd Runner-Up · Game-O-Thon 2K26", "🎯 Best Innovation", "⚡ Best Tech Stack"].map((a, i) => (
             <motion.span key={a}
               initial={{ opacity: 0, scale: 0.8 }}
               animate={awardsInView ? { opacity: 1, scale: 1 } : {}}
